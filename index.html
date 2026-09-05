@@ -1,26 +1,1881 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CK Capital — Control Room Concept</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>CK Capital | Institutional Prop Trading & Trader Control Room</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="responsive.css" />
 </head>
-<body>
-<div class="ticker"><span class="dot"></span> MARKETS OPEN <span class="sep"></span> CK CAPITAL // TRADER INFRASTRUCTURE <span class="sep"></span><span class="muted">SIMULATED ENVIRONMENT</span><span class="right">SUPPORT <b>● ONLINE</b></span></div>
-<header><a class="brand" href="#top"><span class="ck">CK</span><span>CAPITAL</span></a><nav><a href="#accounts">Accounts</a><a href="dashboard.html">Trader portal</a><a href="#process">How it works</a><a href="#rules">Rules</a><a href="#community">Community</a></nav><div class="actions"><button class="ghost" onclick="location.href='login.html'">Log in</button><button class="gold" onclick="location.href='checkout.html'">Start evaluation ↗</button></div><button class="menu">☰</button></header>
-<main id="top">
-<section class="hero"><div class="hero-copy"><div class="eyebrow">THE TRADER'S CONTROL ROOM</div><h1>CAPITAL SHOULD<br><span>FOLLOW</span> CONSISTENCY.</h1><p>Evaluation built around clear objectives, visible risk and a professional path from challenge to qualified trader.</p><div class="hero-actions"><button class="gold big" onclick="document.querySelector('#accounts').scrollIntoView({behavior:'smooth'})">Explore accounts ↗</button><button class="textbtn" onclick="document.querySelector('#process').scrollIntoView({behavior:'smooth'})">See the pathway →</button></div><div class="micro"><span>✓ TradeLocker</span><span>✓ MT5</span><span>✓ News trading</span><span>✓ Flexible payouts</span></div></div><div class="hero-console"><div class="console-top"><span>LIVE MARKET STATUS</span><b>09:42:31 UTC</b></div><div class="chart"><div class="grid"></div><svg viewBox="0 0 500 220" preserveAspectRatio="none"><polyline points="0,185 35,165 55,174 78,120 105,137 130,94 150,108 177,70 200,95 230,58 255,80 280,44 305,64 335,35 365,62 390,24 420,45 450,18 500,28" fill="none" stroke="currentColor" stroke-width="3"/></svg><span class="tag t1">XAUUSD</span><span class="tag t2">+1.82%</span></div><div class="console-grid"><div><small>ACCOUNT</small><strong>$100,000</strong></div><div><small>RISK USED</small><strong>1.4%</strong></div><div><small>STATUS</small><strong class="ok">ON TRACK</strong></div></div></div></section>
-<section class="stats"><div><small>SIMULATED FUNDING</small><strong>UP TO $1.2M</strong></div><div><small>PROFIT SPLIT</small><strong>UP TO 100%</strong></div><div><small>PLATFORMS</small><strong>MT5 / TRADELOCKER</strong></div><div><small>PAYOUTS</small><strong>FLEXIBLE CYCLE</strong></div></section>
-<section id="process" class="section"><div class="section-head"><div><div class="eyebrow">FUNDING RUNWAY</div><h2>Your path. Your pace.</h2></div><p>One visual system explains exactly where a trader is, what comes next and what is required.</p></div><div class="runway"><div class="step active"><span>01</span><b>EVALUATION</b><p>Prove your edge against the selected objectives.</p></div><div class="line"></div><div class="step"><span>02</span><b>VERIFICATION</b><p>Demonstrate consistency in a simplified phase.</p></div><div class="line"></div><div class="step"><span>03</span><b>CK TRADER</b><p>Unlock the qualified analyst environment.</p></div></div></section>
-<section id="accounts" class="section accounts"><div class="section-head"><div><div class="eyebrow">CHALLENGE TERMINAL</div><h2>Choose your capital base.</h2></div><div class="switch"><button class="selected" data-mode="1">1 STEP</button><button data-mode="2">2 STEP</button><button data-mode="instant">INSTANT</button></div></div><div class="terminal"><div class="terminal-tabs"><button class="size selected" data-size="10000">$10K</button><button class="size" data-size="25000">$25K</button><button class="size" data-size="50000">$50K</button><button class="size" data-size="100000">$100K</button><button class="size" data-size="200000">$200K</button><button class="size" data-size="300000">$300K</button></div><div class="terminal-body"><div class="offer"><span class="pill">STANDARD</span><h3 id="account-title">$10,000 Challenge</h3><p>Unlimited trading period. Select MT5 or TradeLocker at checkout.</p><div class="price"><span>$53</span><del>$88</del></div><button class="gold full" onclick="location.href='checkout.html'">Continue to checkout ↗</button></div><div class="rules-mini"><div><small>STEP 1 TARGET</small><b id="target">$500</b></div><div><small>DAILY LOSS</small><b id="daily">$200</b></div><div><small>MAX LOSS</small><b id="max">$400</b></div><div><small>MIN DAYS</small><b>1</b></div><div><small>PLATFORM</small><b>MT5 / TL</b></div><div><small>TRADING PERIOD</small><b>UNLIMITED</b></div></div></div></div><p class="source-note">Concept UI uses publicly displayed CK Capital plan information as of September 2026; pricing/objectives should be connected to the live checkout rather than hard-coded.</p></section>
-<section id="rules" class="section rules"><div class="section-head"><div><div class="eyebrow">RISK ENGINE</div><h2>Rules, visible before you trade.</h2></div><p>No hunting through PDFs. Put the numbers traders care about directly beside the account decision.</p></div><div class="risk-grid"><div class="gauge"><span>DAILY LOSS</span><strong>5%</strong><div class="arc"><i style="--p:18"></i></div><small>MAXIMUM</small></div><div class="gauge"><span>MAX LOSS</span><strong>10%</strong><div class="arc"><i style="--p:35"></i></div><small>MAXIMUM</small></div><div class="gauge"><span>PROFIT TARGET</span><strong>5%</strong><div class="arc"><i style="--p:20"></i></div><small>STEP 1 EXAMPLE</small></div><div class="gauge accent"><span>CONSISTENCY</span><strong>40%</strong><div class="arc"><i style="--p:55"></i></div><small>PLAN DEPENDENT</small></div></div></section>
-<section class="trust"><div class="trust-main"><div class="eyebrow">TRUST LEDGER</div><h2>Everything important.<br>One glance.</h2><p>Turn scattered claims into a structured operating sheet: payout model, split, platforms, support and account limits.</p></div><div class="ledger"><div><span>PROFIT SPLIT</span><b>UP TO 100%</b></div><div><span>ACCOUNT ALLOCATION</span><b>UP TO $1.2M</b></div><div><span>NEWS TRADING</span><b>AVAILABLE</b></div><div><span>SUPPORT</span><b>MON–FRI · 8–8 GMT</b></div><div><span>PAYMENT</span><b>STRIPE · PAYPAL · CRYPTO</b></div></div></section>
-<section id="community" class="community section"><div><div class="eyebrow">US VS US</div><h2>Build the trader network,<br>not just the checkout.</h2><p>Community, games, education and support become part of the product experience instead of a footer link.</p></div><div class="community-card"><div class="live"><span></span> COMMUNITY LIVE</div><strong>Join the CK room</strong><p>Share setups. Ask questions. Track milestones.</p><button class="ghost">Open community ↗</button></div></section>
-</main>
-<footer><div class="brand"><span class="ck">CK</span><span>CAPITAL</span></div><div>© CK CAPITAL GROUP LTD.</div><div>SIMULATED TRADING ENVIRONMENT · RESULTS NOT TYPICAL</div>
-</footer>
-<script src="app.js"></script>
+<body data-theme="dark">
+
+  <!-- NOTIFICATION TOAST WRAPPER -->
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <!-- ANNOUNCEMENT / PROMO STRIP -->
+  <div class="announcement-bar" id="promo-banner">
+    <div class="container announcement-inner">
+      <div class="announcement-tag font-mono">PROMO ACTIVE</div>
+      <p class="announcement-text">
+        Institutional Spreads & Zero Hidden Breach Rules. Use coupon <span class="highlight-code">CONSISTENCY</span> for 15% off any evaluation account.
+      </p>
+      <button class="announcement-close" id="btn-close-banner" aria-label="Close Announcement">&times;</button>
+    </div>
+  </div>
+
+  <!-- FLOATING LIQUID GLASS NAVIGATION -->
+  <header class="main-header" id="header">
+    <div class="container header-container">
+      <div class="brand-monogram" data-nav="home">
+        <svg class="ck-logo-svg" viewBox="0 0 44 44" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="44" height="44" rx="10" fill="#121318"/>
+          <rect x="0.5" y="0.5" width="43" height="43" rx="9.5" stroke="url(#goldGrad)" stroke-opacity="0.3"/>
+          <path d="M19 14H15C13.3431 14 12 15.3431 12 17V27C12 28.6569 13.3431 30 15 30H19" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M23 14V30" stroke="#F5F5F7" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M31 15L23.5 22L31.5 29" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="goldGrad" x1="12" y1="14" x2="32" y2="30" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#F2D07C"/>
+              <stop offset="1" stop-color="#B88A2E"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="brand-wordmark">CK <span>CAPITAL</span></span>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="nav-links">
+        <button class="nav-item active" data-nav="home">Home</button>
+        <button class="nav-item" data-nav="challenges">Challenges</button>
+        <button class="nav-item" data-nav="how-it-works">How It Works</button>
+        <button class="nav-item" data-nav="objectives">Objectives</button>
+        <button class="nav-item" data-nav="about">About</button>
+        <button class="nav-item" data-nav="faq">FAQ</button>
+      </nav>
+
+      <!-- Action Items -->
+      <div class="nav-actions">
+        <button class="btn btn-ghost" id="nav-btn-auth">Log In</button>
+        <button class="btn btn-primary" id="nav-btn-portal" data-nav="challenges">Start Trading</button>
+        <button class="btn-hamburger" id="btn-hamburger" aria-label="Toggle navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE NAVIGATION DRAWER -->
+  <aside class="mobile-drawer" id="mobile-drawer">
+    <div class="drawer-header">
+      <span class="brand-wordmark">CK <span>CAPITAL</span></span>
+      <button class="drawer-close" id="btn-close-drawer">&times;</button>
+    </div>
+    <div class="drawer-links">
+      <button class="drawer-link" data-nav="home">Home</button>
+      <button class="drawer-link" data-nav="challenges">Challenge Terminal</button>
+      <button class="drawer-link" data-nav="how-it-works">How It Works</button>
+      <button class="drawer-link" data-nav="objectives">Trading Objectives</button>
+      <button class="drawer-link" data-nav="about">About Institution</button>
+      <button class="drawer-link" data-nav="faq">FAQ Knowledge Base</button>
+      <hr class="drawer-divider" />
+      <button class="drawer-link" id="mobile-link-auth">Log In</button>
+      <button class="btn btn-primary btn-block" data-nav="challenges">Get Funded Now</button>
+    </div>
+  </aside>
+
+  <!-- ============================================================ -->
+  <!-- VIEW 1: PUBLIC PORTAL (LANDING / HOME / CHALLENGE / CONTENT) -->
+  <!-- ============================================================ -->
+  <main id="public-view" class="view-panel active">
+    
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero-sec">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="badge-status">
+            <span class="status-pulse"></span>
+            INSTITUTIONAL GRADE PROPRIETARY INFRASTRUCTURE
+          </div>
+          <h1 class="hero-title">CAPITAL SHOULD FOLLOW <span class="gold-gradient-text">CONSISTENCY.</span></h1>
+          <p class="hero-subtitle">
+            A modern prop environment built around disciplined execution, transparent objectives, and a trader cockpit engineered to protect your edge. Scale up to $1,200,000 in simulated capital.
+          </p>
+          <div class="hero-cta-group">
+            <button class="btn btn-primary btn-large" data-scroll="challenge-terminal">Explore Challenges</button>
+            <button class="btn btn-secondary btn-large" id="hero-btn-demo-portal">Enter Trader Portal</button>
+          </div>
+          <div class="hero-pills">
+            <div class="pill-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Up to 100% Profit Split
+            </div>
+            <div class="pill-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              TradeLocker & MT5
+            </div>
+            <div class="pill-item">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              News Trading Allowed
+            </div>
+          </div>
+        </div>
+
+        <!-- HERO TERMINAL PREVIEW CARD -->
+        <div class="hero-visual">
+          <div class="terminal-mockup glass-panel">
+            <div class="mockup-header">
+              <div class="mockup-signals">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="mockup-title">CK TRADER COCKPIT // LIVE EXECUTION SIMULATION</div>
+              <div class="mockup-badge">HEALTHY</div>
+            </div>
+            <div class="mockup-body">
+              <div class="mockup-stats-row">
+                <div class="mstat">
+                  <span class="lbl">Simulated Balance</span>
+                  <span class="val font-mono" id="hero-anim-balance">$10,428.60</span>
+                </div>
+                <div class="mstat">
+                  <span class="lbl">Total Return</span>
+                  <span class="val font-mono text-success">+4.28%</span>
+                </div>
+                <div class="mstat">
+                  <span class="lbl">Daily Drawdown</span>
+                  <span class="val font-mono">1.09% <span class="sub text-muted">/ 2.0%</span></span>
+                </div>
+              </div>
+              <!-- Mini SVG Equity Curve Animation -->
+              <div class="mockup-chart-wrap">
+                <svg class="mini-chart-svg" viewBox="0 0 500 160">
+                  <defs>
+                    <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.3"/>
+                      <stop offset="100%" stop-color="#D4AF37" stop-opacity="0.0"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M0,130 C70,120 120,135 180,95 C240,65 300,105 380,45 C440,25 470,35 500,20 L500,160 L0,160 Z" fill="url(#chartGrad)"/>
+                  <path d="M0,130 C70,120 120,135 180,95 C240,65 300,105 380,45 C440,25 470,35 500,20" fill="none" stroke="#D4AF37" stroke-width="3" stroke-linecap="round"/>
+                  <circle cx="500" cy="20" r="5" fill="#D4AF37" class="pulse-circle"/>
+                </svg>
+              </div>
+              <div class="mockup-footer-metrics font-mono">
+                <div><span class="dot-live"></span> MT5 Server: <strong>CK-Capital-Live</strong></div>
+                <div>Avg Spread EURUSD: <strong>0.1 pips</strong></div>
+                <div>Fill Latency: <strong>18ms</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST STATS SECTION -->
+    <section class="trust-strip">
+      <div class="container trust-grid">
+        <div class="trust-stat">
+          <div class="stat-number font-mono">$1.2M</div>
+          <div class="stat-label">Max Funding Scale</div>
+        </div>
+        <div class="trust-stat">
+          <div class="stat-number font-mono">Up to 100%</div>
+          <div class="stat-label">Profit Split Tiers</div>
+        </div>
+        <div class="trust-stat">
+          <div class="stat-number font-mono">1 Day</div>
+          <div class="stat-label">Min. Trading Days</div>
+        </div>
+        <div class="trust-stat">
+          <div class="stat-number font-mono">0.0 Pips</div>
+          <div class="stat-label">Institutional Raw Spreads</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY CK CAPITAL (VALUE PROPOSITIONS) -->
+    <section class="section why-section" id="why-ck">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">BUILT BY PRACTITIONERS</span>
+          <h2 class="section-title">Institutional Conditions. Zero Hidden Friction.</h2>
+          <p class="section-desc">We dismantled the predatory traps common in retail prop firms. Trade with clean objectives engineered for risk managers.</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card glass-panel">
+            <div class="feat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <h3>Flexible Payout Cadence</h3>
+            <p>Request payouts on demand or bi-weekly. Profit allocations processed rapidly via Crypto, Bank Wire, or PayPal without artificial gatekeeping.</p>
+          </div>
+          <div class="feature-card glass-panel">
+            <div class="feat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3>News & Weekend Holding</h3>
+            <p>Trade tier-one macroeconomic volatility (NFP, CPI, FOMC) with confidence. Hold swing positions through weekend market closures on selected platforms.</p>
+          </div>
+          <div class="feature-card glass-panel">
+            <div class="feat-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3>Next-Gen Platforms</h3>
+            <p>Deploy algorithms or discretionary orders seamlessly across MT5 and TradeLocker with direct TradingView charting integration.</p>
+          </div>
+          <div class="feature-card glass-panel">
+            <div class="feature-card-inner">
+              <div class="feat-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+              </div>
+              <h3>Discipline Scaling Matrix</h3>
+              <p>Gain access to larger simulated capital brackets automatically as you establish statistical consistency and prudent drawdown control.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHALLENGE TERMINAL -->
+    <section class="section terminal-section" id="challenge-terminal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">THE TRADING SPECIFICATION</span>
+          <h2 class="section-title">Configure Your Evaluation</h2>
+          <p class="section-desc">Select your preferred model, platform, and capital scale. Transparent risk criteria with no hidden breach triggers.</p>
+        </div>
+
+        <div class="config-terminal-wrapper glass-panel">
+          <!-- Model Selectors -->
+          <div class="terminal-ctrl-bar">
+            <div class="ctrl-group">
+              <label class="ctrl-label">Evaluation Model</label>
+              <div class="pill-selector" id="model-selector">
+                <button class="pill-btn active" data-model="2step">2-Step Evaluation</button>
+                <button class="pill-btn" data-model="1step">1-Step Fast Track</button>
+                <button class="pill-btn" data-model="instant">Instant Funding</button>
+              </div>
+            </div>
+
+            <div class="ctrl-group">
+              <label class="ctrl-label">Platform</label>
+              <div class="pill-selector" id="platform-selector">
+                <button class="pill-btn active" data-platform="TradeLocker">TradeLocker</button>
+                <button class="pill-btn" data-platform="MT5">MetaTrader 5</button>
+              </div>
+            </div>
+
+            <div class="ctrl-group">
+              <label class="ctrl-label">Execution Profile</label>
+              <div class="pill-selector" id="preference-selector">
+                <button class="pill-btn active" data-pref="Standard">Standard</button>
+                <button class="pill-btn" data-pref="Pro">Pro Raw Spreads</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Account Size Selector -->
+          <div class="capital-selector-row">
+            <label class="ctrl-label">Select Account Capital</label>
+            <div class="sizes-scroll-grid" id="sizes-container">
+              <!-- Rendered dynamically by JS -->
+            </div>
+          </div>
+
+          <!-- Dynamic Specification Details Card -->
+          <div class="challenge-spec-grid">
+            <div class="spec-col">
+              <div class="spec-metric">
+                <span class="m-title">Profit Target (Step 1)</span>
+                <span class="m-val font-mono" id="spec-target1">$500 (5%)</span>
+              </div>
+              <div class="spec-metric" id="spec-target2-wrap">
+                <span class="m-title">Profit Target (Step 2)</span>
+                <span class="m-val font-mono" id="spec-target2">$250 (2.5%)</span>
+              </div>
+              <div class="spec-metric">
+                <span class="m-title">Max Daily Loss</span>
+                <span class="m-val font-mono text-danger" id="spec-daily">$200 (2%)</span>
+              </div>
+            </div>
+
+            <div class="spec-col">
+              <div class="spec-metric">
+                <span class="m-title">Max Overall Loss</span>
+                <span class="m-val font-mono text-danger" id="spec-maxloss">$400 (4%)</span>
+              </div>
+              <div class="spec-metric">
+                <span class="m-title">Min Trading Days</span>
+                <span class="m-val font-mono" id="spec-mindays">1 Day</span>
+              </div>
+              <div class="spec-metric">
+                <span class="m-title">Trading Period</span>
+                <span class="m-val font-mono" id="spec-period">Unlimited</span>
+              </div>
+            </div>
+
+            <!-- Price and Buy Action Box -->
+            <div class="spec-col price-cta-box">
+              <span class="box-tag">INSTITUTIONAL SIMULATED PASS</span>
+              <div class="price-display font-mono">
+                <span class="curr">$</span><span class="amount" id="spec-price">53</span>
+              </div>
+              <div class="price-note">One-time registration fee. 100% refundable upon Qualified Analyst verification.</div>
+              <button class="btn btn-primary btn-block btn-large" id="btn-terminal-checkout">Enroll in Challenge</button>
+              <div class="guarantee-line font-mono">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                Stripe & Crypto Instant Provisioning
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Challenge Objective Comparison Table -->
+        <div class="table-card glass-panel" style="margin-top: 2rem;">
+          <div class="card-header">
+            <h3>Framework Rule Comparison Matrix</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Evaluation Tier</th>
+                  <th>Step 1 Target</th>
+                  <th>Step 2 Target</th>
+                  <th>Max Daily Drawdown</th>
+                  <th>Max Overall Loss</th>
+                  <th>Profit Split</th>
+                  <th>Leverage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-label="Evaluation Tier"><strong>2-Step Standard</strong></td>
+                  <td data-label="Step 1 Target" class="font-mono text-gold">5%</td>
+                  <td data-label="Step 2 Target" class="font-mono text-gold">2.5%</td>
+                  <td data-label="Max Daily Drawdown" class="font-mono">2.0%</td>
+                  <td data-label="Max Overall Loss" class="font-mono">4.0%</td>
+                  <td data-label="Profit Split" class="font-mono">Up to 100%</td>
+                  <td data-label="Leverage" class="font-mono">1:100</td>
+                </tr>
+                <tr>
+                  <td data-label="Evaluation Tier"><strong>1-Step Fast Track</strong></td>
+                  <td data-label="Step 1 Target" class="font-mono text-gold">8%</td>
+                  <td data-label="Step 2 Target" class="font-mono text-muted">N/A</td>
+                  <td data-label="Max Daily Drawdown" class="font-mono">3.0%</td>
+                  <td data-label="Max Overall Loss" class="font-mono">6.0%</td>
+                  <td data-label="Profit Split" class="font-mono">Up to 100%</td>
+                  <td data-label="Leverage" class="font-mono">1:50</td>
+                </tr>
+                <tr>
+                  <td data-label="Evaluation Tier"><strong>Instant Capital</strong></td>
+                  <td data-label="Step 1 Target" class="font-mono text-muted">None</td>
+                  <td data-label="Step 2 Target" class="font-mono text-muted">None</td>
+                  <td data-label="Max Daily Drawdown" class="font-mono">3.0%</td>
+                  <td data-label="Max Overall Loss" class="font-mono">5.0%</td>
+                  <td data-label="Profit Split" class="font-mono">70% to 90%</td>
+                  <td data-label="Leverage" class="font-mono">1:30</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS ROADMAP -->
+    <section class="section" id="how-it-works-sec">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">THE ROADMAP</span>
+          <h2 class="section-title">The Path to Qualified Analyst</h2>
+          <p class="section-desc">A structured career milestone progression built for professional traders.</p>
+        </div>
+
+        <div class="steps-grid">
+          <div class="step-card glass-panel" data-step="1">
+            <div class="step-badge font-mono">STEP 01</div>
+            <h4>Evaluation Phase</h4>
+            <p>Prove your edge in simulated market conditions. Respect daily drawdown thresholds and reach your reasonable target with disciplined position sizing.</p>
+            <ul class="step-checkmarks">
+              <li>1 Day Minimum Trading</li>
+              <li>Unlimited Trading Calendar</li>
+              <li>Simulated Execution Engine</li>
+            </ul>
+          </div>
+          <div class="step-card glass-panel" data-step="2">
+            <div class="step-badge font-mono">STEP 02</div>
+            <h4>Verification Phase</h4>
+            <p>Demonstrate that Phase 1 was not a statistical anomaly. Replicate your performance with half the profit target and identical risk limits.</p>
+            <ul class="step-checkmarks">
+              <li>Relaxed 2.5% Target</li>
+              <li>Strict Risk Engine Verification</li>
+              <li>Consistency Guardrails</li>
+            </ul>
+          </div>
+          <div class="step-card glass-panel highlighted-step" data-step="3">
+            <div class="step-badge gold-badge font-mono">STEP 03</div>
+            <h4>Qualified Analyst</h4>
+            <p>Receive your institutional simulated credentials. Trade capital up to $1.2M with up to 100% simulated profit splits and on-demand payout schedules.</p>
+            <ul class="step-checkmarks">
+              <li>Zero Profit Targets</li>
+              <li>100% Refund of Challenge Fees</li>
+              <li>Access to Scaling Plans</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRADING OBJECTIVES SPECIFICATION DEEP DIVE -->
+    <section class="section" id="objectives-sec">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">RULES HEALTH ARCHITECTURE</span>
+          <h2 class="section-title">Precision Trading Objectives</h2>
+          <p class="section-desc">Every objective is transparently evaluated through our algorithmic risk monitor.</p>
+        </div>
+        <div class="objectives-interactive-grid">
+          <div class="obj-card glass-panel" data-obj="daily">
+            <div class="obj-header">
+              <span class="obj-indicator status-ok"></span>
+              <h4>Maximum Daily Loss</h4>
+            </div>
+            <p>Calculated based on balance or equity at 00:00 UTC. Never exceed your designated daily limit in active drawdown or closed losses.</p>
+            <div class="obj-foot">
+              <span class="font-mono text-gold">Strict Automatic Protection</span>
+            </div>
+          </div>
+          <div class="obj-card glass-panel" data-obj="overall">
+            <div class="obj-header">
+              <span class="obj-indicator status-ok"></span>
+              <h4>Maximum Total Drawdown</h4>
+            </div>
+            <p>Static limit anchored to your initial starting allocation. Gives traders room to navigate systemic market volatility without trailing stress.</p>
+            <div class="obj-foot">
+              <span class="font-mono text-gold">Static Calculation</span>
+            </div>
+          </div>
+          <div class="obj-card glass-panel" data-obj="news">
+            <div class="obj-header">
+              <span class="obj-indicator status-ok"></span>
+              <h4>High Impact News Trading</h4>
+            </div>
+            <p>Trade high-tier announcements without fear of arbitrary account terminations. We encourage trading market momentum with proper slippage tolerance.</p>
+            <div class="obj-foot">
+              <span class="font-mono text-gold">Fully Permitted</span>
+            </div>
+          </div>
+          <div class="obj-card glass-panel" data-obj="period">
+            <div class="obj-header">
+              <span class="obj-indicator status-ok"></span>
+              <h4>Trading Period</h4>
+            </div>
+            <p>Zero artificial time pressure. Take 3 days or 9 months to reach your evaluation target. Discipline should never be rushed by a ticking calendar.</p>
+            <div class="obj-foot">
+              <span class="font-mono text-gold">Unlimited Duration</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section" id="about-sec">
+      <div class="container about-grid">
+        <div class="about-text">
+          <span class="section-subtitle">OUR PHILOSOPHY</span>
+          <h2 class="section-title">Institutional Technology. Engineered for Risk Managers.</h2>
+          <p>
+            CK Capital was conceived on a singular premise: <strong>Capital should follow consistency.</strong>
+          </p>
+          <p>
+            Too many prop firms operate as disguised casinos, engineering obscure breach mechanisms to harvest registration fees. At CK Capital, we provide genuine institutional liquidity feeds, ultra-fast MT5 & TradeLocker infrastructure, and transparent risk monitors. When you execute with edge, we scale your potential.
+          </p>
+          <div class="philosophy-points">
+            <div class="phil-item">
+              <div class="phil-bullet">01</div>
+              <div>
+                <strong>Pure Simulated Environment</strong>
+                <p>Transparent simulated accounts modeled after Tier-1 liquidity bank books.</p>
+              </div>
+            </div>
+            <div class="phil-item">
+              <div class="phil-bullet">02</div>
+              <div>
+                <strong>Predictable Payout Engine</strong>
+                <p>On-demand withdrawals processed seamlessly via secure crypto and global banking channels.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-card glass-panel">
+          <div class="about-card-inner">
+            <div class="stat-pill font-mono">EST. 2024 UK PROPRIETARY STANDARDS</div>
+            <h3>Simulated Trading Environment</h3>
+            <p>Every account provided to participants represents simulated capital with real-time price quotes. Qualified Analysts receive performance allocations based on verifiable performance benchmarks.</p>
+            <div class="badge-quote font-mono">
+              "We prioritize the disciplined 1% over the reckless gamblers."
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ KNOWLEDGE BASE SECTION -->
+    <section class="section" id="faq-sec">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">KNOWLEDGE ARCHIVE</span>
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <p class="section-desc">Instant answers to everything regarding rules, platforms, payouts, and scaling.</p>
+        </div>
+
+        <div class="faq-search-wrap">
+          <input type="text" class="form-input" id="faq-search-input" placeholder="Search rules, payouts, platforms, or drawdown limits..." />
+        </div>
+
+        <div class="faq-accordion" id="faq-accordion-list">
+          <div class="faq-item glass-panel active" data-category="rules">
+            <button class="faq-q">
+              <span>What is the maximum daily loss and how is it calculated?</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-a">
+              <p>The daily drawdown is calculated based on the account equity or balance at 00:00 UTC (whichever is higher). For a $10,000 Standard account, the 2% daily loss limit is fixed at $200. If your floating equity dips below $9,800 at any point during that day, the system registers a daily loss breach.</p>
+            </div>
+          </div>
+
+          <div class="faq-item glass-panel" data-category="payouts">
+            <button class="faq-q">
+              <span>How quickly are Qualified Analyst payouts disbursed?</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-a">
+              <p>Qualified Analysts can request their first payout immediately after completing their designated holding cycle or reaching the standard payout milestone. Payments are dispatched within 24–48 business hours via USDT (TRC20/ERC20), direct bank wire, or PayPal.</p>
+            </div>
+          </div>
+
+          <div class="faq-item glass-panel" data-category="rules">
+            <button class="faq-q">
+              <span>Am I permitted to trade macroeconomic news and hold over weekends?</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-a">
+              <p>Yes. News trading is completely allowed on Standard evaluations. You may execute trades during NFP, CPI, and central bank announcements. Weekend holding is also supported on selected platforms like TradeLocker and MT5 Swing profiles.</p>
+            </div>
+          </div>
+
+          <div class="faq-item glass-panel" data-category="platforms">
+            <button class="faq-q">
+              <span>What trading platforms can I execute on?</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-a">
+              <p>We provide two institutional-grade execution environments: TradeLocker (featuring TradingView charts, on-chart risk calculation, and high-speed execution) and MetaTrader 5 (MT5), compatible with Expert Advisors (EAs) and specialized indicators.</p>
+            </div>
+          </div>
+
+          <div class="faq-item glass-panel" data-category="rules">
+            <button class="faq-q">
+              <span>Is there a time limit to complete evaluation phases?</span>
+              <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-a">
+              <p>No. Both Phase 1 and Phase 2 feature unlimited trading duration. You can take as many trading days as needed to systematically reach the profit target without fear of artificial expiration dates.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS SLIDER SECTION -->
+    <section class="section testimonials-sec">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-subtitle">TRADER STORIES</span>
+          <h2 class="section-title">Verified Analyst Experiences</h2>
+        </div>
+        <div class="testimonial-slider-wrap">
+          <div class="testimonial-cards" id="testimonial-track">
+            <div class="testi-card glass-panel">
+              <div class="testi-header">
+                <div class="avatar-ph">MK</div>
+                <div>
+                  <h4>Marcus K.</h4>
+                  <span class="text-gold font-mono">$100,000 Qualified Analyst</span>
+                </div>
+              </div>
+              <p class="testi-quote">"The 1-day minimum trading rule combined with unlimited time let me wait for the cleanest A+ setups on Gold. Requested my first payout of $4,820 via crypto and had the transaction hash in under 8 hours."</p>
+              <div class="testi-badge">Verified Payout</div>
+            </div>
+
+            <div class="testi-card glass-panel">
+              <div class="testi-header">
+                <div class="avatar-ph">SL</div>
+                <div>
+                  <h4>Sarah L.</h4>
+                  <span class="text-gold font-mono">$50,000 Qualified Analyst</span>
+                </div>
+              </div>
+              <p class="testi-quote">"TradeLocker's native TradingView charts make execution effortless. No slippage spikes during London open. CK Capital is by far the cleanest prop firm dashboard I've used."</p>
+              <div class="testi-badge">Verified Payout</div>
+            </div>
+
+            <div class="testi-card glass-panel">
+              <div class="testi-header">
+                <div class="avatar-ph">DA</div>
+                <div>
+                  <h4>David A.</h4>
+                  <span class="text-gold font-mono">$200,000 Qualified Analyst</span>
+                </div>
+              </div>
+              <p class="testi-quote">"Static overall drawdown is the game changer. In other firms, trailing drawdown eats you up while in floating profit. CK's rules are genuinely built for traders who know risk management."</p>
+              <div class="testi-badge">Verified Payout</div>
+            </div>
+          </div>
+          <div class="slider-controls">
+            <button class="slider-btn" id="btn-testi-prev" aria-label="Previous review">&#8592;</button>
+            <button class="slider-btn" id="btn-testi-next" aria-label="Next review">&#8594;</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALL TO ACTION FINAL BANNER -->
+    <section class="section cta-section">
+      <div class="container">
+        <div class="cta-banner glass-panel">
+          <div class="cta-content">
+            <span class="box-tag">NEXT GENERATION PROP ENVIRONMENT</span>
+            <h2>Ready to Prove Your Discipline?</h2>
+            <p>Access high tier allocations, transparent risk controls, and automated payouts up to 100% split.</p>
+            <div class="cta-btns">
+              <button class="btn btn-primary btn-large" data-scroll="challenge-terminal">Choose Challenge</button>
+              <a href="https://discord.com" target="_blank" rel="noopener" class="btn btn-secondary btn-large">Join Discord Community</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLIC FOOTER -->
+    <footer class="main-footer">
+      <div class="container footer-grid">
+        <div class="footer-brand-col">
+          <div class="brand-monogram" data-nav="home">
+            <span class="brand-wordmark">CK <span>CAPITAL</span></span>
+          </div>
+          <p class="footer-mission">
+            Capital should follow consistency. Trade with institutional discipline, scale simulated balances, and capture performance-based earnings.
+          </p>
+          <div class="social-links">
+            <a href="https://discord.com" target="_blank" rel="noopener" class="social-icon" aria-label="Discord">Discord</a>
+            <a href="https://x.com" target="_blank" rel="noopener" class="social-icon" aria-label="X Twitter">X (Twitter)</a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">Instagram</a>
+          </div>
+        </div>
+
+        <div class="footer-links-col">
+          <h5>TRADING TIERS</h5>
+          <button class="footer-link" data-nav="challenges">2-Step Evaluation</button>
+          <button class="footer-link" data-nav="challenges">1-Step Fast Track</button>
+          <button class="footer-link" data-nav="challenges">Instant Allocation</button>
+          <button class="footer-link" data-nav="objectives">Trading Objectives</button>
+          <button class="footer-link" data-nav="how-it-works">Scaling Plan</button>
+        </div>
+
+        <div class="footer-links-col">
+          <h5>COMPANY & SUPPORT</h5>
+          <button class="footer-link" data-nav="about">About Institution</button>
+          <button class="footer-link" data-nav="faq">FAQ Archive</button>
+          <button class="footer-link" id="footer-link-support">Contact Desk</button>
+          <button class="footer-link" id="footer-btn-login">Trader Portal</button>
+        </div>
+
+        <div class="footer-links-col">
+          <h5>LEGAL & POLICIES</h5>
+          <button class="footer-link modal-trigger" data-modal="modal-disclaimer">Simulated Trading Disclaimer</button>
+          <button class="footer-link modal-trigger" data-modal="modal-terms">Terms of Service</button>
+          <button class="footer-link modal-trigger" data-modal="modal-privacy">Privacy Policy</button>
+          <button class="footer-link modal-trigger" data-modal="modal-refund">Refund & Cancellation</button>
+        </div>
+      </div>
+
+      <!-- LEGAL DISCLAIMER BOTTOM -->
+      <div class="container footer-disclaimer">
+        <p>
+          <strong>DISCLAIMER & REGULATORY NOTICE:</strong> CK Capital (ckcapital.co.uk) provides simulated trading evaluation accounts designed to assess trading discipline and performance. All accounts provided are demo accounts with simulated funds in simulated market environments. Simulated trading does not involve actual financial market execution and carries no direct risk of market capital loss beyond challenge purchase fees. Hypothetical or simulated performance results have certain inherent limitations. Past performance is not indicative of future results.
+        </p>
+        <p class="copyright">&copy; 2026 CK Capital Ltd. All rights reserved. Registered UK Prototype Architecture.</p>
+      </div>
+    </footer>
+  </main>
+
+
+  <!-- ============================================================ -->
+  <!-- VIEW 2: AUTHENTICATION (LOGIN / REGISTER / FORGOT PASSWORD)  -->
+  <!-- ============================================================ -->
+  <main id="auth-view" class="view-panel">
+    <div class="auth-wrapper">
+      <div class="auth-card glass-panel">
+        
+        <!-- Brand / Header -->
+        <div class="auth-header">
+          <div class="brand-monogram" data-nav="home" style="justify-content: center; margin-bottom: 1.25rem;">
+            <span class="brand-wordmark">CK <span>CAPITAL</span></span>
+          </div>
+          <h2 id="auth-main-title">Trader Cockpit Login</h2>
+          <p id="auth-sub-title">Enter your institutional credentials to access your control room.</p>
+        </div>
+
+        <!-- AUTH TABS -->
+        <div class="auth-tabs" id="auth-tabs">
+          <button class="auth-tab-btn active" data-tab="login">Sign In</button>
+          <button class="auth-tab-btn" data-tab="register">Register</button>
+          <button class="auth-tab-btn" data-tab="forgot">Forgot Password</button>
+        </div>
+
+        <!-- FORM 1: LOGIN -->
+        <form id="form-login" class="auth-form-sub active">
+          <div class="form-group">
+            <label class="form-label" for="login-email">Trader Email</label>
+            <input type="email" id="login-email" class="form-input" placeholder="trader@ckcapital.com" required value="trader@ckcapital.com" />
+          </div>
+
+          <div class="form-group">
+            <div class="label-row">
+              <label class="form-label" for="login-password">Password</label>
+              <button type="button" class="form-link-btn" id="btn-show-forgot">Forgot?</button>
+            </div>
+            <div class="input-pw-wrap">
+              <input type="password" id="login-password" class="form-input" placeholder="••••••••" required value="Consistency2026!" />
+              <button type="button" class="btn-toggle-pw" aria-label="Show password">👁</button>
+            </div>
+          </div>
+
+          <div class="form-row-check">
+            <label class="custom-checkbox">
+              <input type="checkbox" id="login-remember" checked />
+              <span>Remember this workstation</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-large">Authorize Session</button>
+
+          <div class="auth-divider"><span>OR CONTINUE WITH</span></div>
+          <div class="social-auth-grid">
+            <button type="button" class="btn btn-ghost btn-social" id="btn-social-google">Google Workstation</button>
+            <button type="button" class="btn btn-ghost btn-social" id="btn-social-discord">Discord Guild</button>
+          </div>
+
+          <div class="demo-credential-hint font-mono">
+            <strong>Demo Credentials:</strong> trader@ckcapital.com / Consistency2026!
+          </div>
+        </form>
+
+        <!-- FORM 2: REGISTRATION -->
+        <form id="form-register" class="auth-form-sub">
+          <div class="form-grid-2">
+            <div class="form-group">
+              <label class="form-label" for="reg-first">First Name</label>
+              <input type="text" id="reg-first" class="form-input" placeholder="Marcus" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="reg-last">Last Name</label>
+              <input type="text" id="reg-last" class="form-input" placeholder="Kramer" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-email">Email Address</label>
+            <input type="email" id="reg-email" class="form-input" placeholder="trader@example.com" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-password">Password</label>
+            <div class="input-pw-wrap">
+              <input type="password" id="reg-password" class="form-input" placeholder="Min. 8 characters" required />
+              <button type="button" class="btn-toggle-pw" aria-label="Show password">👁</button>
+            </div>
+            <div class="password-meter" id="pw-meter">
+              <span class="meter-bar"></span>
+              <span class="meter-text font-mono" id="pw-meter-text">Strength: Moderate</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-confirm">Confirm Password</label>
+            <input type="password" id="reg-confirm" class="form-input" placeholder="Confirm password" required />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="reg-country">Country of Residence</label>
+            <select id="reg-country" class="form-input">
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="United States">United States</option>
+              <option value="Germany">Germany</option>
+              <option value="Canada">Canada</option>
+              <option value="Australia">Australia</option>
+              <option value="UAE">United Arab Emirates</option>
+              <option value="Other">Other Global Jurisdiction</option>
+            </select>
+          </div>
+
+          <div class="form-row-check">
+            <label class="custom-checkbox">
+              <input type="checkbox" id="reg-terms" required />
+              <span>I agree to the Terms of Service & Simulated Trading Disclosure</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-large">Create Trader Account</button>
+        </form>
+
+        <!-- FORM 3: FORGOT PASSWORD -->
+        <form id="form-forgot" class="auth-form-sub">
+          <div class="form-group">
+            <label class="form-label" for="forgot-email">Account Email</label>
+            <input type="email" id="forgot-email" class="form-input" placeholder="trader@example.com" required />
+          </div>
+          <button type="submit" class="btn btn-primary btn-block btn-large">Transmit Recovery Link</button>
+          <div class="auth-back-row" style="text-align: center; margin-top: 1.25rem;">
+            <button type="button" class="form-link-btn" id="btn-back-login">&larr; Return to Sign In</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </main>
+
+
+  <!-- ============================================================ -->
+  <!-- VIEW 3: CHECKOUT TERMINAL                                    -->
+  <!-- ============================================================ -->
+  <main id="checkout-view" class="view-panel">
+    <div class="container checkout-container">
+      <div class="checkout-back-bar">
+        <button class="btn btn-ghost" data-nav="challenges">&larr; Back to Challenges</button>
+        <span class="checkout-step-indicator font-mono">ENROLLMENT CHECKOUT // 256-BIT ENCRYPTION</span>
+      </div>
+
+      <div class="checkout-grid">
+        <!-- Configuration Details -->
+        <div class="checkout-left">
+          <div class="checkout-card glass-panel">
+            <h3>Configure Trading Account</h3>
+
+            <div class="checkout-form-group">
+              <label class="ctrl-label">Evaluation Structure</label>
+              <div class="pill-selector" id="co-model-selector">
+                <button class="pill-btn active" data-co-model="2step">2-Step Evaluation</button>
+                <button class="pill-btn" data-co-model="1step">1-Step Fast Track</button>
+                <button class="pill-btn" data-co-model="instant">Instant Capital</button>
+              </div>
+            </div>
+
+            <div class="checkout-form-group">
+              <label class="ctrl-label">Account Capital Allocation</label>
+              <select id="co-size-select" class="form-input font-mono">
+                <option value="5000">$5,000 Allocation</option>
+                <option value="10000" selected>$10,000 Allocation</option>
+                <option value="25000">$25,000 Allocation</option>
+                <option value="50000">$50,000 Allocation</option>
+                <option value="100000">$100,000 Allocation</option>
+                <option value="200000">$200,000 Allocation</option>
+              </select>
+            </div>
+
+            <div class="checkout-form-group">
+              <label class="ctrl-label">Execution Platform</label>
+              <div class="pill-selector" id="co-platform-selector">
+                <button class="pill-btn active" data-co-plat="TradeLocker">TradeLocker</button>
+                <button class="pill-btn" data-co-plat="MT5">MetaTrader 5</button>
+              </div>
+            </div>
+
+            <div class="checkout-form-group">
+              <label class="ctrl-label">Promo / Partner Code</label>
+              <div class="coupon-input-group">
+                <input type="text" id="co-promo-input" class="form-input font-mono" placeholder="Enter coupon code (e.g. CONSISTENCY)" value="CONSISTENCY" />
+                <button class="btn btn-secondary" id="btn-apply-promo">Apply</button>
+              </div>
+              <div class="promo-feedback text-success font-mono" id="promo-msg">Code CONSISTENCY active (15% discount applied)</div>
+            </div>
+
+            <div class="checkout-form-group">
+              <label class="ctrl-label">Simulated Settlement Method</label>
+              <div class="payment-method-selector" id="co-payment-methods">
+                <div class="pay-method-card active" data-method="Stripe">
+                  <div class="pay-title">Debit / Credit Card</div>
+                  <div class="pay-sub font-mono">Stripe Gateway</div>
+                </div>
+                <div class="pay-method-card" data-method="Crypto">
+                  <div class="pay-title">Cryptocurrency</div>
+                  <div class="pay-sub font-mono">USDT / BTC / ETH</div>
+                </div>
+                <div class="pay-method-card" data-method="PayPal">
+                  <div class="pay-title">PayPal Direct</div>
+                  <div class="pay-sub font-mono">Instant Dispatch</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Summary Column -->
+        <div class="checkout-right">
+          <div class="checkout-summary-card glass-panel">
+            <h3>Allocation Summary</h3>
+            <div class="summary-line">
+              <span>Account Scale:</span>
+              <strong id="sum-scale" class="font-mono">$10,000</strong>
+            </div>
+            <div class="summary-line">
+              <span>Model Tier:</span>
+              <strong id="sum-model">2-Step Standard</strong>
+            </div>
+            <div class="summary-line">
+              <span>Platform:</span>
+              <strong id="sum-platform">TradeLocker</strong>
+            </div>
+            <div class="summary-line">
+              <span>Daily Loss Limit:</span>
+              <strong id="sum-daily" class="font-mono text-danger">$200 (2%)</strong>
+            </div>
+            <div class="summary-line">
+              <span>Max Loss Limit:</span>
+              <strong id="sum-max" class="font-mono text-danger">$400 (4%)</strong>
+            </div>
+
+            <hr class="summary-hr" />
+
+            <div class="summary-line">
+              <span>Standard Price:</span>
+              <span class="font-mono" id="sum-raw-price">$53.00</span>
+            </div>
+            <div class="summary-line text-gold">
+              <span>Discount Applied:</span>
+              <span class="font-mono" id="sum-discount">-$7.95</span>
+            </div>
+
+            <div class="summary-total-line">
+              <span>Total Payable:</span>
+              <span class="font-mono font-bold font-large text-gold" id="sum-final-price">$45.05</span>
+            </div>
+
+            <button class="btn btn-primary btn-block btn-large" id="btn-complete-order">Confirm & Initialize Account</button>
+            <div class="checkout-security-notice font-mono">
+              Demo environment: Submitting persists this account locally into your Trader Cockpit immediately.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+
+  <!-- ============================================================ -->
+  <!-- VIEW 4: TRADER COCKPIT (DASHBOARD SUITE)                     -->
+  <!-- ============================================================ -->
+  <div id="dashboard-view" class="view-panel">
+    <div class="cockpit-layout">
+      
+      <!-- DASHBOARD SIDEBAR -->
+      <aside class="cockpit-sidebar" id="cockpit-sidebar">
+        <div class="sidebar-top">
+          <div class="brand-monogram" data-nav="home">
+            <span class="brand-wordmark">CK <span>CAPITAL</span></span>
+          </div>
+          <button class="sidebar-collapse-btn" id="btn-collapse-sidebar" aria-label="Toggle sidebar">&#8249;</button>
+        </div>
+
+        <!-- Account Switcher Box -->
+        <div class="sidebar-account-switch glass-panel">
+          <label class="account-switch-label">CURRENT PORTFOLIO</label>
+          <div class="account-select-wrap">
+            <select id="dash-account-switcher" class="account-select font-mono">
+              <!-- Rendered by JS -->
+            </select>
+          </div>
+          <div class="account-status-indicator">
+            <span class="pulse-dot"></span>
+            <span id="sidebar-account-status">ACTIVE // PHASE 1</span>
+          </div>
+        </div>
+
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar-nav">
+          <button class="sb-item active" data-tab="overview">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            <span>Overview</span>
+          </button>
+          <button class="sb-item" data-tab="performance">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            <span>Performance</span>
+          </button>
+          <button class="sb-item" data-tab="calendar">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>Trading Calendar</span>
+          </button>
+          <button class="sb-item" data-tab="trades">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <span>Trade Journal</span>
+          </button>
+          <button class="sb-item" data-tab="risk">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Risk Engine</span>
+          </button>
+          <button class="sb-item" data-tab="objectives">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+            <span>Objectives Tracker</span>
+          </button>
+          <button class="sb-item" data-tab="payouts">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            <span>Payout Center</span>
+          </button>
+          <button class="sb-item" data-tab="certificates">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            <span>Certificates</span>
+          </button>
+          <button class="sb-item" data-tab="accounts">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>My Accounts</span>
+          </button>
+          <button class="sb-item" data-tab="support">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <span>Support Desk</span>
+          </button>
+          <button class="sb-item" data-tab="profile">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span>Profile</span>
+          </button>
+          <button class="sb-item" data-tab="settings">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            <span>Settings</span>
+          </button>
+        </nav>
+
+        <!-- Sidebar Footer -->
+        <div class="sidebar-foot">
+          <button class="btn btn-secondary btn-block sidebar-exit" data-nav="home">Exit to Portal</button>
+          <div class="user-brief">
+            <div class="user-avatar" id="dash-user-initials">MK</div>
+            <div class="user-info">
+              <span class="name" id="dash-user-name">Marcus Kramer</span>
+              <span class="role font-mono">SIMULATED ANALYST</span>
+            </div>
+          </div>
+          <button class="btn btn-ghost btn-block btn-logout" id="btn-dash-logout">Terminate Session</button>
+        </div>
+      </aside>
+
+      <!-- COCKPIT MAIN CONTENT AREA -->
+      <div class="cockpit-main">
+        
+        <!-- DASHBOARD TOP BAR -->
+        <header class="cockpit-topbar glass-panel">
+          <div class="topbar-command-row">
+            <div class="topbar-left">
+              <button class="topbar-mobile-btn" id="dash-mobile-toggle" aria-label="Open dashboard menu">
+                <span></span><span></span><span></span>
+              </button>
+            </div>
+
+            <div class="topbar-brand-center" aria-label="CK Capital">CK <span>CAPITAL</span></div>
+
+            <div class="topbar-right">
+              <!-- Notifications Bell -->
+              <div class="notif-dropdown-wrapper topbar-notifications">
+                <button class="topbar-icon-btn" id="btn-toggle-notifs" aria-label="Notifications">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                  <span class="badge-count" id="notif-count">3</span>
+                </button>
+                <div class="notif-panel glass-panel" id="notif-menu">
+                  <div class="notif-head">
+                    <h5>Notifications Archive</h5>
+                    <button class="btn-link" id="btn-mark-all-read">Clear All</button>
+                  </div>
+                  <div class="notif-list" id="notif-items-list">
+                    <!-- Injected via JS -->
+                  </div>
+                </div>
+              </div>
+
+              <div class="topbar-local-time" aria-label="Local device time">
+                <span class="font-mono">LOCAL TIME</span>
+                <strong id="topbar-local-time">--:--</strong>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- SUB-PANEL 1: OVERVIEW -->
+        <section id="pane-overview" class="dash-tab-pane active">
+
+          <!-- Overview Welcome -->
+          <div class="overview-welcome">
+            <div class="overview-welcome-copy">
+              <span class="overview-eyebrow font-mono" id="overview-greeting-eyebrow">LOCAL DESK // LIVE SESSION</span>
+              <h1 id="overview-salutation">Good afternoon, Trader.</h1>
+              <p>Welcome back to your trading desk. Monitor performance, risk and account health from one place.</p>
+            </div>
+            <div class="overview-health-badge">
+              <span class="overview-health-dot"></span>
+              <span>ALL RISK LIMITS HEALTHY</span>
+            </div>
+          </div>
+
+          <!-- Key Metrics Grid -->
+          <div class="cockpit-kpi-grid">
+            <div class="kpi-card glass-panel">
+              <div class="kpi-title">Current Balance</div>
+              <div class="kpi-value font-mono" id="kpi-balance">$10,428.60</div>
+              <div class="kpi-delta text-success font-mono" id="kpi-balance-delta">+$428.60 Initial Scale</div>
+            </div>
+
+            <div class="kpi-card glass-panel">
+              <div class="kpi-title">Floating Equity</div>
+              <div class="kpi-value font-mono" id="kpi-equity">$10,391.20</div>
+              <div class="kpi-delta font-mono">Margin In Use: $312.00</div>
+            </div>
+
+            <div class="kpi-card glass-panel">
+              <div class="kpi-title">Today's Net P&L</div>
+              <div class="kpi-value font-mono text-success" id="kpi-today-pnl">+$128.60</div>
+              <div class="kpi-delta font-mono text-success">3 Wins / 1 Loss</div>
+            </div>
+
+            <div class="kpi-card glass-panel">
+              <div class="kpi-title">Daily Drawdown Used</div>
+              <div class="kpi-value font-mono" id="kpi-daily-dd">1.09%</div>
+              <div class="kpi-bar-wrap">
+                <div class="kpi-prog-bar" id="kpi-daily-bar" style="width: 27.4%;"></div>
+              </div>
+              <div class="kpi-delta font-mono text-muted" id="kpi-daily-rem">$145.20 remaining</div>
+            </div>
+          </div>
+
+          <!-- Interactive Equity Chart Component -->
+          <div class="chart-box glass-panel">
+            <div class="chart-header-row">
+              <div>
+                <h4>Simulated Equity Curve</h4>
+                <p class="text-muted font-mono">High-frequency mark-to-market data tracking</p>
+              </div>
+              <div class="timeframe-selector" id="chart-tf-selector">
+                <button class="tf-btn" data-tf="1D">1D</button>
+                <button class="tf-btn" data-tf="1W">1W</button>
+                <button class="tf-btn active" data-tf="1M">1M</button>
+                <button class="tf-btn" data-tf="ALL">ALL</button>
+              </div>
+            </div>
+
+            <!-- Dynamic SVG Chart Canvas -->
+            <div class="svg-chart-container" id="overview-chart-canvas">
+              <!-- Rendered via renderInteractiveChart() in JS -->
+            </div>
+          </div>
+
+          <!-- Two Column Risk & Objectives Section -->
+          <div class="overview-dual-grid">
+            <!-- Risk Engine Card -->
+            <div class="dual-card glass-panel">
+              <div class="card-title-row">
+                <h4>Risk Monitor Status</h4>
+                <span class="badge-status-sm healthy font-mono" id="risk-status-pill">HEALTHY</span>
+              </div>
+              <div class="risk-gauge-row">
+                <div class="gauge-col">
+                  <span class="sub-label">Daily Loss Permitted</span>
+                  <div class="gauge-val font-mono" id="ov-daily-limit">$200.00</div>
+                  <div class="gauge-used font-mono text-danger">Used: <span id="ov-daily-used">$54.80</span></div>
+                  <div class="gauge-bar-outer">
+                    <div class="gauge-bar-fill" id="bar-daily-used" style="width: 27.4%;"></div>
+                  </div>
+                </div>
+                <div class="gauge-col">
+                  <span class="sub-label">Max Loss Permitted</span>
+                  <div class="gauge-val font-mono" id="ov-max-limit">$400.00</div>
+                  <div class="gauge-used font-mono text-danger">Used: <span id="ov-max-used">$108.80</span></div>
+                  <div class="gauge-bar-outer">
+                    <div class="gauge-bar-fill" id="bar-max-used" style="width: 27.2%;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Rules Health Table -->
+            <div class="dual-card glass-panel">
+              <div class="card-title-row">
+                <h4>Rules Health Matrix</h4>
+                <span class="font-mono text-gold text-sm">Click rule to inspect</span>
+              </div>
+              <div class="rules-mini-list">
+                <div class="rule-mini-row" data-rule="daily">
+                  <span>Daily Loss Guardrail</span>
+                  <span class="tag-rule-health pass font-mono">PASS // 1.09%</span>
+                </div>
+                <div class="rule-mini-row" data-rule="max">
+                  <span>Max Drawdown Limit</span>
+                  <span class="tag-rule-health pass font-mono">PASS // 2.34%</span>
+                </div>
+                <div class="rule-mini-row" data-rule="target">
+                  <span>Profit Target Threshold</span>
+                  <span class="tag-rule-health in-prog font-mono">85.7% COMPLETE</span>
+                </div>
+                <div class="rule-mini-row" data-rule="days">
+                  <span>Minimum Trading Days</span>
+                  <span class="tag-rule-health pass font-mono">4 / 1 COMPLETED</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SUB-PANEL 2: PERFORMANCE -->
+        <section id="pane-performance" class="dash-tab-pane">
+          <div class="section-title-wrap">
+            <h3>Quantitative Performance Statistics</h3>
+            <p class="text-muted">Calculated on closed trades for the active account.</p>
+          </div>
+
+          <div class="perf-stats-grid">
+            <div class="perf-stat-card glass-panel">
+              <span class="stat-h">Win Rate</span>
+              <span class="stat-v font-mono text-gold" id="perf-winrate">68.4%</span>
+              <span class="stat-s" id="perf-win-counts">13 Wins / 6 Losses</span>
+            </div>
+            <div class="perf-stat-card glass-panel">
+              <span class="stat-h">Profit Factor</span>
+              <span class="stat-v font-mono text-gold" id="perf-profit-factor">2.41</span>
+              <span class="stat-s">Gross Profit / Gross Loss</span>
+            </div>
+            <div class="perf-stat-card glass-panel">
+              <span class="stat-h">Average Winning Trade</span>
+              <span class="stat-v font-mono text-success" id="perf-avg-win">+$56.20</span>
+              <span class="stat-s font-mono">Avg R:R 1 : 2.1</span>
+            </div>
+            <div class="perf-stat-card glass-panel">
+              <span class="stat-h">Average Losing Trade</span>
+              <span class="stat-v font-mono text-danger" id="perf-avg-loss">-$26.80</span>
+              <span class="stat-s">Controlled Drawdown</span>
+            </div>
+            <div class="perf-stat-card glass-panel">
+              <span class="stat-h">Best Trade</span>
+              <span class="stat-v font-mono text-success" id="perf-best-trade">+$420.00</span>
+              <span class="stat-s font-mono">XAUUSD Buy</span>
+            </div>
+            <div class="perf-stat-card glass-panel">
+              <span class="stat-h">Worst Trade</span>
+              <span class="stat-v font-mono text-danger" id="perf-worst-trade">-$180.00</span>
+              <span class="stat-s font-mono">XAUUSD Short</span>
+            </div>
+          </div>
+
+          <!-- Trade Distribution Graph -->
+          <div class="chart-box glass-panel" style="margin-top: 1.5rem;">
+            <h4>P&L Distribution Per Instrument</h4>
+            <div class="dist-chart-bars" id="dist-chart-bars">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- SUB-PANEL 3: CALENDAR -->
+        <section id="pane-calendar" class="dash-tab-pane">
+          <div class="section-title-wrap">
+            <div class="cal-head-flex">
+              <div>
+                <h3>Trading Activity Calendar</h3>
+                <p class="text-muted">Daily closed P&L and volume tracking. Select any trading day to inspect positions.</p>
+              </div>
+              <div class="calendar-controls">
+                <button class="btn btn-secondary" id="cal-btn-prev">&larr;</button>
+                <span class="cal-curr-month font-mono" id="cal-month-title">September 2026</span>
+                <button class="btn btn-secondary" id="cal-btn-next">&rarr;</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="calendar-wrapper glass-panel">
+            <div class="calendar-header-weekdays">
+              <div>SUN</div><div>MON</div><div>TUE</div><div>WED</div><div>THU</div><div>FRI</div><div>SAT</div>
+            </div>
+            <div class="calendar-days-grid" id="calendar-grid">
+              <!-- Dynamically populated via JS -->
+            </div>
+          </div>
+        </section>
+
+        <!-- SUB-PANEL 4: TRADES JOURNAL -->
+        <section id="pane-trades" class="dash-tab-pane">
+          <div class="section-title-wrap">
+            <h3>Trade History Journal</h3>
+            <p class="text-muted">Comprehensive audit log of all opened and settled positions.</p>
+          </div>
+
+          <div class="journal-filter-bar glass-panel">
+            <div class="filter-col">
+              <input type="text" id="trade-search-input" class="form-input" placeholder="Search symbol (e.g. XAUUSD, EURUSD)..." />
+            </div>
+            <div class="filter-col">
+              <select id="trade-dir-filter" class="form-input">
+                <option value="ALL">All Directions</option>
+                <option value="BUY">Long Positions (BUY)</option>
+                <option value="SELL">Short Positions (SELL)</option>
+              </select>
+            </div>
+            <div class="filter-col">
+              <select id="trade-result-filter" class="form-input">
+                <option value="ALL">All Outcomes</option>
+                <option value="WIN">Winning Trades</option>
+                <option value="LOSS">Losing Trades</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-card glass-panel">
+            <div class="table-responsive">
+              <table class="data-table" id="trades-table">
+                <thead>
+                  <tr>
+                    <th>Symbol</th>
+                    <th>Type</th>
+                    <th>Lots</th>
+                    <th>Entry Price</th>
+                    <th>Exit Price</th>
+                    <th>Net P&L</th>
+                    <th>Duration</th>
+                    <th>Settled</th>
+                    <th>Audit</th>
+                  </tr>
+                </thead>
+                <tbody id="trades-tbody">
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
+            <div class="table-empty-state" id="trades-empty" style="display: none;">
+              <p>No trades found matching current filter parameters.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SUB-PANEL 5: RISK ENGINE -->
+        <section id="pane-risk" class="dash-tab-pane">
+          <div class="section-title-wrap">
+            <h3>Algorithmic Risk Engine</h3>
+            <p class="text-muted">Real-time parameters verified against high-frequency tick records.</p>
+          </div>
+
+          <div class="risk-matrix-grid">
+            <div class="risk-card glass-panel">
+              <h4>Daily Drawdown Engine</h4>
+              <div class="risk-val-big font-mono text-gold" id="risk-big-daily">1.09%</div>
+              <p class="text-muted">Max limit: 2.0% ($200.00). Calculated against UTC 00:00 midnight watermark.</p>
+              <div class="kpi-bar-wrap">
+                <div class="kpi-prog-bar" id="risk-bar-daily" style="width: 54.5%;"></div>
+              </div>
+              <div class="risk-badge-foot status-healthy font-mono">ENGINE STATUS: SECURE</div>
+            </div>
+
+            <div class="risk-card glass-panel">
+              <h4>Maximum Trailing / Static Loss</h4>
+              <div class="risk-val-big font-mono text-gold" id="risk-big-max">2.34%</div>
+              <p class="text-muted">Max total limit: 4.0% ($400.00). Static from initial simulated allocation.</p>
+              <div class="kpi-bar-wrap">
+                <div class="kpi-prog-bar" id="risk-bar-max" style="width: 58.5%;"></div>
+              </div>
+              <div class="risk-badge-foot status-healthy font-mono">ENGINE STATUS: SECURE</div>
+            </div>
+
+            <div class="risk-card glass-panel">
+              <h4>Position Leverage Exposure</h4>
+              <div class="risk-val-big font-mono">1 : 12.4</div>
+              <p class="text-muted">Maximum allowable platform leverage: 1:100. Current margin buffer: 87.6%.</p>
+              <div class="kpi-bar-wrap">
+                <div class="kpi-prog-bar" style="width: 12.4%;"></div>
+              </div>
+              <div class="risk-badge-foot status-healthy font-mono">MARGIN RISK: LOW</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SUB-PANEL 6: OBJECTIVES TRACKER -->
+        <section id="pane-objectives" class="dash-tab-pane">
+          <div class="section-title-wrap">
+            <h3>Milestone & Challenge Tracker</h3>
+            <p class="text-muted">Criteria required to elevate this account to Qualified Analyst status.</p>
+          </div>
+
+          <div class="objectives-prog-card glass-panel">
+            <div class="prog-top-row">
+              <div>
+                <span class="box-tag">PHASE 1 EVALUATION</span>
+                <h3 id="obj-target-title">Profit Target Objective ($500.00)</h3>
+              </div>
+              <div class="font-mono font-large text-gold" id="obj-target-pct">85.7%</div>
+            </div>
+            <div class="large-progress-track">
+              <div class="large-progress-fill" id="obj-target-fill" style="width: 85.7%;"></div>
+            </div>
+            <div class="prog-details-row font-mono">
+              <span>Current Profit: <strong class="text-success" id="obj-target-curr">+$428.60</strong></span>
+              <span>Remaining to Pass: <strong class="text-gold" id="obj-target-rem">$71.40</strong></span>
+            </div>
+          </div>
+
+          <div class="objectives-checklist-grid">
+            <div class="obj-check-card glass-panel done">
+              <div class="chk-status font-mono">COMPLETE</div>
+              <h4>Minimum Trading Days</h4>
+              <p class="font-mono">Requirement: 1 Day | Logged: 4 Days</p>
+            </div>
+            <div class="obj-check-card glass-panel done">
+              <div class="chk-status font-mono">PASSED</div>
+              <h4>No Daily Breach</h4>
+              <p class="font-mono">Daily loss stayed under 2% threshold.</p>
+            </div>
+            <div class="obj-check-card glass-panel done">
+              <div class="chk-status font-mono">PASSED</div>
+              <h4>No Max Breach</h4>
+              <p class="font-mono">Total loss stayed under 4% threshold.</p>
+            </div>
+            <div class="obj-check-card glass-panel pending">
+              <div class="chk-status font-mono text-gold">IN PROGRESS</div>
+              <h4>Phase 1 Target Completion</h4>
+              <p class="font-mono">Reach designated closed profit goal.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SUB-PANEL 7: PAYOUTS -->
+        <section id="pane-payouts" class="dash-tab-pane">
+          <div class="section-title-wrap">
+            <div class="cal-head-flex">
+              <div>
+                <h3>Simulated Payout Center</h3>
+                <p class="text-muted">Direct allocation withdrawals for Qualified Analysts.</p>
+              </div>
+              <button class="btn btn-primary" id="btn-open-payout-modal">Request Withdrawal</button>
+            </div>
+          </div>
+
+          <div class="payout-summary-grid">
+            <div class="payout-box glass-panel">
+              <span class="box-lbl">Available Profit Balance</span>
+              <span class="box-amt font-mono text-gold" id="po-avail-bal">$428.60</span>
+              <span class="box-sub">Net simulated closed profit</span>
+            </div>
+            <div class="payout-box glass-panel">
+              <span class="box-lbl">Current Split Tier</span>
+              <span class="box-amt font-mono" id="po-split-tier">80%</span>
+              <span class="box-sub">Scaleable up to 100% via milestones</span>
+            </div>
+            <div class="payout-box glass-panel">
+              <span class="box-lbl">Estimated Trader Payout</span>
+              <span class="box-amt font-mono text-success" id="po-calc-payout">$342.88</span>
+              <span class="box-sub">Calculated trader payout portion</span>
+            </div>
+          </div>
+
+          <div class="table-card glass-panel" style="margin-top: 1.5rem;">
+            <div class="card-header">
+              <h4>Payout Request History</h4>
+            </div>
+            <div class="table-responsive">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Request ID</th>
+                    <th>Date Logged</th>
+                    <th>Gross Amount</th>
+                    <th>Trader Amount (80%)</th>
+                    <th>Destination</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="payout-history-tbody">
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- SUB-PANEL 8: CERTIFICATES -->
+        <section id="pane-certificates" class="dash-tab-pane">
+          <div class="section-title-wrap">
+            <h3>Verified Trader Certificates</h3>
+            <p class="text-muted">Formal cryptographic recognition of challenge completions and milestones.</p>
+          </div>
+
+          <div class="certs-grid" id="certs-container">
+            <!-- Dynamically populated via JS -->
+          </div>
+        </section>
+
+        <!-- SUB-PANEL 9: ACCOUNTS -->
+        <section id="pane-accounts" class="dash-tab-pane">
+          <div class="section-title-wrap">
+            <div class="cal-head-flex">
+              <div>
+                <h3>Account Portfolio Management</h3>
+                <p class="text-muted">Manage multiple evaluations, switch active terminals, or acquire additional capital.</p>
+              </div>
+              <button class="btn btn-primary" data-nav="challenges">+ New Challenge</button>
+            </div>
+          </div>
+
+          <div class="accounts-cards-grid" id="accounts-cards-grid">
+            <!-- Dynamically loaded via JS -->
+          </div>
+        </section>
+
+        <!-- SUB-PANEL 10: SUPPORT -->
+        <section id="pane-support" class="dash-tab-pane">
+          <div class="section-title-wrap">
+            <h3>Institutional Support Desk</h3>
+            <p class="text-muted">Submit priority technical tickets directly to the risk and platform desk.</p>
+          </div>
+
+          <div class="support-dual-grid">
+            <div class="support-form-card glass-panel">
+              <h4>Transmit Support Ticket</h4>
+              <form id="form-support-ticket">
+                <div class="form-group">
+                  <label class="form-label" for="sup-subject">Ticket Subject</label>
+                  <input type="text" id="sup-subject" class="form-input" placeholder="e.g. Question regarding TradeLocker spread log" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="sup-category">Category</label>
+                  <select id="sup-category" class="form-input">
+                    <option value="Risk & Drawdown">Risk & Drawdown Engine</option>
+                    <option value="Platform Technical">Platform Technical (MT5/TradeLocker)</option>
+                    <option value="Payout Inquiry">Payout & Banking Inquiry</option>
+                    <option value="Account Scaling">Scaling Milestone Upgrade</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="sup-message">Description</label>
+                  <textarea id="sup-message" class="form-input" rows="4" placeholder="Provide complete trade ticket IDs or execution logs..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Submit Priority Ticket</button>
+              </form>
+            </div>
+
+            <div class="tickets-list-card glass-panel">
+              <h4>Active & Archived Tickets</h4>
+              <div class="support-tickets-list" id="support-tickets-list">
+                <!-- Dynamically loaded via JS -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SUB-PANEL 11: PROFILE -->
+        <section id="pane-profile" class="dash-tab-pane">
+          <div class="section-title-wrap">
+            <h3>Analyst Credentials & Profile</h3>
+            <p class="text-muted">Verified account metadata and KYC standing.</p>
+          </div>
+          <div class="profile-card-wrap glass-panel">
+            <div class="profile-header-strip">
+              <div class="user-avatar big-avatar" id="prof-big-avatar">MK</div>
+              <div>
+                <h3 id="prof-display-name">Marcus Kramer</h3>
+                <span class="text-gold font-mono">VERIFIED SIMULATED ANALYST</span>
+              </div>
+            </div>
+            <div class="profile-data-grid">
+              <div class="prof-item">
+                <span class="p-lbl font-mono">Email:</span>
+                <span class="p-val font-mono" id="prof-display-email">trader@ckcapital.com</span>
+              </div>
+              <div class="prof-item">
+                <span class="p-lbl font-mono">Country:</span>
+                <span class="p-val" id="prof-display-country">United Kingdom</span>
+              </div>
+              <div class="prof-item">
+                <span class="p-lbl font-mono">Member Since:</span>
+                <span class="p-val font-mono">January 2026</span>
+              </div>
+              <div class="prof-item">
+                <span class="p-lbl font-mono">KYC Verification:</span>
+                <span class="badge-status-sm healthy font-mono">VERIFIED TIER-1</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SUB-PANEL 12: SETTINGS -->
+        <section id="pane-settings" class="dash-tab-pane">
+          <div class="section-title-wrap">
+            <h3>Workstation & Security Settings</h3>
+            <p class="text-muted">Configure profile credentials, theme preference, and trade notifications.</p>
+          </div>
+
+          <div class="settings-grid">
+            <div class="settings-card glass-panel">
+              <h4>Profile Details</h4>
+              <form id="form-profile-settings">
+                <div class="form-group">
+                  <label class="form-label" for="set-name">Trader Full Name</label>
+                  <input type="text" id="set-name" class="form-input" value="Marcus Kramer" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="set-email">Email Address</label>
+                  <input type="email" id="set-email" class="form-input" value="trader@ckcapital.com" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="set-country">Country</label>
+                  <input type="text" id="set-country" class="form-input" value="United Kingdom" required />
+                </div>
+                <button type="submit" class="btn btn-secondary">Save Profile Changes</button>
+              </form>
+            </div>
+
+            <div class="settings-card glass-panel">
+              <h4>Workstation Theme</h4>
+              <div class="theme-options-grid">
+                <button class="theme-choice-btn active" data-set-theme="dark">
+                  <span class="color-dot dot-dark"></span> Graphite Dark
+                </button>
+                <button class="theme-choice-btn" data-set-theme="light">
+                  <span class="color-dot dot-light"></span> Technical Light
+                </button>
+              </div>
+
+              <h4 style="margin-top: 1.5rem;">Two-Factor Authentication</h4>
+              <div class="form-row-check">
+                <label class="custom-checkbox">
+                  <input type="checkbox" id="set-2fa" checked />
+                  <span>Enforce Authenticator 2FA at login</span>
+                </label>
+              </div>
+
+              <h4 style="margin-top: 1.5rem;">Automated Alerts</h4>
+              <div class="form-row-check">
+                <label class="custom-checkbox">
+                  <input type="checkbox" id="set-alert-risk" checked />
+                  <span>Send notification at 80% daily drawdown</span>
+                </label>
+              </div>
+              <div class="form-row-check">
+                <label class="custom-checkbox">
+                  <input type="checkbox" id="set-alert-payout" checked />
+                  <span>Notify upon payout dispatch</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================================ -->
+  <!-- MODALS SYSTEM (RULES, PAYOUT, CERTIFICATE, AUDIT)            -->
+  <!-- ============================================================ -->
+  
+  <!-- MODAL: PAYOUT REQUEST -->
+  <div class="modal-backdrop" id="modal-payout">
+    <div class="modal-card glass-panel">
+      <div class="modal-header">
+        <h3>Request Simulated Payout</h3>
+        <button class="modal-close" data-close-modal>&times;</button>
+      </div>
+      <form id="form-payout-request">
+        <div class="modal-body">
+          <p class="text-muted">Enter withdrawal specifications. Payouts are computed based on your current 80% performance split.</p>
+          <div class="form-group" style="margin-top: 1rem;">
+            <label class="form-label">Available Profit</label>
+            <input type="text" class="form-input font-mono" id="modal-payout-avail" value="$428.60" readonly />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="po-req-amount">Requested Profit Withdrawal ($)</label>
+            <input type="number" id="po-req-amount" class="form-input font-mono" min="50" max="428.60" step="10" value="400" required />
+            <small class="text-muted font-mono" style="display:block; margin-top: 0.3rem;">You will receive: <strong id="modal-payout-trader-split" class="text-success">$320.00</strong> (80%)</small>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="po-req-method">Settlement Method</label>
+            <select id="po-req-method" class="form-input">
+              <option value="USDT (TRC20)">Crypto - USDT (TRC20 Network)</option>
+              <option value="USDT (ERC20)">Crypto - USDT (ERC20 Network)</option>
+              <option value="Bank Wire">International Bank Wire</option>
+              <option value="PayPal">PayPal Balance</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="po-req-address">Wallet Address / IBAN / PayPal Account</label>
+            <input type="text" id="po-req-address" class="form-input font-mono" placeholder="T9yD14Nj9j7xABv4..." required value="TYx87219K3jhM109XzQ" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn-primary">Transmit Withdrawal Request</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: CERTIFICATE VIEWER -->
+  <div class="modal-backdrop" id="modal-cert">
+    <div class="modal-card modal-cert-card glass-panel">
+      <div class="modal-header">
+        <h3>Verified Performance Credential</h3>
+        <button class="modal-close" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body cert-render-area" id="cert-printable-area">
+        <div class="cert-outer-border">
+          <div class="cert-inner-border">
+            <div class="cert-brand">CK CAPITAL // INSTITUTIONAL VERIFICATION</div>
+            <h1 class="cert-title" id="cert-modal-title">CERTIFICATE OF ACHIEVEMENT</h1>
+            <p class="cert-pres">This document certifies that</p>
+            <h2 class="cert-recipient" id="cert-modal-name">MARCUS KRAMER</h2>
+            <p class="cert-reason" id="cert-modal-desc">
+              Has successfully proven disciplined statistical edge by completing the Evaluation benchmarks under CK Capital Proprietary Trading Guidelines.
+            </p>
+            <div class="cert-meta-row font-mono">
+              <div>
+                <span class="c-lbl">PORTFOLIO</span>
+                <strong id="cert-modal-acc">CK-10000</strong>
+              </div>
+              <div>
+                <span class="c-lbl">DATE ISSUED</span>
+                <strong id="cert-modal-date">September 04, 2026</strong>
+              </div>
+              <div>
+                <span class="c-lbl">CREDENTIAL ID</span>
+                <strong id="cert-modal-id">CKC-98412</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal>Close</button>
+        <button type="button" class="btn btn-primary" id="btn-print-cert">Print / Save as PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: TRADE AUDIT INSPECT -->
+  <div class="modal-backdrop" id="modal-trade-inspect">
+    <div class="modal-card glass-panel">
+      <div class="modal-header">
+        <h3>Execution Audit Inspector</h3>
+        <button class="modal-close" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body" id="modal-trade-content">
+        <!-- Rendered via JS -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal>Dismiss</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CALENDAR DAY DETAILS -->
+  <div class="modal-backdrop" id="modal-day-inspect">
+    <div class="modal-card glass-panel">
+      <div class="modal-header">
+        <h3 id="modal-day-title">Trading Day Breakdown</h3>
+        <button class="modal-close" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body" id="modal-day-content">
+        <!-- Rendered via JS -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: RULE EXPLANATION -->
+  <div class="modal-backdrop" id="modal-rule-inspect">
+    <div class="modal-card glass-panel">
+      <div class="modal-header">
+        <h3 id="modal-rule-title">Rule Specification</h3>
+        <button class="modal-close" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body" id="modal-rule-body">
+        <!-- Injected via JS -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-close-modal>Acknowledge</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: DISCLAIMER & POLICIES -->
+  <div class="modal-backdrop" id="modal-disclaimer">
+    <div class="modal-card glass-panel">
+      <div class="modal-header">
+        <h3>Simulated Environment Disclosure</h3>
+        <button class="modal-close" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body font-readable">
+        <p>All services and accounts provided by CK Capital are simulated demo accounts operating with virtual funds. Trade executions are simulated quotes derived from institutional market data providers and do not constitute actual trading on registered public exchanges.</p>
+        <p style="margin-top: 1rem;">Purchases of evaluation tiers represent evaluation assessment fees and do not constitute capital deposits. Qualified Analysts are independent simulated contractors eligible for performance-derived rewards based solely on simulated trading results.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-close-modal>I Understand</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-terms">
+    <div class="modal-card glass-panel">
+      <div class="modal-header">
+        <h3>Terms of Service</h3>
+        <button class="modal-close" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body font-readable">
+        <p>By engaging in CK Capital evaluations, you agree not to deploy abusive high-frequency latency arbitrage, toxic feed exploits, or multi-account hedge synchronization. Violation results in immediate cancellation of simulated evaluation privileges without refund.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-close-modal>Accept</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-privacy">
+    <div class="modal-card glass-panel">
+      <div class="modal-header">
+        <h3>Privacy Policy</h3>
+        <button class="modal-close" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body font-readable">
+        <p>CK Capital adheres strictly to UK GDPR regulations. We never monetize or distribute your trading performance data or identity details to third-party marketing entities.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-close-modal>Dismiss</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="modal-refund">
+    <div class="modal-card glass-panel">
+      <div class="modal-header">
+        <h3>Refund & Cancellation Policy</h3>
+        <button class="modal-close" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body font-readable">
+        <p>Challenge fees are 100% refundable with your first payout upon successfully graduating through Step 1 and Step 2 to become a Qualified Analyst. Once trading activity has commenced on an account, evaluation fees cannot be refunded prior to completion.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-close-modal>Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- APPLICATION CONTROLLER -->
+  <script src="app.js"></script>
 </body>
 </html>
