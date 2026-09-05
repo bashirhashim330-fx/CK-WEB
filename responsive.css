@@ -1,640 +1,83 @@
-@media (max-width: 1100px) {
-  .hero-grid { grid-template-columns: 1fr; }
-  .sizes-scroll-grid { grid-template-columns: repeat(3, 1fr); }
-  .challenge-spec-grid { grid-template-columns: 1fr 1fr; }
-  .price-cta-box { grid-column: span 2; }
-  .cockpit-kpi-grid { grid-template-columns: repeat(2, 1fr); }
-  .perf-stats-grid, .payout-summary-grid, .certs-grid, .accounts-cards-grid { grid-template-columns: repeat(2, 1fr); }
-  .feature-grid { grid-template-columns: repeat(2, 1fr); }
-}
+/* CK CAPITAL — Responsive + desktop layout recovery overrides.
+   The original responsive rules remain in styles.css; this file contains the
+   final non-destructive overrides applied after the base stylesheet. */
 
-@media (max-width: 900px) {
-  .cockpit-layout { grid-template-columns: 1fr; }
-  .cockpit-sidebar { position: fixed; left: -100%; width: 280px; }
-  .cockpit-sidebar.open { left: 0; }
-  .topbar-mobile-btn { display: block; margin-right: 1rem; }
-  .nav-links { display: none; }
-  .btn-hamburger { display: flex; }
-  .footer-grid { grid-template-columns: 1fr 1fr; }
-  .checkout-grid { grid-template-columns: 1fr; }
-  .trust-grid { grid-template-columns: repeat(2, 1fr); }
-  .steps-grid { grid-template-columns: 1fr; }
-  .testimonial-cards { grid-template-columns: 1fr; }
-  .about-grid { grid-template-columns: 1fr; }
-  .overview-dual-grid, .support-dual-grid, .settings-grid, .profile-data-grid { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 640px) {
-  .hero-title { font-size: 2.4rem; }
-  .sizes-scroll-grid { grid-template-columns: repeat(2, 1fr); }
-  .challenge-spec-grid { grid-template-columns: 1fr; }
-  .price-cta-box { grid-column: span 1; }
-  .cockpit-kpi-grid, .perf-stats-grid, .payout-summary-grid, .certs-grid, .accounts-cards-grid, .risk-matrix-grid, .objectives-checklist-grid { grid-template-columns: 1fr; }
-  .feature-grid { grid-template-columns: 1fr; }
-  .footer-grid { grid-template-columns: 1fr; }
-  .journal-filter-bar { grid-template-columns: 1fr; }
-  .objectives-interactive-grid { grid-template-columns: 1fr; }
-  .risk-gauge-row { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 900px) {
-  .container { padding-left:1rem; padding-right:1rem; }
-  .main-header { position:sticky; top:0; z-index:100; }
-  .header-container { min-height:64px; gap:.7rem; }
-  .brand-wordmark { font-size:.82rem; }
-  .nav-actions { margin-left:auto; }
-  .nav-actions .btn-ghost { display:none; }
-  .btn-hamburger { display:flex; flex:0 0 auto; }
-  .hero-grid { gap:2rem; }
-  .hero-section { padding:3.5rem 0 3rem; }
-  .hero-content { text-align:left; }
-  .hero-title { max-width:760px; }
-  .hero-subtitle { max-width:680px; }
-  .hero-cta-group { flex-wrap:wrap; }
-  .terminal-mockup { width:100%; }
-  .mockup-header { gap:.7rem; }
-  .mockup-title { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; min-width:0; }
-  .mockup-stats-row { grid-template-columns:repeat(3,minmax(0,1fr)); }
-  .mstat { min-width:0; }
-  .mstat .val { overflow-wrap:anywhere; }
-  .mockup-footer-metrics { flex-wrap:wrap; gap:.7rem 1.2rem; }
-  .trust-grid { gap:1rem; }
-  .section { padding:4.5rem 0; }
-  .feature-grid { gap:1rem; }
-  .config-terminal-wrapper { padding:1.5rem; }
-  .terminal-ctrl-bar { gap:1rem; }
-  .pill-selector { max-width:100%; overflow-x:auto; }
-  .pill-btn { flex:0 0 auto; }
-  .sizes-scroll-grid { gap:.6rem; }
-  .size-tile { min-width:0; padding:1rem .45rem; }
-  .challenge-spec-grid { gap:1rem; padding:1.25rem; }
-  .price-cta-box { padding:1.35rem; }
-  .checkout-grid { min-width:0; }
-
-  /* Trader cockpit becomes a real mobile app shell. */
-  .cockpit-layout { display:block; min-height:100dvh; }
-  .cockpit-sidebar {
-    position:fixed;
-    inset:0 auto 0 0;
-    width:min(86vw,300px);
-    height:100dvh;
-    transform:translateX(-105%);
-    transition:transform var(--tr-smooth);
-    box-shadow:20px 0 50px rgba(0,0,0,.45);
-  }
-  .cockpit-sidebar.open { left:0; transform:translateX(0); }
-  .cockpit-sidebar::after { content:""; }
-  .cockpit-main { width:100%; min-width:0; }
-  .cockpit-topbar { padding:.9rem 1rem; gap:.65rem; }
-  .topbar-mobile-btn { display:flex; align-items:center; justify-content:center; flex:0 0 42px; width:42px; height:42px; border:1px solid var(--border-subtle); border-radius:var(--radius-md); background:var(--bg-surface); }
-  .topbar-greeting { min-width:0; flex:1; }
-  .topbar-greeting h3 { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-  .topbar-right { gap:.45rem; }
-  .topbar-right .btn { padding:.55rem .7rem; }
-  .topbar-icon-btn { width:38px; height:38px; }
-  .notif-panel { right:0; width:min(320px,calc(100vw - 2rem)); }
-  .dash-tab-pane { padding:1rem; }
-  .cockpit-kpi-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:.7rem; }
-  .kpi-card { padding:1rem; }
-  .kpi-value { font-size:1.35rem; overflow-wrap:anywhere; }
-  .chart-box { padding:1rem; }
-  .chart-header-row { gap:.7rem; align-items:flex-start; flex-wrap:wrap; }
-  .timeframe-selector { max-width:100%; overflow:auto; }
-  .tf-btn { flex:0 0 auto; }
-  .svg-chart-container { height:250px; }
-  .overview-dual-grid { gap:.8rem; }
-  .dual-card { padding:1rem; }
-  .risk-gauge-row { gap:1rem; }
-  .dist-bar-item { grid-template-columns:64px minmax(0,1fr) 70px; gap:.55rem; }
-  .table-responsive, .table-wrap, .data-table-wrapper { width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; }
-  table { max-width:none; }
-
-  /* Any desktop-style grids that missed a breakpoint */
-  .settings-grid, .profile-data-grid, .overview-dual-grid, .support-dual-grid { min-width:0; }
-}
-
-@media (max-width: 640px) {
-  body { font-size:14px; }
-  .container { padding-left:.85rem; padding-right:.85rem; }
-  .announcement-bar { font-size:.68rem; }
-  .announcement-inner { min-height:42px; gap:.5rem; }
-  .announcement-tag { flex:0 0 auto; }
-  .announcement-text { min-width:0; }
-  .announcement-close { flex:0 0 28px; }
-  .main-header { backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); }
-  .header-container { padding-left:.85rem; padding-right:.85rem; }
-  .brand-monogram { min-width:0; }
-  .brand-wordmark { white-space:nowrap; }
-  .nav-actions .btn-primary { padding:.58rem .75rem; font-size:.72rem; }
-  .hero-section { padding:2.6rem 0 2.5rem; }
-  .badge-status { max-width:100%; font-size:.57rem; line-height:1.35; padding:.4rem .65rem; }
-  .hero-title { font-size:clamp(2.05rem,10.5vw,2.6rem); line-height:1.04; overflow-wrap:anywhere; }
-  .hero-subtitle { font-size:.94rem; line-height:1.6; }
-  .hero-cta-group { display:grid; grid-template-columns:1fr; gap:.65rem; margin-bottom:1.5rem; }
-  .hero-cta-group .btn { width:100%; }
-  .hero-pills { display:grid; grid-template-columns:1fr; gap:.55rem; }
-  .pill-item { font-size:.75rem; }
-  .mockup-header { padding:.65rem .75rem; }
-  .mockup-signals { display:none; }
-  .mockup-title { font-size:.55rem; }
-  .mockup-badge { font-size:.52rem; }
-  .mockup-body { padding:.9rem; }
-  .mockup-stats-row { grid-template-columns:1fr; gap:.75rem; }
-  .mstat { padding-bottom:.65rem; border-bottom:1px solid var(--border-subtle); }
-  .mstat:last-child { border-bottom:0; padding-bottom:0; }
-  .mockup-chart-wrap { height:120px; }
-  .mockup-footer-metrics { display:grid; grid-template-columns:1fr; font-size:.58rem; gap:.5rem; }
-  .trust-strip { padding:1.35rem 0; }
-  .trust-grid { grid-template-columns:1fr 1fr; gap:1rem .5rem; }
-  .stat-number { font-size:1.35rem; }
-  .stat-label { font-size:.58rem; }
-  .section { padding:3.5rem 0; }
-  .section-header { margin-bottom:2rem; }
-  .section-title { font-size:1.75rem; }
-  .section-desc { font-size:.9rem; }
-  .feature-card { padding:1.25rem; }
-  .config-terminal-wrapper { padding:1rem; border-radius:var(--radius-md); }
-  .terminal-ctrl-bar { display:grid; grid-template-columns:1fr; gap:1rem; }
-  .pill-selector { display:flex; width:100%; overflow-x:auto; scrollbar-width:none; }
-  .pill-selector::-webkit-scrollbar { display:none; }
-  .pill-btn { font-size:.72rem; padding:.55rem .7rem; }
-  .capital-selector-row { margin-bottom:1.5rem; }
-  .sizes-scroll-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .size-tile-val { font-size:1.05rem; }
-  .size-tile-lbl { font-size:.57rem; }
-  .challenge-spec-grid { grid-template-columns:1fr; padding:1rem; }
-  .spec-metric { margin-bottom:.9rem; }
-  .price-display { font-size:2.3rem; }
-  .price-cta-box .btn { width:100%; }
-
-  /* Checkout / forms */
-  .checkout-wrap { padding:.7rem; }
-  .checkout-head { height:56px; padding:0 .75rem; top:0; }
-  .checkout-head .brand-wordmark { font-size:.72rem; }
-  .login-link { font-size:.68rem; }
-  .progress { margin:18px 0; }
-  .progress-step { font-size:.62rem; }
-  .progress-step b { width:24px; height:24px; }
-  .progress-line { width:18px; }
-  .checkout-card { padding:1rem; }
-  .section-title h1 { font-size:2rem; }
-  .section-title p { font-size:.88rem; }
-  .choice-grid, .choice-grid.three, .size-grid { grid-template-columns:1fr; }
-  .big-choice, .size-choice { width:100%; }
-  .setup-grid, .form-grid { grid-template-columns:1fr; }
-  .order-card-real { padding:1rem; }
-  .grand-total strong { font-size:1.8rem; }
-  .social-row { grid-template-columns:1fr; }
-  .payment-options { gap:.55rem; }
-  .trust-row { grid-template-columns:1fr; }
-
-  /* Dashboard */
-  .cockpit-topbar { min-height:64px; }
-  .topbar-right .topbar-icon-btn { display:none; }
-  .topbar-right { margin-left:auto; }
-  .dash-tab-pane { padding:.75rem; }
-  .cockpit-kpi-grid { grid-template-columns:1fr 1fr; gap:.55rem; }
-  .kpi-card { padding:.8rem; }
-  .kpi-title { font-size:.6rem; }
-  .kpi-value { font-size:1.05rem; }
-  .kpi-delta { font-size:.62rem; }
-  .chart-box { padding:.8rem; margin-bottom:.8rem; }
-  .svg-chart-container { height:205px; }
-  .overview-dual-grid { grid-template-columns:1fr; }
-  .dual-card { padding:.9rem; }
-  .risk-gauge-row { grid-template-columns:1fr; }
-  .perf-stats-grid, .payout-summary-grid, .certs-grid, .accounts-cards-grid, .risk-matrix-grid, .objectives-checklist-grid { grid-template-columns:1fr; }
-  .calendar-wrapper { padding:.75rem; overflow-x:auto; }
-  .calendar-header-weekdays, .calendar-days-grid { min-width:460px; }
-  .settings-card { padding:1rem; }
-  .theme-options-grid { flex-direction:column; }
-  .modal-backdrop { padding:.7rem; }
-  .modal-card { padding:1rem; max-height:92dvh; }
-  .cert-inner-border { padding:1.5rem 1rem; }
-  .cert-meta-row { grid-template-columns:1fr; gap:.9rem; }
-  .cert-recipient { font-size:1.55rem; overflow-wrap:anywhere; }
-  .toast-container { left:.7rem; right:.7rem; bottom:12px; }
-  .toast { font-size:.75rem; }
-}
-
-@media (max-width: 380px) {
-  .nav-actions .btn-primary { display:none; }
-  .hero-title { font-size:2rem; }
-  .trust-grid { grid-template-columns:1fr; }
-  .cockpit-kpi-grid { grid-template-columns:1fr; }
-  .account-actions, .hero-cta-group { grid-template-columns:1fr; }
-  .topbar-greeting { display:none; }
-  .topbar-right { margin-left:auto; }
-}
-
-@media (hover:none) and (pointer:coarse) {
-  .btn, .pill-btn, .size-tile, .sb-item, .topbar-icon-btn, .tf-btn,
-  .feature-card, .big-choice, .size-choice { min-height:44px; }
-  .feature-card:hover { transform:none; }
-}
-
-@media (max-width: 1100px) {
-  .cockpit-topbar { left: 0; }
-  .cockpit-main { padding-top: 142px; }
-}
-
-@media (max-width: 900px) {
-  .cockpit-topbar {
-    left: 0;
-    right: 0;
-  }
-
-  .topbar-command-row {
-    padding: .65rem 1rem;
-  }
-
-  .topbar-greeting {
-    padding: .85rem 1rem .95rem;
-  }
-
-  .cockpit-main {
-    padding-top: 138px;
-  }
-
-  .sidebar-exit {
+/* ========================================================================
+   DESKTOP LAYOUT RECOVERY — keep fixed sidebar from shrinking main content
+   ======================================================================== */
+@media (min-width: 901px) {
+  .cockpit-layout {
     display: block;
-  }
-
-  .cta-btns {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: .75rem;
-  }
-
-  .cta-btns .btn {
     width: 100%;
-    min-width: 0;
-    white-space: normal;
-    text-align: center;
-  }
-
-  .challenge-spec-grid,
-  .price-cta-box,
-  .config-terminal-wrapper,
-  .checkout-card,
-  .checkout-summary-card {
-    overflow: hidden;
-  }
-
-  .spec-metric .m-val {
-    max-width: 100%;
-  }
-}
-
-@media (max-width: 640px) {
-  .topbar-command-row {
-    min-height: 56px;
-    padding: .55rem .75rem;
-  }
-
-  .topbar-context {
-    display: none;
-  }
-
-  .topbar-greeting {
-    padding: .75rem .75rem .85rem;
-    align-items: center;
-  }
-
-  .greeting-eyebrow {
-    font-size: .5rem;
-    margin-bottom: .3rem;
-  }
-
-  .topbar-greeting h3 {
-    font-size: 1.25rem;
-    white-space: normal;
-    overflow: visible;
-  }
-
-  .topbar-sub {
-    font-size: .58rem;
-  }
-
-  .topbar-local-time {
-    min-width: 88px;
-    padding: .45rem .55rem;
-  }
-
-  .topbar-local-time strong {
-    font-size: .76rem;
+    min-height: 100vh;
   }
 
   .cockpit-main {
-    padding-top: 132px;
-  }
-
-  .dash-tab-pane {
-    padding: .75rem;
-  }
-
-  /* Objective/progress cards: stack every metric rather than compressing it. */
-  .prog-top-row,
-  .prog-details-row,
-  .cal-head-flex,
-  .card-title-row {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: .65rem;
-  }
-
-  .prog-details-row {
-    width: 100%;
-  }
-
-  .prog-details-row span {
-    width: 100%;
-  }
-
-  .objectives-prog-card {
-    padding: 1rem;
-  }
-
-  .obj-check-card {
-    padding: 1.1rem;
-  }
-
-  .obj-check-card h4,
-  .obj-card h4 {
-    line-height: 1.3;
-  }
-
-  .obj-check-card p,
-  .obj-card p {
-    line-height: 1.55;
-  }
-
-  .table-card {
-    overflow: hidden;
-  }
-
-  .table-card .card-header {
-    padding: 1rem;
-  }
-
-  .table-card .card-header h3,
-  .table-card .card-header h4 {
-    font-size: 1rem;
-    line-height: 1.25;
-  }
-
-  .table-responsive {
-    margin-inline: 0;
-  }
-
-  .data-table th,
-  .data-table td {
-    white-space: normal;
-    overflow-wrap: anywhere;
-  }
-
-  /* Long selects / journal rows should remain inside the viewport. */
-  .journal-filter-bar,
-  .support-dual-grid,
-  .settings-grid,
-  .profile-data-grid {
+    width: calc(100% - 280px);
+    max-width: none;
     min-width: 0;
-  }
-
-  .form-input,
-  select,
-  textarea,
-  input {
-    min-width: 0;
-  }
-
-  .profile-header-strip {
-    flex-wrap: wrap;
-  }
-}
-
-@media (max-width: 380px) {
-  .cockpit-main {
-    padding-top: 130px;
-  }
-
-  .topbar-greeting h3 {
-    font-size: 1.1rem;
-  }
-
-  .topbar-local-time {
-    min-width: 76px;
-  }
-
-  .topbar-local-time span {
-    font-size: .45rem;
-  }
-
-  .topbar-local-time strong {
-    font-size: .68rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .terminal-section .table-card .data-table {
-    min-width: 0;
-    width: 100%;
-  }
-
-  .terminal-section .table-card .data-table thead {
-    display: none;
-  }
-
-  .terminal-section .table-card .data-table tbody {
-    display: grid;
-    gap: .75rem;
-    padding: .75rem;
-  }
-
-  .terminal-section .table-card .data-table tbody tr {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: .45rem .75rem;
-    padding: .9rem;
-    background: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-md);
-  }
-
-  .terminal-section .table-card .data-table td {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: .75rem;
-    padding: .42rem 0;
-    border-bottom: 1px solid rgba(255,255,255,.045);
-    font-size: .78rem;
-    text-align: right;
-  }
-
-  .terminal-section .table-card .data-table td:first-child {
-    grid-column: 1 / -1;
-    text-align: left;
-    padding-top: 0;
-    font-size: .92rem;
-  }
-
-  .terminal-section .table-card .data-table td:last-child {
-    border-bottom: 0;
-  }
-
-  .terminal-section .table-card .data-table td::before {
-    content: attr(data-label);
-    flex: 1 1 auto;
-    color: var(--text-muted);
-    font-family: var(--font-sans);
-    font-size: .64rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: .05em;
-    text-align: left;
-  }
-
-  .terminal-section .table-card .data-table td:first-child::before {
-    display: none;
-  }
-
-  .terminal-section .table-card .data-table td:first-child strong {
-    color: var(--text-primary);
-  }
-
-  .terminal-section .table-card .data-table td:last-child {
-    padding-bottom: 0;
-  }
-
-  .cockpit-sidebar.open + .cockpit-main::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    z-index: 70;
-    background: rgba(0,0,0,.58);
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-  }
-
-  .cockpit-sidebar {
-    z-index: 100;
-  }
-}
-
-@media (min-width: 901px) {
-  .cockpit-sidebar {
-    position: fixed !important;
-    inset: 0 auto 0 0;
-    width: 280px;
-    height: 100vh;
-  }
-
-  .cockpit-main {
     margin-left: 280px;
     padding-top: 74px;
   }
-}
-
-@media (max-width: 900px) {
-  :root { --public-promo-height: 42px; }
-
-  .announcement-bar {
-    min-height: var(--public-promo-height);
-  }
-
-  .main-header {
-    top: var(--public-promo-height) !important;
-  }
-
-  .public-view.active {
-    padding-top: calc(64px + var(--public-promo-height));
-  }
-
-  body.promo-dismissed .public-view.active {
-    padding-top: 64px;
-  }
 
   .cockpit-topbar {
-    left: 0;
-    right: 0;
+    left: 280px;
+    width: calc(100% - 280px);
+    right: auto;
   }
 
-  .cockpit-main {
-    margin-left: 0;
-    padding-top: 74px;
+  .dash-tab-pane {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
   }
 
-  .topbar-mobile-btn {
-    display: flex;
+  .cockpit-kpi-grid,
+  .overview-dual-grid,
+  .perf-stats-grid,
+  .risk-matrix-grid,
+  .objectives-checklist-grid,
+  .accounts-cards-grid,
+  .certs-grid,
+  .payout-summary-grid,
+  .support-dual-grid,
+  .settings-grid,
+  .profile-data-grid {
+    width: 100%;
+    min-width: 0;
   }
 
-  .topbar-notifications {
-    display: none;
+  /* Desktop should wrap naturally inside sufficiently wide columns;
+     do not force narrow dashboard labels into one-character columns. */
+  .kpi-title,
+  .kpi-delta,
+  .box-lbl,
+  .box-sub,
+  .p-lbl,
+  .p-val,
+  .stat-h,
+  .stat-s,
+  .spec-metric .m-title,
+  .spec-metric .m-val,
+  .gauge-col,
+  .rule-mini-row,
+  .chk-status,
+  .obj-check-card p,
+  .obj-card p,
+  .price-note,
+  .guarantee-line {
+    min-width: 0;
+    overflow-wrap: break-word;
+    word-break: normal;
   }
 
-  .topbar-command-row {
-    min-height: 70px;
-    padding: .7rem .85rem;
-  }
-
-  .overview-welcome {
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 1.45rem 1.2rem 1.35rem;
-    border-radius: 19px;
-  }
-
-  .overview-welcome::after {
-    left: 1.2rem;
-    right: 1.2rem;
-  }
-
-  .overview-welcome h1 {
-    font-size: clamp(1.8rem, 7vw, 2.35rem);
-  }
-
-  .overview-health-badge {
-    align-self: flex-start;
-  }
-}
-
-@media (max-width: 480px) {
-  .topbar-brand-center {
-    font-size: .9rem;
-    letter-spacing: .07em;
-  }
-
-  .topbar-local-time {
-    min-width: 91px;
-    padding: .5rem .6rem;
-  }
-
-  .topbar-local-time span {
-    font-size: .43rem;
-  }
-
-  .topbar-local-time strong {
-    font-size: .8rem;
-  }
-
-  .topbar-mobile-btn {
-    width: 42px;
-    height: 42px;
-  }
-
-  .overview-welcome {
-    margin-top: 0;
-    margin-bottom: 1rem;
-  }
-
-  .overview-welcome h1 {
-    font-size: 1.75rem;
-  }
-
-  .overview-welcome p {
-    font-size: .76rem;
-    line-height: 1.55;
+  .rule-mini-row,
+  .card-title-row,
+  .chart-header-row,
+  .cal-head-flex,
+  .profile-header-strip {
+    min-width: 0;
   }
 }
