@@ -4,13 +4,60 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>CK Capital | Institutional Prop Trading & Trader Control Room</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='11' y1='13' x2='33' y2='31' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23FBF1D2'/%3E%3Cstop offset='.28' stop-color='%23F0D383'/%3E%3Cstop offset='.58' stop-color='%23D4AF37'/%3E%3Cstop offset='.82' stop-color='%23B4872C'/%3E%3Cstop offset='1' stop-color='%238C6423'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='44' height='44' rx='10.5' fill='%23131419'/%3E%3Cpath d='M19.2 14H15.4C13.5 14 12 15.6 12 17.5V26.5C12 28.4 13.5 30 15.4 30H19.2' stroke='url(%23g)' stroke-width='2.8' stroke-linecap='round' fill='none'/%3E%3Cpath d='M23.2 14V30' stroke='%23F7F1E4' stroke-width='2.8' stroke-linecap='round'/%3E%3Cpath d='M31.2 15L23.6 22L31.8 29' stroke='url(%23g)' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Geist+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="responsive.css" />
 </head>
 <body data-theme="dark">
+
+  <!-- CK CAPITAL BRAND MARK — shared sprite, referenced via <use> everywhere -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="ck-logo-symbol" viewBox="0 0 44 44">
+      <defs>
+        <radialGradient id="ckBadgeBg" cx="32%" cy="18%" r="95%">
+          <stop offset="0" stop-color="#1d2029"/>
+          <stop offset="55%" stop-color="#131419"/>
+          <stop offset="100%" stop-color="#08090c"/>
+        </radialGradient>
+        <linearGradient id="ckGold" x1="11" y1="13" x2="33" y2="31" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#F4E9FF"/>
+          <stop offset="0.28" stop-color="#D6ADFF"/>
+          <stop offset="0.58" stop-color="#9147ED"/>
+          <stop offset="0.82" stop-color="#7530C9"/>
+          <stop offset="1" stop-color="#56209A"/>
+        </linearGradient>
+        <linearGradient id="ckBevel" x1="3" y1="3" x2="41" y2="41" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.6"/>
+          <stop offset="0.5" stop-color="#9147ED" stop-opacity="0.28"/>
+          <stop offset="1" stop-color="#000000" stop-opacity="0.5"/>
+        </linearGradient>
+        <radialGradient id="ckSheen" cx="50%" cy="50%" r="50%">
+          <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.4"/>
+          <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+        </radialGradient>
+        <clipPath id="ckClip"><rect x="0.5" y="0.5" width="43" height="43" rx="10.5"/></clipPath>
+      </defs>
+      <rect width="44" height="44" rx="10.5" fill="url(#ckBadgeBg)"/>
+      <ellipse cx="13" cy="9" rx="16" ry="9" fill="url(#ckSheen)" clip-path="url(#ckClip)"/>
+      <rect x="0.5" y="0.5" width="43" height="43" rx="10.5" stroke="url(#ckBevel)" stroke-width="1"/>
+      <path d="M19.2 14H15.4C13.5 14 12 15.6 12 17.5V26.5C12 28.4 13.5 30 15.4 30H19.2" stroke="url(#ckGold)" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M23.2 14V30" stroke="#F7F1E4" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M31.2 15L23.6 22L31.8 29" stroke="url(#ckGold)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="31.8" cy="29" r="1.5" fill="url(#ckGold)"/>
+      <path d="M33.5 12L37.5 8" stroke="url(#ckGold)" stroke-width="1.4" stroke-linecap="round" opacity="0.85"/>
+      <circle cx="37.5" cy="8" r="1.3" fill="url(#ckGold)" opacity="0.9"/>
+    </symbol>
+  </svg>
+
+  <!-- ANIMATED AURORA BACKDROP — sits behind all content, drifts slowly -->
+  <div class="aurora-bg" aria-hidden="true">
+    <span class="aurora-blob blob-a"></span>
+    <span class="aurora-blob blob-b"></span>
+    <span class="aurora-blob blob-c"></span>
+  </div>
 
   <!-- NOTIFICATION TOAST WRAPPER -->
   <div id="toast-container" class="toast-container" aria-live="polite"></div>
@@ -30,20 +77,8 @@
   <header class="main-header" id="header">
     <div class="container header-container">
       <div class="brand-monogram" data-nav="home">
-        <svg class="ck-logo-svg" viewBox="0 0 44 44" width="36" height="36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect width="44" height="44" rx="10" fill="#121318"/>
-          <rect x="0.5" y="0.5" width="43" height="43" rx="9.5" stroke="url(#goldGrad)" stroke-opacity="0.3"/>
-          <path d="M19 14H15C13.3431 14 12 15.3431 12 17V27C12 28.6569 13.3431 30 15 30H19" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M23 14V30" stroke="#F5F5F7" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M31 15L23.5 22L31.5 29" stroke="url(#goldGrad)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <defs>
-            <linearGradient id="goldGrad" x1="12" y1="14" x2="32" y2="30" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#F2D07C"/>
-              <stop offset="1" stop-color="#B88A2E"/>
-            </linearGradient>
-          </defs>
-        </svg>
-        <span class="brand-wordmark">CK <span>CAPITAL</span></span>
+        <svg class="ck-logo-svg" viewBox="0 0 44 44" width="36" height="36" xmlns="http://www.w3.org/2000/svg"><use href="#ck-logo-symbol"/></svg>
+        <span class="brand-wordmark">CK <span>Capital</span></span>
       </div>
 
       <!-- Desktop Navigation -->
@@ -58,6 +93,11 @@
 
       <!-- Action Items -->
       <div class="nav-actions">
+        <button class="nav-search-trigger" id="btn-open-cmdk" aria-label="Search or jump to">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          <span>Quick jump</span>
+          <kbd>⌘K</kbd>
+        </button>
         <button class="btn btn-ghost" id="nav-btn-auth">Log In</button>
         <button class="btn btn-primary" id="nav-btn-portal" data-nav="challenges">Start Trading</button>
         <button class="btn-hamburger" id="btn-hamburger" aria-label="Toggle navigation">
@@ -67,10 +107,18 @@
     </div>
   </header>
 
+  <!-- LIVE MARKET TICKER -->
+  <div class="ticker-strip" aria-hidden="true">
+    <div class="ticker-track" id="ticker-track"></div>
+  </div>
+
   <!-- MOBILE NAVIGATION DRAWER -->
   <aside class="mobile-drawer" id="mobile-drawer">
     <div class="drawer-header">
-      <span class="brand-wordmark">CK <span>CAPITAL</span></span>
+      <div class="brand-monogram" data-nav="home">
+        <svg class="ck-logo-svg" viewBox="0 0 44 44" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><use href="#ck-logo-symbol"/></svg>
+        <span class="brand-wordmark">CK <span>Capital</span></span>
+      </div>
       <button class="drawer-close" id="btn-close-drawer">&times;</button>
     </div>
     <div class="drawer-links">
@@ -80,6 +128,7 @@
       <button class="drawer-link" data-nav="objectives">Trading Objectives</button>
       <button class="drawer-link" data-nav="about">About Institution</button>
       <button class="drawer-link" data-nav="faq">FAQ Knowledge Base</button>
+      <button class="drawer-link" id="drawer-link-cmdk">Quick Jump Search</button>
       <hr class="drawer-divider" />
       <button class="drawer-link" id="mobile-link-auth">Log In</button>
       <button class="btn btn-primary btn-block" data-nav="challenges">Get Funded Now</button>
@@ -92,16 +141,25 @@
   <main id="public-view" class="view-panel active">
     
     <!-- HERO SECTION -->
-    <section class="hero-section" id="hero-sec">
-      <div class="container hero-grid">
-        <div class="hero-content">
+    <section class="hero-section hero-video-section" id="hero-sec">
+      <div class="hero-video-backdrop" aria-hidden="true">
+        <video id="hero-wolf-video" class="hero-wolf-video" autoplay muted loop playsinline preload="auto" poster="assets/ck-wolf-poster.jpg">
+          <source src="assets/ck-wolf-hero.mp4" type="video/mp4">
+          <source src="assets/ck-wolf-hero.webm" type="video/webm">
+        </video>
+        <div class="hero-video-tint"></div>
+        <div class="hero-video-glow"></div>
+      </div>
+
+      <div class="container hero-video-content">
+        <div class="hero-content hero-overlay-copy">
           <div class="badge-status">
             <span class="status-pulse"></span>
-            INSTITUTIONAL GRADE PROPRIETARY INFRASTRUCTURE
+            CK CAPITAL • BUILT FOR DISCIPLINED TRADERS
           </div>
           <h1 class="hero-title">CAPITAL SHOULD FOLLOW <span class="gold-gradient-text">CONSISTENCY.</span></h1>
           <p class="hero-subtitle">
-            A modern prop environment built around disciplined execution, transparent objectives, and a trader cockpit engineered to protect your edge. Scale up to $1,200,000 in simulated capital.
+            Trade with a prop environment built around disciplined execution, transparent objectives, and a trader cockpit engineered to protect your edge.
           </p>
           <div class="hero-cta-group">
             <button class="btn btn-primary btn-large" data-scroll="challenge-terminal">Explore Challenges</button>
@@ -114,7 +172,7 @@
             </div>
             <div class="pill-item">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              TradeLocker & MT5
+              TradeLocker &amp; MT5
             </div>
             <div class="pill-item">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
@@ -123,51 +181,23 @@
           </div>
         </div>
 
-        <!-- HERO TERMINAL PREVIEW CARD -->
-        <div class="hero-visual">
-          <div class="terminal-mockup glass-panel">
-            <div class="mockup-header">
-              <div class="mockup-signals">
-                <span></span><span></span><span></span>
-              </div>
-              <div class="mockup-title">CK TRADER COCKPIT // LIVE EXECUTION SIMULATION</div>
-              <div class="mockup-badge">HEALTHY</div>
-            </div>
-            <div class="mockup-body">
-              <div class="mockup-stats-row">
-                <div class="mstat">
-                  <span class="lbl">Simulated Balance</span>
-                  <span class="val font-mono" id="hero-anim-balance">$10,428.60</span>
-                </div>
-                <div class="mstat">
-                  <span class="lbl">Total Return</span>
-                  <span class="val font-mono text-success">+4.28%</span>
-                </div>
-                <div class="mstat">
-                  <span class="lbl">Daily Drawdown</span>
-                  <span class="val font-mono">1.09% <span class="sub text-muted">/ 2.0%</span></span>
-                </div>
-              </div>
-              <!-- Mini SVG Equity Curve Animation -->
-              <div class="mockup-chart-wrap">
-                <svg class="mini-chart-svg" viewBox="0 0 500 160">
-                  <defs>
-                    <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.3"/>
-                      <stop offset="100%" stop-color="#D4AF37" stop-opacity="0.0"/>
-                    </linearGradient>
-                  </defs>
-                  <path d="M0,130 C70,120 120,135 180,95 C240,65 300,105 380,45 C440,25 470,35 500,20 L500,160 L0,160 Z" fill="url(#chartGrad)"/>
-                  <path d="M0,130 C70,120 120,135 180,95 C240,65 300,105 380,45 C440,25 470,35 500,20" fill="none" stroke="#D4AF37" stroke-width="3" stroke-linecap="round"/>
-                  <circle cx="500" cy="20" r="5" fill="#D4AF37" class="pulse-circle"/>
-                </svg>
-              </div>
-              <div class="mockup-footer-metrics font-mono">
-                <div><span class="dot-live"></span> MT5 Server: <strong>CK-Capital-Live</strong></div>
-                <div>Avg Spread EURUSD: <strong>0.1 pips</strong></div>
-                <div>Fill Latency: <strong>18ms</strong></div>
-              </div>
-            </div>
+        <!-- Content card deliberately sits ON TOP of the character video, not beside it. -->
+        <div class="hero-stats-card glass-panel" aria-label="CK Capital key figures">
+          <div class="hero-stat">
+            <strong class="font-mono">$1.2M</strong>
+            <span>Maximum funding scale</span>
+          </div>
+          <div class="hero-stat">
+            <strong class="font-mono">100%</strong>
+            <span>Top profit split tier</span>
+          </div>
+          <div class="hero-stat">
+            <strong class="font-mono">MT5</strong>
+            <span>Trading platform</span>
+          </div>
+          <div class="hero-stat">
+            <strong class="font-mono">24/7</strong>
+            <span>Trader cockpit access</span>
           </div>
         </div>
       </div>
@@ -195,40 +225,68 @@
       </div>
     </section>
 
+    <!-- POWERED BY / TECH STRIP -->
+    <section class="tech-strip" data-reveal>
+      <div class="container">
+        <p class="tech-strip-label">Execute On Institutional-Grade Infrastructure</p>
+        <div class="tech-badges-row">
+          <span class="tech-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M8 8h5M8 16h3"/></svg> TradeLocker</span>
+          <span class="tech-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg> MetaTrader 5</span>
+          <span class="tech-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg> TradingView Charts</span>
+          <span class="tech-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg> Crypto &amp; Wire Payouts</span>
+          <span class="tech-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.9 7.5c-1.4-1-3.5-1.7-5.4-1.9l-.4 1c1 .2 2.1.6 3 1.1-2.6-1.1-6-1.1-8.7 0 .9-.5 2-.9 3-1.1l-.4-1c-1.9.2-4 .9-5.4 1.9-2 3-2.4 6.1-2.2 9 1.4 1.3 3.3 2.1 4.9 2.5l.7-1.2c-.8-.2-1.6-.6-2.3-1 .2.1.4.2.6.3 2.9 1.4 6.5 1.4 9.4 0 .2-.1.4-.2.6-.3-.7.4-1.5.8-2.3 1l.7 1.2c1.7-.4 3.5-1.2 4.9-2.5.3-3.5-.6-6.6-2.1-9z"/></svg> Discord Community</span>
+        </div>
+      </div>
+    </section>
+
     <!-- WHY CK CAPITAL (VALUE PROPOSITIONS) -->
     <section class="section why-section" id="why-ck">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header" data-reveal>
           <span class="section-subtitle">BUILT BY PRACTITIONERS</span>
           <h2 class="section-title">Institutional Conditions. Zero Hidden Friction.</h2>
           <p class="section-desc">We dismantled the predatory traps common in retail prop firms. Trade with clean objectives engineered for risk managers.</p>
         </div>
-        <div class="feature-grid">
-          <div class="feature-card glass-panel">
-            <div class="feat-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <div class="feature-grid bento-grid">
+          <div class="feature-card feature-card-featured glass-panel" data-reveal>
+            <div class="feat-icon feat-icon-lg">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9147ED" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
             </div>
             <h3>Flexible Payout Cadence</h3>
             <p>Request payouts on demand or bi-weekly. Profit allocations processed rapidly via Crypto, Bank Wire, or PayPal without artificial gatekeeping.</p>
+            <div class="feat-mini-visual">
+              <div class="fmv-row">
+                <span class="fmv-label">Last simulated payout</span>
+                <span class="fmv-amount text-success font-mono">+$4,200.00</span>
+              </div>
+              <div class="fmv-row">
+                <span class="fmv-label">Settlement rail</span>
+                <span class="fmv-chip font-mono">USDT · TRC20</span>
+              </div>
+              <div class="fmv-row">
+                <span class="fmv-label">Time to wallet</span>
+                <span class="fmv-chip font-mono text-gold">8h 14m</span>
+              </div>
+            </div>
           </div>
-          <div class="feature-card glass-panel">
+          <div class="feature-card glass-panel" data-reveal>
             <div class="feat-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9147ED" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
             </div>
             <h3>News & Weekend Holding</h3>
             <p>Trade tier-one macroeconomic volatility (NFP, CPI, FOMC) with confidence. Hold swing positions through weekend market closures on selected platforms.</p>
           </div>
-          <div class="feature-card glass-panel">
+          <div class="feature-card glass-panel" data-reveal>
             <div class="feat-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9147ED" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
             </div>
             <h3>Next-Gen Platforms</h3>
             <p>Deploy algorithms or discretionary orders seamlessly across MT5 and TradeLocker with direct TradingView charting integration.</p>
           </div>
-          <div class="feature-card glass-panel">
+          <div class="feature-card glass-panel" data-reveal>
             <div class="feature-card-inner">
               <div class="feat-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9147ED" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
               </div>
               <h3>Discipline Scaling Matrix</h3>
               <p>Gain access to larger simulated capital brackets automatically as you establish statistical consistency and prudent drawdown control.</p>
@@ -241,13 +299,13 @@
     <!-- CHALLENGE TERMINAL -->
     <section class="section terminal-section" id="challenge-terminal">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header" data-reveal>
           <span class="section-subtitle">THE TRADING SPECIFICATION</span>
           <h2 class="section-title">Configure Your Evaluation</h2>
           <p class="section-desc">Select your preferred model, platform, and capital scale. Transparent risk criteria with no hidden breach triggers.</p>
         </div>
 
-        <div class="config-terminal-wrapper glass-panel">
+        <div class="config-terminal-wrapper glass-panel" data-reveal>
           <!-- Model Selectors -->
           <div class="terminal-ctrl-bar">
             <div class="ctrl-group">
@@ -333,7 +391,7 @@
         </div>
 
         <!-- Challenge Objective Comparison Table -->
-        <div class="table-card glass-panel" style="margin-top: 2rem;">
+        <div class="table-card glass-panel" style="margin-top: 2rem;" data-reveal>
           <div class="card-header">
             <h3>Framework Rule Comparison Matrix</h3>
           </div>
@@ -381,6 +439,7 @@
               </tbody>
             </table>
           </div>
+          <div class="table-scroll-hint">⟷ Swipe to see more</div>
         </div>
       </div>
     </section>
@@ -388,14 +447,14 @@
     <!-- HOW IT WORKS ROADMAP -->
     <section class="section" id="how-it-works-sec">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header" data-reveal>
           <span class="section-subtitle">THE ROADMAP</span>
           <h2 class="section-title">The Path to Qualified Analyst</h2>
           <p class="section-desc">A structured career milestone progression built for professional traders.</p>
         </div>
 
         <div class="steps-grid">
-          <div class="step-card glass-panel" data-step="1">
+          <div class="step-card glass-panel" data-step="1" data-reveal>
             <div class="step-badge font-mono">STEP 01</div>
             <h4>Evaluation Phase</h4>
             <p>Prove your edge in simulated market conditions. Respect daily drawdown thresholds and reach your reasonable target with disciplined position sizing.</p>
@@ -405,7 +464,7 @@
               <li>Simulated Execution Engine</li>
             </ul>
           </div>
-          <div class="step-card glass-panel" data-step="2">
+          <div class="step-card glass-panel" data-step="2" data-reveal>
             <div class="step-badge font-mono">STEP 02</div>
             <h4>Verification Phase</h4>
             <p>Demonstrate that Phase 1 was not a statistical anomaly. Replicate your performance with half the profit target and identical risk limits.</p>
@@ -415,7 +474,7 @@
               <li>Consistency Guardrails</li>
             </ul>
           </div>
-          <div class="step-card glass-panel highlighted-step" data-step="3">
+          <div class="step-card glass-panel highlighted-step" data-step="3" data-reveal>
             <div class="step-badge gold-badge font-mono">STEP 03</div>
             <h4>Qualified Analyst</h4>
             <p>Receive your institutional simulated credentials. Trade capital up to $1.2M with up to 100% simulated profit splits and on-demand payout schedules.</p>
@@ -432,13 +491,13 @@
     <!-- TRADING OBJECTIVES SPECIFICATION DEEP DIVE -->
     <section class="section" id="objectives-sec">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header" data-reveal>
           <span class="section-subtitle">RULES HEALTH ARCHITECTURE</span>
           <h2 class="section-title">Precision Trading Objectives</h2>
           <p class="section-desc">Every objective is transparently evaluated through our algorithmic risk monitor.</p>
         </div>
         <div class="objectives-interactive-grid">
-          <div class="obj-card glass-panel" data-obj="daily">
+          <div class="obj-card glass-panel" data-obj="daily" data-reveal>
             <div class="obj-header">
               <span class="obj-indicator status-ok"></span>
               <h4>Maximum Daily Loss</h4>
@@ -448,7 +507,7 @@
               <span class="font-mono text-gold">Strict Automatic Protection</span>
             </div>
           </div>
-          <div class="obj-card glass-panel" data-obj="overall">
+          <div class="obj-card glass-panel" data-obj="overall" data-reveal>
             <div class="obj-header">
               <span class="obj-indicator status-ok"></span>
               <h4>Maximum Total Drawdown</h4>
@@ -458,7 +517,7 @@
               <span class="font-mono text-gold">Static Calculation</span>
             </div>
           </div>
-          <div class="obj-card glass-panel" data-obj="news">
+          <div class="obj-card glass-panel" data-obj="news" data-reveal>
             <div class="obj-header">
               <span class="obj-indicator status-ok"></span>
               <h4>High Impact News Trading</h4>
@@ -468,7 +527,7 @@
               <span class="font-mono text-gold">Fully Permitted</span>
             </div>
           </div>
-          <div class="obj-card glass-panel" data-obj="period">
+          <div class="obj-card glass-panel" data-obj="period" data-reveal>
             <div class="obj-header">
               <span class="obj-indicator status-ok"></span>
               <h4>Trading Period</h4>
@@ -482,9 +541,54 @@
       </div>
     </section>
 
+    <!-- TOP PERFORMING ANALYSTS LEADERBOARD -->
+    <section class="section" id="leaderboard-sec">
+      <div class="container">
+        <div class="section-header" data-reveal>
+          <span class="section-subtitle">LIVE SIMULATED RANKINGS</span>
+          <h2 class="section-title">Top Performing Analysts</h2>
+          <p class="section-desc">A snapshot of this month's highest-consistency traders across all funded simulated tiers.</p>
+        </div>
+        <div class="leaderboard-panel glass-panel" data-reveal>
+          <div class="leaderboard-list" id="leaderboard-list">
+            <div class="lb-row rank-1">
+              <div class="lb-rank">01</div>
+              <div class="lb-trader"><div class="avatar-ph">MK</div><div><div class="name">Marcus K.</div><div class="tier">$200,000 &middot; Qualified Analyst</div></div></div>
+              <div class="lb-return">+18.4%</div>
+              <div class="lb-payout">$36,800 paid</div>
+            </div>
+            <div class="lb-row rank-2">
+              <div class="lb-rank">02</div>
+              <div class="lb-trader"><div class="avatar-ph">SL</div><div><div class="name">Sarah L.</div><div class="tier">$100,000 &middot; Qualified Analyst</div></div></div>
+              <div class="lb-return">+14.9%</div>
+              <div class="lb-payout">$14,900 paid</div>
+            </div>
+            <div class="lb-row rank-3">
+              <div class="lb-rank">03</div>
+              <div class="lb-trader"><div class="avatar-ph">DA</div><div><div class="name">David A.</div><div class="tier">$200,000 &middot; Qualified Analyst</div></div></div>
+              <div class="lb-return">+12.2%</div>
+              <div class="lb-payout">$24,400 paid</div>
+            </div>
+            <div class="lb-row">
+              <div class="lb-rank">04</div>
+              <div class="lb-trader"><div class="avatar-ph">RT</div><div><div class="name">Priya R.</div><div class="tier">$50,000 &middot; Qualified Analyst</div></div></div>
+              <div class="lb-return">+9.7%</div>
+              <div class="lb-payout">$4,850 paid</div>
+            </div>
+            <div class="lb-row">
+              <div class="lb-rank">05</div>
+              <div class="lb-trader"><div class="avatar-ph">JN</div><div><div class="name">Jonas N.</div><div class="tier">$100,000 &middot; Qualified Analyst</div></div></div>
+              <div class="lb-return">+8.1%</div>
+              <div class="lb-payout">$8,100 paid</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ABOUT SECTION -->
     <section class="section" id="about-sec">
-      <div class="container about-grid">
+      <div class="container about-grid" data-reveal>
         <div class="about-text">
           <span class="section-subtitle">OUR PHILOSOPHY</span>
           <h2 class="section-title">Institutional Technology. Engineered for Risk Managers.</h2>
@@ -527,7 +631,7 @@
     <!-- FAQ KNOWLEDGE BASE SECTION -->
     <section class="section" id="faq-sec">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header" data-reveal>
           <span class="section-subtitle">KNOWLEDGE ARCHIVE</span>
           <h2 class="section-title">Frequently Asked Questions</h2>
           <p class="section-desc">Instant answers to everything regarding rules, platforms, payouts, and scaling.</p>
@@ -594,11 +698,11 @@
     <!-- TESTIMONIALS SLIDER SECTION -->
     <section class="section testimonials-sec">
       <div class="container">
-        <div class="section-header">
+        <div class="section-header" data-reveal>
           <span class="section-subtitle">TRADER STORIES</span>
           <h2 class="section-title">Verified Analyst Experiences</h2>
         </div>
-        <div class="testimonial-slider-wrap">
+        <div class="testimonial-slider-wrap" data-reveal>
           <div class="testimonial-cards" id="testimonial-track">
             <div class="testi-card glass-panel">
               <div class="testi-header">
@@ -647,7 +751,7 @@
     <!-- CALL TO ACTION FINAL BANNER -->
     <section class="section cta-section">
       <div class="container">
-        <div class="cta-banner glass-panel">
+        <div class="cta-banner glass-panel" data-reveal>
           <div class="cta-content">
             <span class="box-tag">NEXT GENERATION PROP ENVIRONMENT</span>
             <h2>Ready to Prove Your Discipline?</h2>
@@ -666,7 +770,8 @@
       <div class="container footer-grid">
         <div class="footer-brand-col">
           <div class="brand-monogram" data-nav="home">
-            <span class="brand-wordmark">CK <span>CAPITAL</span></span>
+            <svg class="ck-logo-svg" viewBox="0 0 44 44" width="34" height="34" xmlns="http://www.w3.org/2000/svg"><use href="#ck-logo-symbol"/></svg>
+            <span class="brand-wordmark">CK <span>Capital</span></span>
           </div>
           <p class="footer-mission">
             Capital should follow consistency. Trade with institutional discipline, scale simulated balances, and capture performance-based earnings.
@@ -725,7 +830,8 @@
         <!-- Brand / Header -->
         <div class="auth-header">
           <div class="brand-monogram" data-nav="home" style="justify-content: center; margin-bottom: 1.25rem;">
-            <span class="brand-wordmark">CK <span>CAPITAL</span></span>
+            <svg class="ck-logo-svg" viewBox="0 0 44 44" width="42" height="42" xmlns="http://www.w3.org/2000/svg"><use href="#ck-logo-symbol"/></svg>
+            <span class="brand-wordmark">CK <span>Capital</span></span>
           </div>
           <h2 id="auth-main-title">Trader Cockpit Login</h2>
           <p id="auth-sub-title">Enter your institutional credentials to access your control room.</p>
@@ -987,9 +1093,13 @@
       <aside class="cockpit-sidebar" id="cockpit-sidebar">
         <div class="sidebar-top">
           <div class="brand-monogram" data-nav="home">
-            <span class="brand-wordmark">CK <span>CAPITAL</span></span>
+            <svg class="ck-logo-svg" viewBox="0 0 44 44" width="34" height="34" xmlns="http://www.w3.org/2000/svg"><use href="#ck-logo-symbol"/></svg>
+            <span class="brand-wordmark">CK <span>Capital</span></span>
           </div>
-          <button class="sidebar-collapse-btn" id="btn-collapse-sidebar" aria-label="Toggle sidebar">&#8249;</button>
+          <button class="sidebar-collapse-btn" id="btn-collapse-sidebar" aria-label="Close sidebar">
+            <span class="icon-collapse-chevron">&#8249;</span>
+            <span class="icon-mobile-close">&times;</span>
+          </button>
         </div>
 
         <!-- Account Switcher Box -->
@@ -1008,9 +1118,14 @@
 
         <!-- Sidebar Navigation -->
         <nav class="sidebar-nav">
+          <span class="sb-active-indicator" id="sb-active-indicator"></span>
           <button class="sb-item active" data-tab="overview">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
             <span>Overview</span>
+          </button>
+          <button class="sb-item" data-tab="copilot">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4L12 2z"/><path d="M19 14l.7 2.1L22 17l-2.3.9L19 20l-.7-2.1L16 17l2.3-.9L19 14z"/></svg>
+            <span>AI Copilot</span>
           </button>
           <button class="sb-item" data-tab="performance">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
@@ -1060,7 +1175,6 @@
 
         <!-- Sidebar Footer -->
         <div class="sidebar-foot">
-          <button class="btn btn-secondary btn-block sidebar-exit" data-nav="home">Exit to Portal</button>
           <div class="user-brief">
             <div class="user-avatar" id="dash-user-initials">MK</div>
             <div class="user-info">
@@ -1072,24 +1186,50 @@
         </div>
       </aside>
 
+      <!-- Tap-outside-to-close backdrop for the mobile sidebar drawer -->
+      <div class="sidebar-mobile-backdrop" id="sidebar-mobile-backdrop" aria-hidden="true"></div>
+
       <!-- COCKPIT MAIN CONTENT AREA -->
       <div class="cockpit-main">
         
         <!-- DASHBOARD TOP BAR -->
-        <header class="cockpit-topbar glass-panel">
+        <header class="cockpit-topbar glass-panel" aria-label="Trader workstation navigation">
           <div class="topbar-command-row">
             <div class="topbar-left">
-              <button class="topbar-mobile-btn" id="dash-mobile-toggle" aria-label="Open dashboard menu">
+              <button class="topbar-mobile-btn" id="dash-mobile-toggle" aria-label="Open dashboard menu" aria-expanded="false">
                 <span></span><span></span><span></span>
+              </button>
+              <div class="topbar-desktop-brand">
+                <svg class="ck-logo-svg" viewBox="0 0 44 44" width="34" height="34" xmlns="http://www.w3.org/2000/svg"><use href="#ck-logo-symbol"/></svg>
+                <span>CK <em>Capital</em></span>
+              </div>
+            </div>
+
+            <div class="topbar-brand-center">
+              <button class="topbar-search-pill" id="btn-open-cmdk-dash" aria-label="Search or jump to a panel">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                <span>Search panels, trades, rules&hellip;</span>
+                <kbd>⌘K</kbd>
               </button>
             </div>
 
-            <div class="topbar-brand-center" aria-label="CK Capital">CK <span>CAPITAL</span></div>
-
             <div class="topbar-right">
-              <!-- Notifications Bell -->
+              <!-- Focus Mode — restored from v3 -->
+              <button class="btn-focus-mode" id="btn-focus-mode" aria-label="Toggle focus mode" title="Focus Mode — hide sidebar for a distraction-free view">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m11-5v3a2 2 0 0 1-2 2h-3"/></svg>
+              </button>
+
+              <div class="topbar-account-chip" title="Active trading account">
+                <span class="topbar-account-dot"></span>
+                <span id="topbar-account-label">CK-10000</span>
+              </div>
+
+              <button class="topbar-icon-btn topbar-ai-btn" id="btn-topbar-copilot" aria-label="Open AI Copilot" title="AI Copilot">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4L12 2z"/><path d="M19 14l.7 2.1L22 17l-2.3.9L19 20l-.7-2.1L16 17l2.3-.9L19 14z"/></svg>
+              </button>
+
               <div class="notif-dropdown-wrapper topbar-notifications">
-                <button class="topbar-icon-btn" id="btn-toggle-notifs" aria-label="Notifications">
+                <button class="topbar-icon-btn" id="btn-toggle-notifs" aria-label="Notifications" aria-expanded="false">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
                   <span class="badge-count" id="notif-count">3</span>
                 </button>
@@ -1098,19 +1238,44 @@
                     <h5>Notifications Archive</h5>
                     <button class="btn-link" id="btn-mark-all-read">Clear All</button>
                   </div>
-                  <div class="notif-list" id="notif-items-list">
-                    <!-- Injected via JS -->
-                  </div>
+                  <div class="notif-list" id="notif-items-list"></div>
                 </div>
               </div>
+
+              <div class="topbar-theme-wrap">
+                <button class="topbar-icon-btn topbar-theme-btn" id="btn-topbar-theme" aria-label="Change theme" aria-expanded="false" title="Theme">
+                  <svg class="theme-icon theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.7 6.7 0 0 0 9.8 9.8z"/></svg>
+                  <svg class="theme-icon theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l-1.42 1.42m12.3-12.3 1.42-1.42"/></svg>
+                  <span class="theme-btn-label">Theme</span>
+                </button>
+                <div class="topbar-theme-menu glass-panel" id="topbar-theme-menu" role="menu" aria-label="Theme options" aria-hidden="true">
+                  <div class="topbar-menu-label">APPEARANCE</div>
+                  <button class="topbar-theme-option" data-topbar-theme="dark" role="menuitem"><span class="theme-option-icon">◐</span><span><strong>Dark</strong><small>Graphite workspace</small></span><b class="theme-check">✓</b></button>
+                  <button class="topbar-theme-option" data-topbar-theme="light" role="menuitem"><span class="theme-option-icon">☼</span><span><strong>Light</strong><small>Technical workspace</small></span><b class="theme-check">✓</b></button>
+                  <button class="topbar-theme-option" data-topbar-theme="system" role="menuitem"><span class="theme-option-icon">⌘</span><span><strong>System</strong><small>Follow device setting</small></span><b class="theme-check">✓</b></button>
+                </div>
+              </div>
+
+              <button class="topbar-motion-btn" id="btn-topbar-motion" aria-label="Toggle dashboard animations" aria-pressed="true" title="Dashboard animations enabled">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 12h3l2-7 4 14 2-7h5"/><path d="M3 5h3M18 19h3"/></svg>
+                <span class="motion-label">Motion</span>
+              </button>
 
               <div class="topbar-local-time" aria-label="Local device time">
                 <span class="font-mono">LOCAL TIME</span>
                 <strong id="topbar-local-time">--:--</strong>
               </div>
+
+              <div class="topbar-avatar" id="topbar-user-avatar" aria-label="Trader profile">MK</div>
             </div>
           </div>
         </header>
+
+        <!-- Focus Mode exit pill (visible only while focus mode is active) -->
+        <button class="focus-mode-exit-pill" id="btn-exit-focus-mode">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3m18-11-7 7M3 21l7-7"/></svg>
+          Exit Focus Mode
+        </button>
 
         <!-- SUB-PANEL 1: OVERVIEW -->
         <section id="pane-overview" class="dash-tab-pane active">
@@ -1232,6 +1397,103 @@
                 </div>
               </div>
             </div>
+          </div>
+
+          <!-- Market Sessions + Community Pulse -->
+          <div class="overview-dual-grid" style="margin-top: 1.3rem;">
+            <div class="dual-card glass-panel">
+              <div class="card-title-row">
+                <h4>Global Market Sessions</h4>
+                <span class="font-mono text-muted text-sm" id="session-utc-clock">--:-- UTC</span>
+              </div>
+              <div class="sessions-row" id="market-sessions-list">
+                <!-- Rendered via renderMarketSessions() in JS -->
+              </div>
+            </div>
+
+            <div class="dual-card glass-panel">
+              <div class="card-title-row">
+                <h4>Community Pulse</h4>
+                <span class="badge-status-sm healthy font-mono">LIVE</span>
+              </div>
+              <div class="pulse-feed-list" id="community-pulse-list">
+                <!-- Rendered via renderCommunityPulse() in JS -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SUB-PANEL: AI COPILOT -->
+        <section id="pane-copilot" class="dash-tab-pane">
+          <div class="section-title-wrap">
+            <span class="copilot-live-badge">CK COPILOT // LIVE ANALYSIS ENGINE</span>
+            <h3>Your AI Trading Copilot</h3>
+            <p>Pattern recognition, discipline scoring, and peer benchmarking — recalculated after every closed session.</p>
+          </div>
+
+          <!-- Discipline score + streak + badges preview -->
+          <div class="copilot-score-row">
+            <div class="discipline-gauge-card glass-panel">
+              <div class="gauge-svg-wrap">
+                <svg viewBox="0 0 148 148">
+                  <defs>
+                    <linearGradient id="copilotGaugeGrad" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stop-color="#d6adff"/>
+                      <stop offset="0.5" stop-color="#9147ed"/>
+                      <stop offset="1" stop-color="#7530c9"/>
+                    </linearGradient>
+                  </defs>
+                  <circle class="gauge-track" cx="74" cy="74" r="64"/>
+                  <circle class="gauge-fill" id="discipline-gauge-fill" cx="74" cy="74" r="64" stroke-dasharray="402" stroke-dashoffset="402"/>
+                </svg>
+                <div class="gauge-center-val">
+                  <span class="num font-mono" id="discipline-score-num">0</span>
+                  <span class="lbl">Discipline Score</span>
+                </div>
+              </div>
+              <h4>Excellent Control</h4>
+              <p>Top 12% of simulated analysts this month for risk consistency.</p>
+            </div>
+
+            <div class="streak-card glass-panel">
+              <div class="streak-top">
+                <div class="streak-flame">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c1 3-2 4-2 7a4 4 0 0 0 8 0c0-1-.5-2-1-2 1 4-1 6-3 6a4 4 0 0 1-4-4c0-3 2-4 2-7z"/><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.5-2-4.5.5 3-1 4.5-2.5 4.5A2.5 2.5 0 0 1 12 12.5c0-1.5 1-2.5 1-4.5A7 7 0 0 0 12 22z"/></svg>
+                </div>
+                <div>
+                  <div class="streak-count font-mono">12 <span>day green streak</span></div>
+                  <div class="streak-sub">No rule breaches since Aug 24, 2026</div>
+                </div>
+              </div>
+              <div class="streak-dots-row" id="streak-dots-row"></div>
+              <div class="streak-legend"><span>14 days ago</span><span>Today</span></div>
+            </div>
+
+            <div class="badges-preview-card glass-panel">
+              <div class="card-title-row">
+                <h4>Achievements</h4>
+                <span class="font-mono text-gold text-sm">6 of 10 earned</span>
+              </div>
+              <div class="badges-mini-grid" id="badges-mini-grid"></div>
+            </div>
+          </div>
+
+          <!-- Pattern insights -->
+          <div class="copilot-insights-panel glass-panel">
+            <div class="card-title-row">
+              <h4>Pattern Insights</h4>
+              <span class="font-mono text-muted text-sm">Based on your last 30 closed trades</span>
+            </div>
+            <div class="insight-list" id="copilot-insight-list"></div>
+          </div>
+
+          <!-- Full badges wall -->
+          <div class="badges-wall-panel glass-panel">
+            <div class="card-title-row">
+              <h4>Achievement Wall</h4>
+              <span class="font-mono text-muted text-sm">Earn badges by trading with discipline</span>
+            </div>
+            <div class="badges-full-grid" id="badges-full-grid"></div>
           </div>
         </section>
 
@@ -1358,6 +1620,7 @@
                 </tbody>
               </table>
             </div>
+            <div class="table-scroll-hint">⟷ Swipe to see more</div>
             <div class="table-empty-state" id="trades-empty" style="display: none;">
               <p>No trades found matching current filter parameters.</p>
             </div>
@@ -1503,6 +1766,7 @@
                 </tbody>
               </table>
             </div>
+            <div class="table-scroll-hint">⟷ Swipe to see more</div>
           </div>
         </section>
 
@@ -1647,6 +1911,17 @@
                 <button class="theme-choice-btn" data-set-theme="light">
                   <span class="color-dot dot-light"></span> Technical Light
                 </button>
+                <button class="theme-choice-btn" data-set-theme="system">
+                  <span class="color-dot dot-system"></span> System Default
+                </button>
+              </div>
+
+              <h4 style="margin-top: 1.5rem;">Motion &amp; Effects</h4>
+              <div class="form-row-check">
+                <label class="custom-checkbox">
+                  <input type="checkbox" id="set-dashboard-animations" checked />
+                  <span>Enable dashboard animations and transitions</span>
+                </label>
               </div>
 
               <h4 style="margin-top: 1.5rem;">Two-Factor Authentication</h4>
@@ -1874,6 +2149,44 @@
       </div>
     </div>
   </div>
+
+  <!-- KEYBOARD SHORTCUTS HELP (press ?) -->
+  <div class="modal-backdrop" id="modal-shortcuts">
+    <div class="modal-card glass-panel" style="max-width: 460px;">
+      <div class="modal-header">
+        <h3>Keyboard Shortcuts</h3>
+        <button class="modal-close" data-close-modal>&times;</button>
+      </div>
+      <div class="shortcuts-grid">
+        <div class="shortcut-row"><span>Open quick jump search</span><div class="shortcut-keys"><kbd>⌘</kbd><kbd>K</kbd></div></div>
+        <div class="shortcut-row"><span>Show this shortcuts panel</span><div class="shortcut-keys"><kbd>?</kbd></div></div>
+        <div class="shortcut-row"><span>Toggle Focus Mode</span><div class="shortcut-keys"><kbd>⌘</kbd><kbd>.</kbd></div></div>
+        <div class="shortcut-row"><span>Close any open panel</span><div class="shortcut-keys"><kbd>Esc</kbd></div></div>
+        <div class="shortcut-row"><span>Navigate quick-jump results</span><div class="shortcut-keys"><kbd>↑</kbd><kbd>↓</kbd></div></div>
+        <div class="shortcut-row"><span>Select quick-jump result</span><div class="shortcut-keys"><kbd>Enter</kbd></div></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-close-modal>Got It</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⌘K COMMAND PALETTE — quick navigation across the whole app -->
+  <div class="modal-backdrop" id="modal-command-palette">
+    <div class="modal-card cmdk-card glass-panel">
+      <div class="cmdk-input-row">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="text" class="cmdk-input" id="cmdk-input" placeholder="Jump to a page, panel, or action…" autocomplete="off" />
+        <span class="cmdk-esc">ESC</span>
+      </div>
+      <div class="cmdk-results" id="cmdk-results"></div>
+    </div>
+  </div>
+
+  <!-- BACK TO TOP -->
+  <button class="btn-back-top" id="btn-back-top" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
 
   <!-- APPLICATION CONTROLLER -->
   <script src="app.js"></script>
