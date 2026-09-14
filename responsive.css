@@ -1,83 +1,11 @@
-/* CK CAPITAL — Responsive + desktop layout recovery overrides.
-   The original responsive rules remain in styles.css; this file contains the
-   final non-destructive overrides applied after the base stylesheet. */
+/* ============================================================================
+   CK CAPITAL — supplementary responsive notes
+   Core breakpoints now live in styles.css (consolidated design system).
+   This file is reserved for future device-specific fine-tuning.
+   ============================================================================ */
 
-/* ========================================================================
-   DESKTOP LAYOUT RECOVERY — keep fixed sidebar from shrinking main content
-   ======================================================================== */
-@media (min-width: 901px) {
-  .cockpit-layout {
-    display: block;
-    width: 100%;
-    min-height: 100vh;
-  }
-
-  .cockpit-main {
-    display: flex;
-    flex-direction: column;
-    width: calc(100% - 280px);
-    max-width: none;
-    min-width: 0;
-    margin-left: 280px;
-    padding-top: 74px;
-  }
-
-  .cockpit-topbar {
-    left: 280px;
-    width: calc(100% - 280px);
-    right: auto;
-  }
-
-  .dash-tab-pane {
-    width: 100%;
-    min-width: 0;
-    box-sizing: border-box;
-  }
-
-  .cockpit-kpi-grid,
-  .overview-dual-grid,
-  .perf-stats-grid,
-  .risk-matrix-grid,
-  .objectives-checklist-grid,
-  .accounts-cards-grid,
-  .certs-grid,
-  .payout-summary-grid,
-  .support-dual-grid,
-  .settings-grid,
-  .profile-data-grid {
-    width: 100%;
-    min-width: 0;
-  }
-
-  /* Desktop should wrap naturally inside sufficiently wide columns;
-     do not force narrow dashboard labels into one-character columns. */
-  .kpi-title,
-  .kpi-delta,
-  .box-lbl,
-  .box-sub,
-  .p-lbl,
-  .p-val,
-  .stat-h,
-  .stat-s,
-  .spec-metric .m-title,
-  .spec-metric .m-val,
-  .gauge-col,
-  .rule-mini-row,
-  .chk-status,
-  .obj-check-card p,
-  .obj-card p,
-  .price-note,
-  .guarantee-line {
-    min-width: 0;
-    overflow-wrap: break-word;
-    word-break: normal;
-  }
-
-  .rule-mini-row,
-  .card-title-row,
-  .chart-header-row,
-  .cal-head-flex,
-  .profile-header-strip {
-    min-width: 0;
-  }
+@media (max-width: 360px) {
+  .container { padding: 0 0.9rem; }
+  .hero-title { font-size: 1.85rem; }
+  .brand-wordmark { font-size: 1.1rem; }
 }
