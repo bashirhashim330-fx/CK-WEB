@@ -1,3 +1,4 @@
+/* CK CAPITAL MERGED FIX — Final feature set + v3 visual/navigation hardening. */
 /**
  * ============================================================================
  * CK CAPITAL — CLIENT-SIDE STATE ENGINE & TRADER CONTROL ROOM CONTROLLER
@@ -130,8 +131,30 @@
 
   let appState = loadState();
 
-  // Apply Theme on Boot
-  document.body.setAttribute('data-theme', appState.theme || 'dark');
+  // Apply the trader workstation theme on boot. "system" resolves to the
+  // device preference while keeping the user's selected mode persisted.
+  function resolveTheme(theme) {
+    if (theme === 'system') {
+      return window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    }
+    return theme === 'light' ? 'light' : 'dark';
+  }
+
+  function applyTheme(theme, persist = true) {
+    const selected = theme || 'dark';
+    appState.theme = selected;
+    document.body.setAttribute('data-theme', resolveTheme(selected));
+    document.body.dataset.themePreference = selected;
+    document.querySelectorAll('.theme-choice-btn, .topbar-theme-option').forEach(el => {
+      const value = el.dataset.setTheme || el.dataset.topbarTheme;
+      el.classList.toggle('active', value === selected);
+      el.setAttribute('aria-current', value === selected ? 'true' : 'false');
+    });
+    if (persist) saveState(appState);
+    return selected;
+  }
+
+  applyTheme(appState.theme || 'dark', false);
 
   // ==========================================================================
   // 2. CHALLENGE SPECIFICATION PRICING MATRIX
@@ -204,20 +227,28 @@
       if (views[k]) views[k].classList.remove('active');
     });
 
+    document.body.classList.toggle('dashboard-session', viewName === 'dashboard');
+
     if (views[viewName]) {
       views[viewName].classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'auto' });
     }
 
     const header = document.getElementById('header');
     const promo = document.getElementById('promo-banner');
+    const heroVideo = document.getElementById('hero-wolf-video');
     if (viewName === 'dashboard') {
       if (header) header.style.display = 'none';
       if (promo) promo.style.display = 'none';
+      if (heroVideo) heroVideo.pause();
       renderDashboard();
     } else {
       if (header) header.style.display = 'block';
       if (promo) promo.style.display = document.body.classList.contains('promo-dismissed') ? 'none' : 'block';
+      if (heroVideo && !document.hidden) {
+        const play = heroVideo.play();
+        if (play && typeof play.catch === 'function') play.catch(() => {});
+      }
     }
   }
 
@@ -280,7 +311,7 @@
     } else {
       if (elTarget1) elTarget1.textContent = `$${match.target1} (5%)`;
       if (elTarget2Wrap) {
-        elTarget2Wrap.style.display = 'block';
+        elTarget2Wrap.style.display = 'flex';
         if (elTarget2) elTarget2.textContent = `$${match.target2} (2.5%)`;
       }
       if (elPeriod) elPeriod.textContent = 'Unlimited';
@@ -386,6 +417,11 @@
     if (elStatus) elStatus.textContent = acc.status;
     if (elInitials) elInitials.textContent = `${appState.session.user.firstName[0]}${appState.session.user.lastName[0]}`;
     if (elUserName) elUserName.textContent = `${appState.session.user.firstName} ${appState.session.user.lastName}`;
+
+    const topbarAccount = document.getElementById('topbar-account-label');
+    const topbarAvatar = document.getElementById('topbar-user-avatar');
+    if (topbarAccount) topbarAccount.textContent = acc.id;
+    if (topbarAvatar) topbarAvatar.textContent = `${appState.session.user.firstName[0]}${appState.session.user.lastName[0]}`;
 
     const switcher = document.getElementById('dash-account-switcher');
     if (switcher) {
@@ -518,8 +554,8 @@
       <svg viewBox="0 0 ${width} ${height}" style="width: 100%; height: 100%; overflow: visible;">
         <defs>
           <linearGradient id="eqFill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#d4af37" stop-opacity="0.25"/>
-            <stop offset="100%" stop-color="#d4af37" stop-opacity="0.0"/>
+            <stop offset="0%" stop-color="#9147ed" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#9147ed" stop-opacity="0.0"/>
           </linearGradient>
         </defs>
         <line x1="${padding}" y1="${padding}" x2="${width - padding}" y2="${padding}" stroke="${chartGrid}" stroke-dasharray="4"/>
@@ -527,11 +563,11 @@
         <line x1="${padding}" y1="${height - padding}" x2="${width - padding}" y2="${height - padding}" stroke="${chartBase}"/>
 
         <path d="${areaD}" fill="url(#eqFill)"/>
-        <path d="${pathD}" fill="none" stroke="#d4af37" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="${pathD}" fill="none" stroke="#9147ed" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
 
         ${coords.map(pt => `
           <g class="chart-node" style="cursor: pointer;">
-            <circle cx="${pt.x}" cy="${pt.y}" r="4" fill="#d4af37" stroke="${chartNodeStroke}" stroke-width="2"/>
+            <circle cx="${pt.x}" cy="${pt.y}" r="4" fill="#9147ed" stroke="${chartNodeStroke}" stroke-width="2"/>
             <text x="${pt.x}" y="${pt.y - 12}" fill="${chartText}" font-size="11" font-family="'Geist Mono', monospace" text-anchor="middle" opacity="0.85">$${pt.val.toLocaleString()}</text>
           </g>
         `).join('')}
@@ -1225,15 +1261,20 @@
 
         // Close sidebar on mobile upon tab selection
         document.getElementById('cockpit-sidebar')?.classList.remove('open');
+        document.getElementById('dash-mobile-toggle')?.setAttribute('aria-expanded', 'false');
       });
     });
 
     // Cockpit Mobile Sidebar Toggle
     document.getElementById('dash-mobile-toggle')?.addEventListener('click', () => {
-      document.getElementById('cockpit-sidebar')?.classList.toggle('open');
+      const sidebar = document.getElementById('cockpit-sidebar');
+      const btn = document.getElementById('dash-mobile-toggle');
+      const open = sidebar?.classList.toggle('open');
+      btn?.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
     document.getElementById('btn-collapse-sidebar')?.addEventListener('click', () => {
       document.getElementById('cockpit-sidebar')?.classList.remove('open');
+      document.getElementById('dash-mobile-toggle')?.setAttribute('aria-expanded', 'false');
     });
 
     // Account Switcher Dropdown
@@ -1426,18 +1467,84 @@
       showToast('Profile and workstation settings saved successfully.');
     });
 
-    // 14. Theme Switcher Controls
+    // 14. Theme Switcher Controls — shared by Settings and the dashboard topbar.
+    function syncThemeControls() {
+      const selected = appState.theme || 'dark';
+      document.querySelectorAll('.theme-choice-btn, .topbar-theme-option').forEach(el => {
+        const value = el.dataset.setTheme || el.dataset.topbarTheme;
+        el.classList.toggle('active', value === selected);
+        el.setAttribute('aria-current', value === selected ? 'true' : 'false');
+      });
+    }
+
     document.querySelectorAll('.theme-choice-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.theme-choice-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
         const selectedTheme = btn.dataset.setTheme;
-        appState.theme = selectedTheme;
-        document.body.setAttribute('data-theme', selectedTheme);
-        saveState(appState);
-        showToast(`Theme switched to ${selectedTheme === 'dark' ? 'Graphite Dark' : 'Technical Light'}`);
+        applyTheme(selectedTheme);
+        syncThemeControls();
+        showToast(`Theme switched to ${selectedTheme === 'dark' ? 'Graphite Dark' : selectedTheme === 'light' ? 'Technical Light' : 'System Default'}`);
       });
+    });
+
+    document.querySelectorAll('.topbar-theme-option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const selectedTheme = btn.dataset.topbarTheme;
+        applyTheme(selectedTheme);
+        syncThemeControls();
+        document.getElementById('topbar-theme-menu')?.classList.remove('open');
+        document.getElementById('btn-topbar-theme')?.setAttribute('aria-expanded', 'false');
+        showToast(`Theme switched to ${selectedTheme === 'dark' ? 'Graphite Dark' : selectedTheme === 'light' ? 'Technical Light' : 'System Default'}`);
+      });
+    });
+
+    const topThemeBtn = document.getElementById('btn-topbar-theme');
+    const topThemeMenu = document.getElementById('topbar-theme-menu');
+    topThemeBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = topThemeMenu?.classList.toggle('open');
+      topThemeBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', (e) => {
+      if (!topThemeMenu?.contains(e.target) && e.target !== topThemeBtn) {
+        topThemeMenu?.classList.remove('open');
+        topThemeBtn?.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Follow OS theme changes only while System Default is selected.
+    if (window.matchMedia) {
+      const media = window.matchMedia('(prefers-color-scheme: light)');
+      const onSystemThemeChange = () => {
+        if ((appState.theme || 'dark') === 'system') applyTheme('system', false);
+      };
+      media.addEventListener?.('change', onSystemThemeChange);
+      media.addListener?.(onSystemThemeChange);
+    }
+
+    syncThemeControls();
+
+    // Dashboard-only motion preference. This does not disable animation on the
+    // public website; it only affects the trader cockpit session.
+    function setDashboardAnimations(enabled, persist = true) {
+      document.body.classList.toggle('dashboard-reduced-motion', !enabled);
+      const btn = document.getElementById('btn-topbar-motion');
+      const check = document.getElementById('set-dashboard-animations');
+      btn?.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+      btn?.setAttribute('title', enabled ? 'Dashboard animations enabled' : 'Dashboard animations disabled');
+      btn?.classList.toggle('is-off', !enabled);
+      if (check) check.checked = enabled;
+      appState.dashboardAnimations = enabled;
+      if (persist) saveState(appState);
+    }
+
+    setDashboardAnimations(appState.dashboardAnimations !== false, false);
+    document.getElementById('btn-topbar-motion')?.addEventListener('click', () => {
+      const enabled = document.body.classList.contains('dashboard-reduced-motion');
+      setDashboardAnimations(enabled);
+      showToast(enabled ? 'Dashboard animations enabled.' : 'Dashboard animations disabled.');
+    });
+    document.getElementById('set-dashboard-animations')?.addEventListener('change', (e) => {
+      setDashboardAnimations(e.target.checked);
     });
 
     // 15. Rules Health Click Inspector Modals
@@ -1478,6 +1585,11 @@
     // 16. Printable Certificate Action
     document.getElementById('btn-print-cert')?.addEventListener('click', () => {
       window.print();
+    });
+
+    // Dashboard topbar AI shortcut
+    document.getElementById('btn-topbar-copilot')?.addEventListener('click', () => {
+      document.querySelector('.sb-item[data-tab="copilot"]')?.click();
     });
 
     // 17. Notification Dropdown Toggle & Mark Read
@@ -1600,5 +1712,874 @@
   } else {
     bootApplication();
   }
+
+})();
+/**
+ * ============================================================================
+ * CK CAPITAL — v2 "AURUM" ENHANCEMENT LAYER
+ * Additive UI module: header behavior, scroll-reveal, command palette,
+ * market ticker, sidebar rail, back-to-top, testimonial dots.
+ * Deliberately isolated from the core state engine above — reads/writes the
+ * DOM only, never touches CK_CAPITAL_V1_STATE.
+ * ============================================================================
+ */
+(function () {
+  'use strict';
+
+  function ready(fn) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fn);
+    } else {
+      fn();
+    }
+  }
+
+  ready(function () {
+    initHeaderScroll();
+    initScrollReveal();
+    initMarketTicker();
+    initCommandPalette();
+    initSidebarRail();
+    initBackToTop();
+    initTestimonialDots();
+    initWolfMotion();
+    initHeroVideoPlayback();
+  });
+
+  // --------------------------------------------------------------------
+  // Header: compact on scroll
+  // --------------------------------------------------------------------
+  function initHeaderScroll() {
+    const header = document.getElementById('header');
+    if (!header) return;
+    const onScroll = () => {
+      header.classList.toggle('is-scrolled', window.scrollY > 24);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  // --------------------------------------------------------------------
+  // Scroll-reveal: fade/slide sections into view once
+  // --------------------------------------------------------------------
+  function initScrollReveal() {
+    const targets = document.querySelectorAll('[data-reveal]');
+    if (!targets.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+      targets.forEach(el => el.classList.add('in-view'));
+      return;
+    }
+
+    // Only NOW do we let CSS hide these elements pre-reveal — see the
+    // .js-reveal-ready gate in styles.css. If anything above this line
+    // throws, content simply stays visible (safe default).
+    document.documentElement.classList.add('js-reveal-ready');
+
+    // Safety net: guarantee everything is visible a few seconds after load
+    // even if an observer callback gets missed (slow devices, odd viewport
+    // resizes, etc.) — belt and suspenders on top of the CSS gate above.
+    setTimeout(() => {
+      document.querySelectorAll('[data-reveal]:not(.in-view)').forEach(el => el.classList.add('in-view'));
+    }, 4000);
+
+    const seenParents = new Map();
+    targets.forEach(el => {
+      const parent = el.parentElement;
+      if (!seenParents.has(parent)) seenParents.set(parent, 0);
+      const idx = seenParents.get(parent);
+      seenParents.set(parent, idx + 1);
+      el.style.setProperty('--reveal-delay', Math.min(idx * 0.08, 0.4) + 's');
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    targets.forEach(el => observer.observe(el));
+  }
+
+  // --------------------------------------------------------------------
+  // Live market ticker (cosmetic simulated feed, gently randomized)
+  // --------------------------------------------------------------------
+  function initMarketTicker() {
+    const track = document.getElementById('ticker-track');
+    if (!track) return;
+
+    const instruments = [
+      { sym: 'XAUUSD', base: 2418.30 },
+      { sym: 'EURUSD', base: 1.0842 },
+      { sym: 'GBPUSD', base: 1.2695 },
+      { sym: 'USDJPY', base: 151.24 },
+      { sym: 'BTCUSD', base: 67240 },
+      { sym: 'US30',   base: 39120 },
+      { sym: 'NAS100', base: 18240 },
+      { sym: 'USOIL',  base: 78.65 },
+      { sym: 'ETHUSD', base: 3512 },
+      { sym: 'AUDUSD', base: 0.6524 }
+    ];
+
+    function fmt(sym, val) {
+      if (val >= 1000) return val.toLocaleString('en-US', { maximumFractionDigits: 2 });
+      return val.toFixed(4).replace(/0$/, '').replace(/\.$/, '.0');
+    }
+
+    function buildItems() {
+      return instruments.map(inst => {
+        const drift = (Math.random() - 0.48) * (inst.base * 0.006);
+        const price = inst.base + drift;
+        const pct = (drift / inst.base) * 100;
+        const dir = pct >= 0 ? 'up' : 'down';
+        const arrow = pct >= 0 ? '▲' : '▼';
+        return `<span class="ticker-item ${dir}"><span class="t-sym">${inst.sym}</span><span>${fmt(inst.sym, price)}</span><span class="t-chg"><span class="t-arrow">${arrow}</span> ${Math.abs(pct).toFixed(2)}%</span></span>`;
+      }).join('');
+    }
+
+    const html = buildItems();
+    // Duplicate the set back-to-back so the CSS translateX(-50%) loop is seamless
+    track.innerHTML = html + html;
+  }
+
+  // --------------------------------------------------------------------
+  // ⌘K Command Palette — quick navigation across public site + cockpit
+  // --------------------------------------------------------------------
+  function initCommandPalette() {
+    const backdrop = document.getElementById('modal-command-palette');
+    const input = document.getElementById('cmdk-input');
+    const results = document.getElementById('cmdk-results');
+    if (!backdrop || !input || !results) return;
+
+    const iconSearch = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V6l8 6-8 6Z"/></svg>';
+    const iconHash = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9h16M4 15h16M10 3 8 21M16 3l-2 18"/></svg>';
+
+    function isDashboardOpen() {
+      const dash = document.getElementById('dashboard-view');
+      return !!dash && dash.classList.contains('active');
+    }
+
+    function publicCommands() {
+      return [
+        { label: 'Home', hint: 'Page', run: () => click('[data-nav="home"]') },
+        { label: 'Challenges — Configure an Evaluation', hint: 'Page', run: () => click('[data-nav="challenges"]') },
+        { label: 'How It Works', hint: 'Page', run: () => click('[data-nav="how-it-works"]') },
+        { label: 'Trading Objectives', hint: 'Page', run: () => click('[data-nav="objectives"]') },
+        { label: 'About CK Capital', hint: 'Page', run: () => click('[data-nav="about"]') },
+        { label: 'FAQ Archive', hint: 'Page', run: () => click('[data-nav="faq"]') },
+        { label: 'Log In to Trader Cockpit', hint: 'Auth', run: () => click('#nav-btn-auth') },
+        { label: 'Enter Trader Portal (Demo)', hint: 'Dashboard', run: () => click('#hero-btn-demo-portal') || navToDashboard() },
+      ];
+    }
+
+    function dashboardCommands() {
+      const tabs = [
+        ['overview', 'Overview'], ['copilot', 'AI Copilot'], ['performance', 'Performance'], ['calendar', 'Trading Calendar'],
+        ['trades', 'Trade Journal'], ['risk', 'Risk Engine'], ['objectives', 'Objectives Tracker'],
+        ['payouts', 'Payout Center'], ['certificates', 'Certificates'], ['accounts', 'My Accounts'],
+        ['support', 'Support Desk'], ['profile', 'Profile'], ['settings', 'Settings']
+      ];
+      const cmds = tabs.map(([tab, label]) => ({
+        label, hint: 'Panel', run: () => click(`.sb-item[data-tab="${tab}"]`)
+      }));
+      cmds.push({ label: 'Go to Homepage', hint: 'Nav', run: () => click('[data-nav="home"]') });
+      cmds.push({ label: 'Toggle Focus Mode', hint: 'Action', run: () => click('#btn-focus-mode') });
+      cmds.push({ label: 'Terminate Session (Log Out)', hint: 'Action', run: () => click('#btn-dash-logout') });
+      return cmds;
+    }
+
+    function click(selector) {
+      const el = document.querySelector(selector);
+      if (el) { el.click(); return true; }
+      return false;
+    }
+    function navToDashboard() {
+      const dash = document.getElementById('dashboard-view');
+      if (dash) dash.classList.add('active');
+    }
+
+    function allCommands() {
+      return isDashboardOpen() ? dashboardCommands() : publicCommands();
+    }
+
+    let activeIndex = 0;
+    let currentList = [];
+
+    function render(query) {
+      const q = (query || '').toLowerCase().trim();
+      const source = allCommands();
+      currentList = q ? source.filter(c => c.label.toLowerCase().includes(q)) : source;
+      activeIndex = 0;
+
+      if (!currentList.length) {
+        results.innerHTML = '<div class="cmdk-empty">No matches. Try a different term.</div>';
+        return;
+      }
+
+      results.innerHTML = `<div class="cmdk-group-label">${isDashboardOpen() ? 'Cockpit Panels' : 'Navigate'}</div>` +
+        currentList.map((c, i) => `
+          <button type="button" class="cmdk-item${i === 0 ? ' active' : ''}" data-idx="${i}">
+            ${c.hint === 'Page' || c.hint === 'Panel' ? iconHash : iconSearch}
+            <span>${c.label}</span>
+            <span class="cmdk-hint">${c.hint}</span>
+          </button>`).join('');
+    }
+
+    function highlight(idx) {
+      const items = results.querySelectorAll('.cmdk-item');
+      items.forEach(i => i.classList.remove('active'));
+      if (items[idx]) items[idx].classList.add('active');
+      activeIndex = idx;
+    }
+
+    function runActive() {
+      const cmd = currentList[activeIndex];
+      if (cmd) {
+        cmd.run();
+        closePalette();
+      }
+    }
+
+    function openPalette() {
+      backdrop.classList.add('open');
+      render('');
+      input.value = '';
+      setTimeout(() => input.focus(), 30);
+    }
+    function closePalette() {
+      backdrop.classList.remove('open');
+    }
+
+    document.getElementById('btn-open-cmdk')?.addEventListener('click', openPalette);
+    document.getElementById('btn-open-cmdk-dash')?.addEventListener('click', openPalette);
+    document.getElementById('drawer-link-cmdk')?.addEventListener('click', () => {
+      document.getElementById('mobile-drawer')?.classList.remove('open');
+      setTimeout(openPalette, 200);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        backdrop.classList.contains('open') ? closePalette() : openPalette();
+      } else if (e.key === 'Escape' && backdrop.classList.contains('open')) {
+        closePalette();
+      } else if (backdrop.classList.contains('open')) {
+        if (e.key === 'ArrowDown') { e.preventDefault(); highlight(Math.min(activeIndex + 1, currentList.length - 1)); }
+        if (e.key === 'ArrowUp') { e.preventDefault(); highlight(Math.max(activeIndex - 1, 0)); }
+        if (e.key === 'Enter') { e.preventDefault(); runActive(); }
+      }
+    });
+
+    input.addEventListener('input', (e) => render(e.target.value));
+    results.addEventListener('click', (e) => {
+      const btn = e.target.closest('.cmdk-item');
+      if (!btn) return;
+      activeIndex = Number(btn.dataset.idx);
+      runActive();
+    });
+    results.addEventListener('mousemove', (e) => {
+      const btn = e.target.closest('.cmdk-item');
+      if (btn) highlight(Number(btn.dataset.idx));
+    });
+  }
+
+  // --------------------------------------------------------------------
+  // Sidebar collapse-to-rail (desktop) — persists across reloads
+  // --------------------------------------------------------------------
+  function initSidebarRail() {
+    const sidebar = document.getElementById('cockpit-sidebar');
+    const btn = document.getElementById('btn-collapse-sidebar');
+    if (!sidebar || !btn) return;
+    const RAIL_KEY = 'ck_sidebar_rail';
+
+    function isDesktop() { return window.innerWidth > 900; }
+
+    if (isDesktop() && localStorage.getItem(RAIL_KEY) === '1') {
+      sidebar.classList.add('collapsed');
+    }
+
+    btn.addEventListener('click', () => {
+      if (isDesktop()) {
+        sidebar.classList.toggle('collapsed');
+        localStorage.setItem(RAIL_KEY, sidebar.classList.contains('collapsed') ? '1' : '0');
+      }
+      // On mobile the existing handler (bound in the core script) also
+      // removes 'open' — harmless no-op there since 'collapsed' is desktop-only.
+    });
+
+    // Provide the label used by the collapsed-rail hover tooltip (CSS reads data-tab-label)
+    document.querySelectorAll('.sb-item').forEach(item => {
+      if (!item.dataset.tabLabel) {
+        const span = item.querySelector('span');
+        if (span) item.dataset.tabLabel = span.textContent.trim();
+      }
+    });
+  }
+
+  // --------------------------------------------------------------------
+  // Back to top
+  // --------------------------------------------------------------------
+  function initBackToTop() {
+    const btn = document.getElementById('btn-back-top');
+    if (!btn) return;
+    window.addEventListener('scroll', () => {
+      btn.classList.toggle('visible', window.scrollY > 700);
+    }, { passive: true });
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
+
+  // --------------------------------------------------------------------
+  // Testimonial slider dot indicators (syncs with existing prev/next buttons)
+  // --------------------------------------------------------------------
+  function initTestimonialDots() {
+    const track = document.getElementById('testimonial-track');
+    if (!track) return;
+    const cards = track.querySelectorAll('.testi-card');
+    if (cards.length < 2) return;
+
+    const dotsWrap = document.createElement('div');
+    dotsWrap.className = 'slider-dots';
+    cards.forEach((_, i) => {
+      const dot = document.createElement('span');
+      dot.className = 'slider-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => {
+        track.scrollTo({ left: cards[i].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+      });
+      dotsWrap.appendChild(dot);
+    });
+    track.closest('.testimonial-slider-wrap')?.appendChild(dotsWrap);
+
+    let ticking = false;
+    track.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const scrollCenter = track.scrollLeft + track.clientWidth / 2;
+        let closest = 0, closestDist = Infinity;
+        cards.forEach((card, i) => {
+          const dist = Math.abs((card.offsetLeft - track.offsetLeft + card.clientWidth / 2) - scrollCenter);
+          if (dist < closestDist) { closestDist = dist; closest = i; }
+        });
+        dotsWrap.querySelectorAll('.slider-dot').forEach((d, i) => d.classList.toggle('active', i === closest));
+        ticking = false;
+      });
+    }, { passive: true });
+  }
+
+})();
+
+/**
+ * ============================================================================
+ * CK CAPITAL — v3 "COPILOT" FEATURE LAYER
+ * AI Copilot tab (discipline gauge, streaks, badges, insights), live market
+ * sessions, community pulse feed, focus mode, shortcuts help, cursor
+ * spotlight. Fully additive — reads/writes only its own DOM hooks.
+ * ============================================================================ */
+(function () {
+  'use strict';
+
+  function ready(fn) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fn);
+    } else {
+      fn();
+    }
+  }
+
+  ready(function () {
+    initDisciplineCopilot();
+    initMarketSessions();
+    initCommunityPulse();
+    initShortcutsHelp();
+    initFocusMode();
+    initCardSpotlight();
+    initCardTilt();
+    initSidebarSlidingIndicator();
+    initMobileSidebarBackdrop();
+  });
+
+  // --------------------------------------------------------------------
+  // AI Copilot: discipline gauge, streak dots, badges, insights
+  // --------------------------------------------------------------------
+  function initDisciplineCopilot() {
+    const gaugeFill = document.getElementById('discipline-gauge-fill');
+    const gaugeNum = document.getElementById('discipline-score-num');
+    const streakRow = document.getElementById('streak-dots-row');
+    const miniGrid = document.getElementById('badges-mini-grid');
+    const fullGrid = document.getElementById('badges-full-grid');
+    const insightList = document.getElementById('copilot-insight-list');
+    if (!gaugeFill && !miniGrid && !fullGrid) return;
+
+    const SCORE = 87;
+    const CIRCUMFERENCE = 402;
+
+    const badges = [
+      { icon: 'star', name: 'First Blood', desc: 'Logged your first profitable trade', earned: true },
+      { icon: 'shield', name: 'Iron Discipline', desc: '10+ days without a rule breach', earned: true },
+      { icon: 'flame', name: 'Consistency King', desc: '5 consecutive green trading days', earned: true },
+      { icon: 'target', name: 'Risk Master', desc: 'Never exceeded 50% of daily loss limit', earned: true },
+      { icon: 'trophy', name: 'Qualified Analyst', desc: 'Passed both evaluation phases', earned: true },
+      { icon: 'wallet', name: 'First Payout', desc: 'Completed your first withdrawal', earned: true },
+      { icon: 'newspaper', name: 'News Trader', desc: 'Traded through 5 high-impact events', earned: false },
+      { icon: 'calendar', name: 'Weekend Warrior', desc: 'Held a position through 3 weekend closures', earned: false },
+      { icon: 'medal', name: 'Century Club', desc: 'Closed a single day above $500 profit', earned: false },
+      { icon: 'trending', name: 'Scale Master', desc: 'Reached the $200k funded tier', earned: false },
+    ];
+
+    const badgeIcons = {
+      star: '<path d="M12 2l2.8 5.9 6.5.9-4.7 4.5 1.1 6.5L12 16.9l-5.7 2.9 1.1-6.5-4.7-4.5 6.5-.9L12 2z"/>',
+      shield: '<path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/>',
+      flame: '<path d="M12 2c1 3-2 4-2 7a4 4 0 0 0 8 0c0-1-.5-2-1-2 1 4-1 6-3 6a4 4 0 0 1-4-4c0-3 2-4 2-7z"/>',
+      target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/>',
+      trophy: '<path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4z"/><path d="M7 5H4a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4M17 5h3a1 1 0 0 1 1 1v1a4 4 0 0 1-4 4"/>',
+      wallet: '<rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20M16 15h2"/>',
+      newspaper: '<path d="M4 4h13a2 2 0 0 1 2 2v13a1 1 0 0 1-1.4.9L16 19"/><path d="M4 4v15a2 2 0 0 0 2 2h11"/><path d="M8 8h7M8 12h7M8 16h4"/>',
+      calendar: '<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+      medal: '<circle cx="12" cy="15" r="6"/><path d="M9 9 6 2M15 9l3-7"/><path d="M12 12v6"/>',
+      trending: '<path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/>',
+    };
+
+    function iconSvg(key) {
+      return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${badgeIcons[key] || badgeIcons.star}</svg>`;
+    }
+
+    if (miniGrid) {
+      miniGrid.innerHTML = badges.slice(0, 8).map(b => `
+        <div class="badge-tile${b.earned ? '' : ' locked'}" title="${b.name}: ${b.desc}">
+          <div class="badge-icon-wrap">${iconSvg(b.icon)}</div>
+          <span class="b-name">${b.name}</span>
+        </div>`).join('');
+    }
+
+    if (fullGrid) {
+      fullGrid.innerHTML = badges.map(b => `
+        <div class="badge-tile${b.earned ? '' : ' locked'}">
+          <div class="badge-icon-wrap">${iconSvg(b.icon)}</div>
+          <span class="b-name">${b.name}</span>
+          <span class="b-desc">${b.earned ? b.desc : 'Locked — ' + b.desc}</span>
+        </div>`).join('');
+    }
+
+    const insights = [
+      {
+        type: 'positive', title: 'Gold Is Your Statistical Edge',
+        body: 'XAUUSD accounts for the majority of your closed net profit this month (+$465 across your winning trades). Your edge is concentrated here — consider whether position sizing reflects that.',
+        tag: 'Based on 9 closed XAUUSD trades'
+      },
+      {
+        type: 'warning', title: 'USDCAD Needs A Review',
+        body: 'It is your only red instrument this month — two trades, two losses. Consider pausing USDCAD until you\u2019ve reviewed entry criteria against your other pairs.',
+        tag: 'Based on 2 closed USDCAD trades'
+      },
+      {
+        type: 'info', title: 'Best Trading Window Identified',
+        body: 'Your highest win-rate trades cluster inside the London / New York overlap (12:00\u201316:00 UTC). Sessions opened outside this window show a noticeably lower hit rate.',
+        tag: 'Session-time correlation, last 30 trades'
+      },
+      {
+        type: 'positive', title: 'Discipline Trend: Improving',
+        body: 'Daily loss-limit usage has dropped from an average of 41% to 12% over the past two weeks \u2014 a strong signal your risk control is tightening, not loosening, as your account scales.',
+        tag: '14-day rolling average'
+      },
+    ];
+
+    const insightIcons = {
+      positive: '<path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/>',
+      warning: '<path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a1 1 0 0 0 .9 1.5h18.6a1 1 0 0 0 .9-1.5L13.7 3.9a1 1 0 0 0-1.7 0z"/>',
+      info: '<circle cx="12" cy="12" r="9"/><path d="M12 16v-5M12 8h.01"/>',
+    };
+
+    if (insightList) {
+      insightList.innerHTML = insights.map(ins => `
+        <div class="insight-item">
+          <div class="insight-icon ${ins.type}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">${insightIcons[ins.type]}</svg></div>
+          <div class="insight-body">
+            <h5>${ins.title}</h5>
+            <p>${ins.body}</p>
+            <span class="insight-tag">${ins.tag}</span>
+          </div>
+        </div>`).join('');
+    }
+
+    if (streakRow) {
+      const pattern = [0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; // 1 = hit, 0 = miss
+      streakRow.innerHTML = pattern.map(hit => `<span class="streak-dot ${hit ? 'hit' : 'miss'}"></span>`).join('');
+    }
+
+    let animated = false;
+    function playGaugeAnimation() {
+      if (animated) return;
+      animated = true;
+      if (gaugeFill) {
+        const offset = CIRCUMFERENCE * (1 - SCORE / 100);
+        requestAnimationFrame(() => { gaugeFill.style.strokeDashoffset = String(offset); });
+      }
+      if (gaugeNum) {
+        const start = performance.now();
+        const duration = 1400;
+        function tick(now) {
+          const p = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          gaugeNum.textContent = Math.round(eased * SCORE);
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+    }
+
+    const copilotTabBtn = document.querySelector('.sb-item[data-tab="copilot"]');
+    copilotTabBtn?.addEventListener('click', () => setTimeout(playGaugeAnimation, 80));
+    // Also catch direct navigation via the command palette / deep link
+    const observer = new MutationObserver(() => {
+      const pane = document.getElementById('pane-copilot');
+      if (pane && pane.classList.contains('active')) playGaugeAnimation();
+    });
+    const paneCopilot = document.getElementById('pane-copilot');
+    if (paneCopilot) observer.observe(paneCopilot, { attributes: true, attributeFilter: ['class'] });
+  }
+
+  // --------------------------------------------------------------------
+  // Global Market Sessions — real UTC-time-driven open/closed state
+  // --------------------------------------------------------------------
+  function initMarketSessions() {
+    const list = document.getElementById('market-sessions-list');
+    const clock = document.getElementById('session-utc-clock');
+    if (!list) return;
+
+    const sessions = [
+      { name: 'Sydney', open: 22, close: 7 },
+      { name: 'Tokyo', open: 0, close: 9 },
+      { name: 'London', open: 8, close: 17 },
+      { name: 'New York', open: 13, close: 22 },
+    ];
+
+    function isOpen(sess, hour) {
+      if (sess.open < sess.close) return hour >= sess.open && hour < sess.close;
+      return hour >= sess.open || hour < sess.close; // wraps past midnight
+    }
+
+    function render() {
+      const now = new Date();
+      const hour = now.getUTCUTCHour !== undefined ? now.getUTCUTCHour() : now.getUTCHours();
+      const min = now.getUTCMinutes();
+      if (clock) clock.textContent = `${String(hour).padStart(2, '0')}:${String(min).padStart(2, '0')} UTC`;
+
+      list.innerHTML = sessions.map(sess => {
+        const open = isOpen(sess, hour);
+        return `
+          <div class="session-item ${open ? 'open' : ''}">
+            <span class="session-dot"></span>
+            <span class="session-name">${sess.name}</span>
+            <span class="session-hours font-mono">${String(sess.open).padStart(2, '0')}:00\u2013${String(sess.close).padStart(2, '0')}:00 UTC</span>
+            <span class="session-status-tag">${open ? 'OPEN' : 'CLOSED'}</span>
+          </div>`;
+      }).join('');
+    }
+
+    render();
+    setInterval(render, 60000);
+  }
+
+  // --------------------------------------------------------------------
+  // Community Pulse — rotating live-feeling activity feed
+  // --------------------------------------------------------------------
+  function initCommunityPulse() {
+    const list = document.getElementById('community-pulse-list');
+    if (!list) return;
+
+    const events = [
+      '<strong>Marcus K.</strong> requested a $4,200 payout',
+      '<strong>127 analysts</strong> are in a live session right now',
+      '<strong>Sarah L.</strong> passed Phase 2 \u2014 now a Qualified Analyst',
+      'New <strong>$100,000</strong> tier account funded in the UK',
+      '<strong>David A.</strong> reached a 15-day consistency streak',
+      '<strong>$212,400</strong> in payouts processed this week',
+      '<strong>Priya R.</strong> climbed into the Top 10 leaderboard',
+      'A trader just unlocked the <strong>Risk Master</strong> badge',
+      '<strong>3 new evaluations</strong> started in the last hour',
+      '<strong>Jonas N.</strong> requested a scale-up review',
+      '<strong>Aisha T.</strong> just enrolled in a $50,000 challenge',
+      'Daily loss guardrail held firm across <strong>98.6%</strong> of active accounts',
+    ];
+
+    const timeLabels = ['Just now', '1m ago', '2m ago', '4m ago', '6m ago'];
+    let idx = 0;
+
+    function renderInitial() {
+      const items = [];
+      for (let i = 0; i < 5; i++) {
+        items.push(events[idx % events.length]);
+        idx++;
+      }
+      list.innerHTML = items.map((txt, i) => `
+        <div class="pulse-item">
+          <span class="pulse-dot-ind"></span>
+          <span class="pulse-text">${txt}</span>
+          <span class="pulse-time">${timeLabels[i] || (i * 2) + 'm ago'}</span>
+        </div>`).join('');
+    }
+
+    function pushNext() {
+      const txt = events[idx % events.length];
+      idx++;
+      const item = document.createElement('div');
+      item.className = 'pulse-item';
+      item.innerHTML = `<span class="pulse-dot-ind"></span><span class="pulse-text">${txt}</span><span class="pulse-time">Just now</span>`;
+      list.insertBefore(item, list.firstChild);
+
+      // age the existing time labels down the list
+      const rows = list.querySelectorAll('.pulse-item');
+      rows.forEach((row, i) => {
+        const t = row.querySelector('.pulse-time');
+        if (t && i > 0) t.textContent = timeLabels[i] || (i * 2) + 'm ago';
+      });
+      if (rows.length > 5) rows[rows.length - 1].remove();
+    }
+
+    renderInitial();
+    setInterval(pushNext, 4800);
+  }
+
+  // --------------------------------------------------------------------
+  // Keyboard shortcuts help panel (press "?")
+  // --------------------------------------------------------------------
+  function initShortcutsHelp() {
+    const backdrop = document.getElementById('modal-shortcuts');
+    if (!backdrop) return;
+
+    document.addEventListener('keydown', (e) => {
+      const tag = (e.target.tagName || '').toLowerCase();
+      const typing = tag === 'input' || tag === 'textarea' || tag === 'select' || e.target.isContentEditable;
+      if (e.key === '?' && !typing) {
+        e.preventDefault();
+        backdrop.classList.add('open');
+      }
+    });
+  }
+
+  // --------------------------------------------------------------------
+  // Focus Mode — hide sidebar chrome for a distraction-free cockpit view
+  // --------------------------------------------------------------------
+  function initFocusMode() {
+    const btn = document.getElementById('btn-focus-mode');
+    const exitPill = document.getElementById('btn-exit-focus-mode');
+    if (!btn) return;
+    const KEY = 'ck_focus_mode';
+
+    function setFocus(on) {
+      document.body.classList.toggle('focus-mode', on);
+      btn.classList.toggle('is-active', on);
+      localStorage.setItem(KEY, on ? '1' : '0');
+    }
+
+    if (localStorage.getItem(KEY) === '1') setFocus(true);
+
+    btn.addEventListener('click', () => setFocus(!document.body.classList.contains('focus-mode')));
+    exitPill?.addEventListener('click', () => setFocus(false));
+
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === '.') {
+        e.preventDefault();
+        setFocus(!document.body.classList.contains('focus-mode'));
+      }
+    });
+  }
+
+  // --------------------------------------------------------------------
+  // Cursor spotlight on glass panels — single delegated listener
+  // --------------------------------------------------------------------
+  function initCardSpotlight() {
+    if (window.matchMedia && window.matchMedia('(hover: none)').matches) return; // skip on touch devices
+    let current = null;
+    let raf = null;
+    let pendingEvent = null;
+
+    function apply() {
+      raf = null;
+      if (!pendingEvent || !current) return;
+      const rect = current.getBoundingClientRect();
+      const mx = ((pendingEvent.clientX - rect.left) / rect.width) * 100;
+      const my = ((pendingEvent.clientY - rect.top) / rect.height) * 100;
+      current.style.setProperty('--mx', mx + '%');
+      current.style.setProperty('--my', my + '%');
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      const panel = e.target.closest ? e.target.closest('.glass-panel') : null;
+      if (panel !== current) {
+        if (current) current.classList.remove('spotlight-on');
+        current = panel;
+        if (current) current.classList.add('spotlight-on');
+      }
+      if (current) {
+        pendingEvent = e;
+        if (!raf) raf = requestAnimationFrame(apply);
+      }
+    }, { passive: true });
+  }
+
+  // --------------------------------------------------------------------
+  // 3D tilt-follow for showcase cards — subtle, physical-feeling response
+  // --------------------------------------------------------------------
+  function initCardTilt() {
+    if (window.matchMedia && window.matchMedia('(hover: none)').matches) return;
+    const selector = '.feature-card, .step-card, .testi-card, .kpi-card, .obj-card';
+    let current = null;
+
+    function reset(el) {
+      el.style.transform = '';
+    }
+
+    document.addEventListener('mousemove', (e) => {
+      const card = e.target.closest ? e.target.closest(selector) : null;
+      if (card !== current) {
+        if (current) reset(current);
+        current = card;
+      }
+      if (current) {
+        const rect = current.getBoundingClientRect();
+        const px = (e.clientX - rect.left) / rect.width - 0.5;
+        const py = (e.clientY - rect.top) / rect.height - 0.5;
+        const rotateY = px * 7;
+        const rotateX = -py * 7;
+        current.style.transform = `perspective(900px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-4px)`;
+      }
+    }, { passive: true });
+
+    // Safety net: if the cursor leaves the browser window entirely while
+    // mid-tilt, mousemove won't fire again to tell us — reset explicitly.
+    document.documentElement.addEventListener('mouseleave', () => {
+      if (current) { reset(current); current = null; }
+    });
+  }
+
+  // --------------------------------------------------------------------
+  // Sidebar: smooth sliding highlight behind the active nav item
+  // --------------------------------------------------------------------
+  function initSidebarSlidingIndicator() {
+    const nav = document.querySelector('.sidebar-nav');
+    const indicator = document.getElementById('sb-active-indicator');
+    if (!nav || !indicator) return;
+
+    function move() {
+      const active = nav.querySelector('.sb-item.active');
+      if (!active) { indicator.classList.remove('ready'); return; }
+      const navRect = nav.getBoundingClientRect();
+      const itemRect = active.getBoundingClientRect();
+      const offsetTop = itemRect.top - navRect.top + nav.scrollTop;
+      indicator.style.transform = `translateY(${offsetTop}px)`;
+      indicator.style.height = itemRect.height + 'px';
+      indicator.classList.add('ready');
+    }
+
+    nav.querySelectorAll('.sb-item').forEach(item => {
+      item.addEventListener('click', () => setTimeout(move, 10));
+    });
+    document.getElementById('btn-collapse-sidebar')?.addEventListener('click', () => setTimeout(move, 400));
+    window.addEventListener('resize', () => { clearTimeout(window.__sbIndTimer); window.__sbIndTimer = setTimeout(move, 120); });
+
+    setTimeout(move, 60);
+  }
+
+  // --------------------------------------------------------------------
+  // Mobile sidebar: tap-outside-to-close backdrop, in addition to the
+  // explicit × button — both are standard, expected ways to dismiss an
+  // off-canvas drawer, and having only one felt broken on a touch device.
+  // --------------------------------------------------------------------
+  function initMobileSidebarBackdrop() {
+    const sidebar = document.getElementById('cockpit-sidebar');
+    const backdrop = document.getElementById('sidebar-mobile-backdrop');
+    if (!sidebar || !backdrop) return;
+    backdrop.addEventListener('click', () => sidebar.classList.remove('open'));
+  }
+
+
+  // --------------------------------------------------------------------
+  // Hero wolf: layered motion. The CSS handles the slow body/breathing
+  // motion while this adds pointer + scroll parallax without fighting the
+  // CSS animation transform.
+  // --------------------------------------------------------------------
+  // --------------------------------------------------------------------
+  // Hero video: explicitly maintain playback across viewport changes,
+  // desktop-site mode, tab visibility and mobile/desktop layout switches.
+  // --------------------------------------------------------------------
+  function initHeroVideoPlayback() {
+    const video = document.getElementById('hero-wolf-video');
+    if (!video) return;
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+
+    const tryPlay = () => {
+      if (document.hidden || document.body.classList.contains('dashboard-session')) return;
+      const p = video.play();
+      if (p && typeof p.catch === 'function') p.catch(() => {});
+    };
+
+    video.addEventListener('loadeddata', tryPlay, { once: true });
+    video.addEventListener('canplay', tryPlay);
+    video.addEventListener('pause', () => {
+      if (!document.hidden && !document.body.classList.contains('dashboard-session')) tryPlay();
+    });
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden && !document.body.classList.contains('dashboard-session')) tryPlay();
+    });
+    window.addEventListener('pageshow', tryPlay);
+    window.addEventListener('resize', tryPlay, { passive: true });
+
+    tryPlay();
+  }
+
+  function initWolfMotion() {
+    const wolf = document.getElementById('hero-character');
+    if (!wolf) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    wolf.style.setProperty('--wolf-x', '0px');
+    wolf.style.setProperty('--wolf-y', '0px');
+    wolf.style.setProperty('--wolf-rot', '0deg');
+
+    let tx = 0, ty = 0, cx = 0, cy = 0;
+    let scrollY = window.scrollY || 0;
+    let lastScroll = scrollY;
+    let raf = 0;
+
+    const animate = () => {
+      cx += (tx - cx) * 0.075;
+      cy += (ty - cy) * 0.075;
+      wolf.style.setProperty('--wolf-x', `${cx.toFixed(2)}px`);
+      wolf.style.setProperty('--wolf-y', `${cy.toFixed(2)}px`);
+      wolf.style.setProperty('--wolf-rot', `${(cx * -0.055).toFixed(2)}deg`);
+      raf = requestAnimationFrame(animate);
+    };
+
+    const onMove = (e) => {
+      const r = wolf.parentElement.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      tx = ((e.clientX - r.left) / r.width - 0.5) * -18;
+      ty = ((e.clientY - r.top) / r.height - 0.5) * -12;
+    };
+
+    const reset = () => { tx = 0; ty = 0; };
+    const onScroll = () => {
+      const next = window.scrollY || 0;
+      const delta = Math.max(-18, Math.min(18, (next - lastScroll) * 0.16));
+      ty += delta;
+      lastScroll = next;
+    };
+
+    wolf.parentElement.addEventListener('pointermove', onMove, { passive: true });
+    wolf.parentElement.addEventListener('pointerleave', reset, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
+    animate();
+    window.addEventListener('pagehide', () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener('scroll', onScroll);
+    }, { once: true });
+  }
+
 
 })();
