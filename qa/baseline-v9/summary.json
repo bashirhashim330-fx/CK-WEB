@@ -1,0 +1,21 @@
+{
+  "results": {
+    "checks": 23,
+    "failed": 0,
+    "errors": 0
+  },
+  "panels": {
+    "checks": 104,
+    "failed": 0,
+    "errors": 0
+  },
+  "routes": {
+    "checks": 11,
+    "failed": 0,
+    "errors": 0
+  },
+  "source-media": "All seven original payout posts unchanged. Original logo JPEG retained; transparent PNG/WebP and favicon are derived assets.",
+  "motion": "Continuous curved procession; full-screen one-tap viewer pauses/resumes the exact animation timeline. Reduced-motion fallback and offscreen/hidden-tab pause verified.",
+  "removals": "Homepage footer Appearance row and dashboard Back to website entry removed; Sign out retained.",
+  "test-scope": "Chromium desktop/mobile touch emulation, 320\u20131920px. Physical Android/iPhone devices were not available."
+}

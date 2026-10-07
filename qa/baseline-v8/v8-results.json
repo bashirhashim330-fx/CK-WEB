@@ -1,0 +1,201 @@
+{
+  "checks": [
+    {
+      "name": "no-mobile-hamburger",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "custom-account-picker",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "account-choice",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "account-picker-focus",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "dock-all-panels",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "more-search",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "overflow-320",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "picker-bounds-320",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "overflow-375",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "picker-bounds-375",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "overflow-390",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "picker-bounds-390",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "overflow-430",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "picker-bounds-430",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "overflow-768",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "picker-bounds-768",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "overflow-900",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "picker-bounds-900",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "overflow-1024",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "picker-bounds-1024",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "overflow-1440",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "picker-bounds-1440",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "overflow-1920",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "picker-bounds-1920",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "custom-trade-filter",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "filter-keyboard",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "support-custom-category",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "all-seven-originals-loaded",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "manual-photo-0",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "manual-photo-1",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "manual-photo-2",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "manual-photo-3",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "manual-photo-4",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "manual-photo-5",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "manual-photo-6",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "rapid-photo-input",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "mobile-2d-transition",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "original-image-viewer",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "no-recreated-CK-marks",
+      "pass": true,
+      "result": true
+    }
+  ],
+  "failed": [],
+  "errors": []
+}

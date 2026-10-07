@@ -1,0 +1,161 @@
+{
+  "checks": [
+    {
+      "name": "Dashboard launcher visible",
+      "pass": true
+    },
+    {
+      "name": "Accurate equity and balance",
+      "pass": true
+    },
+    {
+      "name": "Computed journal figures",
+      "pass": true
+    },
+    {
+      "name": "Same risk snapshot",
+      "pass": true
+    },
+    {
+      "name": "Computed target progress",
+      "pass": true
+    },
+    {
+      "name": "Symbol filter",
+      "pass": true
+    },
+    {
+      "name": "Off topic redirect",
+      "pass": true
+    },
+    {
+      "name": "No fabricated trading signal",
+      "pass": true
+    },
+    {
+      "name": "Unknown policy acknowledged",
+      "pass": true
+    },
+    {
+      "name": "Unlinked payout ledger disclosure",
+      "pass": true
+    },
+    {
+      "name": "Honest local support request",
+      "pass": true
+    },
+    {
+      "name": "Duplicate agent request prevented",
+      "pass": true
+    },
+    {
+      "name": "Close restores launcher focus",
+      "pass": true
+    },
+    {
+      "name": "Launcher hidden under account picker",
+      "pass": true
+    },
+    {
+      "name": "Empty history not fabricated",
+      "pass": true
+    },
+    {
+      "name": "Missing daily snapshot respected",
+      "pass": true
+    },
+    {
+      "name": "Branded logout confirmation",
+      "pass": true
+    },
+    {
+      "name": "Cancel stays logged in",
+      "pass": true
+    },
+    {
+      "name": "Assistant hidden signed out",
+      "pass": true
+    },
+    {
+      "name": "Context guarded signed out",
+      "pass": true
+    },
+    {
+      "name": "Assistant reappears after login",
+      "pass": true
+    },
+    {
+      "name": "Chat fits 320 dark",
+      "pass": true
+    },
+    {
+      "name": "No overflow 320 dark",
+      "pass": true
+    },
+    {
+      "name": "Chat fits 390 dark",
+      "pass": true
+    },
+    {
+      "name": "No overflow 390 dark",
+      "pass": true
+    },
+    {
+      "name": "Chat fits 768 dark",
+      "pass": true
+    },
+    {
+      "name": "No overflow 768 dark",
+      "pass": true
+    },
+    {
+      "name": "Chat fits 1440 dark",
+      "pass": true
+    },
+    {
+      "name": "No overflow 1440 dark",
+      "pass": true
+    },
+    {
+      "name": "Chat fits 320 light",
+      "pass": true
+    },
+    {
+      "name": "No overflow 320 light",
+      "pass": true
+    },
+    {
+      "name": "Chat fits 390 light",
+      "pass": true
+    },
+    {
+      "name": "No overflow 390 light",
+      "pass": true
+    },
+    {
+      "name": "Chat fits 768 light",
+      "pass": true
+    },
+    {
+      "name": "No overflow 768 light",
+      "pass": true
+    },
+    {
+      "name": "Chat fits 1440 light",
+      "pass": true
+    },
+    {
+      "name": "No overflow 1440 light",
+      "pass": true
+    },
+    {
+      "name": "Payout method custom options",
+      "pass": true
+    },
+    {
+      "name": "Payout custom selector state hook",
+      "pass": true
+    }
+  ],
+  "errors": []
+}

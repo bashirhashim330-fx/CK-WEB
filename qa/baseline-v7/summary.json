@@ -1,0 +1,19 @@
+{
+  "initial": {
+    "checks": 20,
+    "failed": 0,
+    "errors": 0
+  },
+  "functional": {
+    "checks": 79,
+    "failed": 0,
+    "errors": 0
+  },
+  "existing-regression": {
+    "checks": 11,
+    "failed": 0,
+    "errors": 0
+  },
+  "homepage-visual-integrity": "Pixel-identical reduced-motion 1440px comparison",
+  "homepage-auth-checkout-markup": "Unchanged from pre-dashboard version"
+}

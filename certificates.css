@@ -1,0 +1,165 @@
+/* Personalised presentation samples — intentionally not issued credentials. */
+#dashboard-view.desk-v7 .sample-preview-card{padding:0;overflow:hidden;text-align:left;display:flex;flex-direction:column}
+#dashboard-view.desk-v7 .sample-preview-art{position:relative;min-height:210px;padding:28px 22px 24px;background:#050505;border-bottom:1px solid #b8934655;color:#fff;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#dashboard-view.desk-v7 .sample-preview-art:before,#dashboard-view.desk-v7 .sample-preview-art:after{content:"";position:absolute;left:0;right:0;height:14px;background:url('assets/design/certificates/gold-border.webp') center/cover}
+#dashboard-view.desk-v7 .sample-preview-art:before{top:0}#dashboard-view.desk-v7 .sample-preview-art:after{bottom:0;transform:rotate(180deg)}
+#dashboard-view.desk-v7 .sample-preview-brand{width:112px;height:28px;object-fit:contain;margin-bottom:20px;z-index:1}
+#dashboard-view.desk-v7 .sample-preview-demo{font-size:7px;letter-spacing:1.2px;color:#cdb168;margin-bottom:13px;z-index:1}
+#dashboard-view.desk-v7 .sample-preview-art>strong{font-size:16px;font-weight:700;letter-spacing:-.4px;text-align:center;z-index:1}
+#dashboard-view.desk-v7 .sample-preview-art>small{font-size:8px;color:#b6b2ac;margin-top:12px;z-index:1}
+#dashboard-view.desk-v7 .sample-preview-line{height:1px;background:#d8c384;width:64%;margin-top:17px;z-index:1}
+#dashboard-view.desk-v7 .sample-preview-wolf{position:absolute;right:0;top:0;height:100%;width:60%;object-fit:cover;opacity:.45}
+#dashboard-view.desk-v7 .sample-preview-card[data-kind=reward] .sample-preview-art{background:#110626;align-items:flex-start}
+#dashboard-view.desk-v7 .sample-preview-card[data-kind=reward] .sample-preview-art>strong{color:#ffe178;text-align:left;font-size:19px;max-width:58%}
+#dashboard-view.desk-v7 .sample-preview-copy{padding:20px;flex:1;display:flex;flex-direction:column}
+#dashboard-view.desk-v7 .sample-preview-copy h4{font-size:13px;margin-bottom:10px;font-weight:600}
+#dashboard-view.desk-v7 .sample-preview-copy p{font-size:10px;line-height:1.8;margin-bottom:20px;flex:1}
+#dashboard-view.desk-v7 .sample-preview-copy .btn{font-size:10px}
+#modal-cert{padding:20px;z-index:1500}
+#modal-cert .sample-cert-modal{max-width:1160px;width:100%;max-height:94dvh;padding:20px;border-radius:13px;overflow:auto;scrollbar-width:thin}
+#modal-cert .modal-header{margin-bottom:16px;gap:20px}
+#modal-cert .modal-header h3{font-size:16px;font-family:Inter,Arial,sans-serif;font-weight:500;margin:0}
+#modal-cert .sample-viewer-note{font-size:10px;color:var(--text-muted);margin:6px 0 0}
+#modal-cert .modal-close{flex-shrink:0}
+#modal-cert .modal-footer{margin-top:16px}
+#modal-cert .modal-footer .btn{font-size:11px}
+.sample-certificate{position:relative;overflow:hidden;background:#030303;color:#fff;border:1px solid #b79a56;font-family:Inter,Arial,sans-serif;min-width:0;isolation:isolate}
+.sample-certificate-topline{position:relative;z-index:5;padding:10px 12px;background:#ead89f;color:#241b06;font-size:10px;font-weight:700;letter-spacing:1px;text-align:center;border-bottom:1px solid #af853f}
+.sample-border{position:absolute;left:0;right:0;height:42px;background:url('assets/design/certificates/gold-border.webp') center/cover;z-index:0;pointer-events:none}
+.sample-border-top{top:33px}.sample-border-bottom{bottom:0;transform:rotate(180deg)}
+.sample-cert-content{position:relative;z-index:2;text-align:center;padding:60px 60px 49px;display:flex;flex-direction:column;align-items:center;min-width:0}
+.sample-gold-brand{width:158px;height:38px;object-fit:contain;display:block;margin-bottom:23px}
+.sample-layout-label{font-size:8px;letter-spacing:1.5px;color:#ccb36e;margin-bottom:12px;line-height:1.7}
+.sample-cert-content h1{color:#fff;font-size:clamp(24px,3.2vw,42px);font-weight:800;font-family:Inter,Arial,sans-serif;letter-spacing:-.7px;line-height:1.2;margin:0 0 22px}
+.sample-presented{font-size:11px;letter-spacing:1.4px;font-weight:600;color:#eeece6;margin:0 0 19px;line-height:1.6}
+.sample-cert-content .sample-name{font-family:Inter,Arial,sans-serif;font-style:normal;color:white;font-weight:400;font-size:clamp(25px,3vw,39px);line-height:1.3;letter-spacing:-.8px;max-width:100%;overflow-wrap:anywhere;margin:0 0 16px}
+.sample-name-line{height:2px;background:#dac278;width:82%;max-width:700px;margin-bottom:18px}
+.sample-cert-description{font-size:12px;line-height:1.7;color:#bfbab1;max-width:660px;margin:0 0 22px}
+.sample-account-details{display:flex;flex-direction:column;gap:7px;max-width:100%}
+.sample-account-details>span{font-size:9px;color:#949087;letter-spacing:1px}
+.sample-account-details>strong{font-size:22px;font-weight:400;letter-spacing:-.4px;line-height:1.4;overflow-wrap:anywhere}
+.sample-account-details>small{font-size:10px;color:#b6b1a7}
+.sample-cert-metadata{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;width:100%;border-top:1px solid #a0844250;margin-top:28px;padding-top:18px}
+.sample-cert-metadata div{display:flex;flex-direction:column;gap:8px}
+.sample-cert-metadata span{font-size:8px;letter-spacing:1px;color:#a29d92}
+.sample-cert-metadata strong{font-size:12px;font-weight:500;overflow-wrap:anywhere;line-height:1.6}
+.sample-certificate-disclaimer{display:flex;flex-direction:column;gap:7px;margin-top:26px;max-width:800px;padding:12px 18px;border:1px solid #bca16366;background:#d1b76b0b;color:#d7c88e}
+.sample-certificate-disclaimer strong{font-size:11px;letter-spacing:.8px;line-height:1.5}
+.sample-certificate-disclaimer span{font-size:9px;line-height:1.7;color:#c2bbaa}
+.sample-watermark{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1;pointer-events:none;color:#d6c88910;transform:rotate(-23deg);font-size:clamp(100px,21vw,270px);font-weight:800;letter-spacing:-12px}
+.sample-reward-art,.sample-reward-amount{display:none}
+.sample-certificate[data-kind=reward]{background:#100627;border-color:#9352cf}
+.sample-certificate[data-kind=reward]:after{content:"";position:absolute;inset:33px 0 0;z-index:0;background:linear-gradient(90deg,#100627 8%,#100627ee 43%,#10062700 72%);pointer-events:none}
+.sample-certificate[data-kind=reward] .sample-border{display:none}
+.sample-certificate[data-kind=reward] .sample-reward-art{display:block;position:absolute;right:0;top:33px;height:calc(100% - 33px);width:52%;object-fit:cover;object-position:center}
+.sample-certificate[data-kind=reward] .sample-cert-content{text-align:left;align-items:flex-start;padding:46px 40px 35px;width:63%}
+.sample-certificate[data-kind=reward] .sample-gold-brand{width:146px;margin-bottom:24px}
+.sample-certificate[data-kind=reward] .sample-cert-content h1{font-size:30px;color:#ffe16c;margin-bottom:24px}
+.sample-certificate[data-kind=reward] .sample-name{color:#ffe16c;font-weight:700;font-size:37px}
+.sample-certificate[data-kind=reward] .sample-name-line{width:90%;background:#ffe16c}
+.sample-certificate[data-kind=reward] .sample-cert-description{font-size:11px;color:#d5c5e2;max-width:430px}
+.sample-certificate[data-kind=reward] .sample-reward-amount{display:flex;flex-direction:column;gap:10px;margin:2px 0 25px}
+.sample-reward-amount>span{color:#dfc789;font-size:10px;letter-spacing:2px}
+.sample-reward-amount strong{font-size:55px;color:#ffe16c;letter-spacing:-2px;line-height:1.1}
+.sample-reward-amount small{color:#c6b4d5;font-size:9px}
+.sample-certificate[data-kind=reward] .sample-account-details>strong{font-size:16px}
+.sample-certificate[data-kind=reward] .sample-account-details>small{color:#c6b4d5}
+.sample-certificate[data-kind=reward] .sample-cert-metadata{gap:14px}
+.sample-certificate[data-kind=reward] .sample-cert-metadata strong{font-size:10px}
+.sample-certificate[data-kind=reward] .sample-cert-metadata span{font-size:7px;color:#bcabd0}
+.sample-certificate[data-kind=reward] .sample-certificate-disclaimer{background:#100627ba;border-color:#d8bc7966;padding:12px}
+.sample-certificate[data-kind=reward] .sample-watermark{font-size:190px;color:#b39bc617;transform:rotate(-25deg)}
+.sample-long-name .sample-cert-content .sample-name{font-size:25px}
+@media(max-width:650px){
+ #modal-cert{padding:8px}
+ #modal-cert .sample-cert-modal{padding:12px;max-height:96dvh;border-radius:10px}
+ #modal-cert .modal-header h3{font-size:14px}
+ #modal-cert .sample-viewer-note{font-size:9px;line-height:1.7}
+ #modal-cert .modal-footer{gap:10px;justify-content:space-between}
+ #modal-cert .modal-footer .btn{font-size:10px;padding:12px}
+ .sample-certificate-topline{font-size:8px;letter-spacing:.5px;padding:9px 8px;line-height:1.6}
+ .sample-border{height:27px}.sample-border-top{top:32px}
+ .sample-cert-content{padding:42px 20px 35px}
+ .sample-gold-brand{width:127px;height:31px;margin-bottom:20px}
+ .sample-layout-label{font-size:7px;letter-spacing:1px}
+ .sample-cert-content h1{font-size:25px;margin-bottom:20px;letter-spacing:-.8px}
+ .sample-presented{font-size:8px;letter-spacing:.8px;margin-bottom:15px}
+ .sample-cert-content .sample-name{font-size:28px;line-height:1.3;letter-spacing:-.4px}
+ .sample-name-line{width:100%;margin-bottom:16px}
+ .sample-cert-description{font-size:10px;line-height:1.8;margin-bottom:19px}
+ .sample-account-details>strong{font-size:17px}.sample-account-details>small{font-size:9px;line-height:1.6}
+ .sample-cert-metadata{grid-template-columns:1fr;gap:13px;text-align:left;margin-top:22px;padding-top:15px}
+ .sample-cert-metadata div{flex-direction:row;align-items:center;justify-content:space-between;gap:8px}
+ .sample-cert-metadata span{font-size:7px;letter-spacing:.5px}
+ .sample-cert-metadata strong{font-size:10px;text-align:right}
+ .sample-certificate-disclaimer{padding:10px;margin-top:20px}
+ .sample-certificate-disclaimer strong{font-size:9px;letter-spacing:.3px}
+ .sample-certificate-disclaimer span{font-size:8px;line-height:1.8}
+ .sample-certificate[data-kind=reward] .sample-cert-content{width:100%;padding:34px 20px 26px}
+ .sample-certificate[data-kind=reward] .sample-reward-art{width:100%;opacity:.26;object-position:68% center}
+ .sample-certificate[data-kind=reward]:after{background:linear-gradient(90deg,#100627bb,#10062722)}
+ .sample-certificate[data-kind=reward] .sample-cert-content h1{font-size:25px;max-width:85%}
+ .sample-certificate[data-kind=reward] .sample-name{font-size:29px;max-width:95%}
+ .sample-certificate[data-kind=reward] .sample-reward-amount strong{font-size:48px}
+ .sample-certificate[data-kind=reward] .sample-cert-description{font-size:10px}
+ .sample-certificate[data-kind=reward] .sample-cert-metadata{width:100%}
+ .sample-long-name .sample-cert-content .sample-name{font-size:21px!important}
+}
+@media print{
+ @page{size:A4 landscape;margin:9mm}
+ body:has(#modal-cert.open){margin:0!important;background:white!important}
+ body:has(#modal-cert.open)>*:not(#modal-cert){display:none!important}
+ #modal-cert.open{display:block!important;position:static!important;inset:auto!important;padding:0!important;background:none!important;backdrop-filter:none!important;animation:none!important}
+ #modal-cert .sample-cert-modal{display:block!important;max-width:none!important;width:100%!important;padding:0!important;max-height:none!important;height:auto!important;background:none!important;border:0!important;overflow:visible!important;box-shadow:none!important;animation:none!important}
+ #modal-cert .modal-header,#modal-cert .modal-footer{display:none!important}
+ #cert-printable-area{margin:0!important;padding:0!important}
+ .sample-certificate{break-inside:avoid;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+ .sample-certificate-topline{background:#ead89f!important;color:#241b06!important;border:1px solid #755b23!important;font-size:10px}
+ .sample-cert-content{padding:35px 50px 35px}
+ .sample-gold-brand{width:145px;height:35px;margin-bottom:18px}
+ .sample-cert-content h1{font-size:35px;margin-bottom:18px}
+ .sample-cert-content .sample-name{font-size:32px}
+ .sample-presented{margin-bottom:14px}
+ .sample-cert-description{font-size:11px;margin-bottom:18px}
+ .sample-account-details>strong{font-size:20px}
+ .sample-cert-metadata{margin-top:22px;padding-top:15px;grid-template-columns:repeat(3,minmax(0,1fr))}
+ .sample-cert-metadata div{display:flex;flex-direction:column;align-items:center}
+ .sample-certificate-disclaimer{margin-top:20px}
+ .sample-certificate[data-kind=reward] .sample-cert-content{width:63%;padding:28px 34px}
+ .sample-certificate[data-kind=reward] .sample-reward-art{width:52%;opacity:1}
+ .sample-certificate[data-kind=reward]:after{background:linear-gradient(90deg,#100627 8%,#100627ee 43%,#10062700 72%)}
+ .sample-certificate[data-kind=reward] .sample-cert-content h1{font-size:29px;margin-bottom:18px}
+ .sample-certificate[data-kind=reward] .sample-name{font-size:32px}
+ .sample-certificate[data-kind=reward] .sample-reward-amount strong{font-size:48px}
+ .sample-long-name .sample-cert-content .sample-name{font-size:22px!important}
+}
+/* Clip only the watermark layer, never the personalised text or controls. */
+.sample-watermark,.sample-certificate[data-kind=reward] .sample-watermark{transform:none;overflow:hidden;contain:paint}
+.sample-watermark>span{display:block;transform:rotate(-23deg);flex-shrink:0}
+.sample-name{unicode-bidi:plaintext}
+#modal-cert .sample-cert-modal{display:flex;flex-direction:column;overflow:hidden}
+#modal-cert .modal-header,#modal-cert .modal-footer{flex-shrink:0}
+#modal-cert .cert-render-area{overflow:auto;min-height:0;width:100%;scrollbar-width:thin}
+@media print{
+ #modal-cert .cert-render-area{overflow:visible!important;display:block!important;max-height:none!important}
+ .sample-certificate[data-kind=reward] .sample-cert-content{padding:20px 30px}
+ .sample-certificate[data-kind=reward] .sample-gold-brand{width:130px;height:30px;margin-bottom:14px}
+ .sample-certificate[data-kind=reward] .sample-layout-label{font-size:7px;margin-bottom:8px;line-height:1.6}
+ .sample-certificate[data-kind=reward] .sample-cert-content h1{font-size:26px;margin-bottom:14px}
+ .sample-certificate[data-kind=reward] .sample-presented{font-size:9px;margin-bottom:12px}
+ .sample-certificate[data-kind=reward] .sample-name{font-size:30px;margin-bottom:12px}
+ .sample-certificate[data-kind=reward] .sample-name-line{margin-bottom:12px}
+ .sample-certificate[data-kind=reward] .sample-cert-description{font-size:10px;line-height:1.6;margin-bottom:14px}
+ .sample-certificate[data-kind=reward] .sample-reward-amount{gap:6px;margin-bottom:16px}
+ .sample-certificate[data-kind=reward] .sample-reward-amount strong{font-size:40px}
+ .sample-certificate[data-kind=reward] .sample-reward-amount>span{font-size:8px}
+ .sample-certificate[data-kind=reward] .sample-reward-amount small{font-size:8px}
+ .sample-certificate[data-kind=reward] .sample-account-details>strong{font-size:16px}
+ .sample-certificate[data-kind=reward] .sample-account-details>span{font-size:8px}
+ .sample-certificate[data-kind=reward] .sample-account-details>small{font-size:9px}
+ .sample-certificate[data-kind=reward] .sample-cert-metadata{margin-top:18px;padding-top:12px}
+ .sample-certificate[data-kind=reward] .sample-cert-metadata div{gap:5px}
+ .sample-certificate[data-kind=reward] .sample-certificate-disclaimer{padding:8px;margin-top:14px;gap:5px}
+ .sample-certificate[data-kind=reward] .sample-certificate-disclaimer strong{font-size:9px}
+ .sample-certificate[data-kind=reward] .sample-certificate-disclaimer span{font-size:8px;line-height:1.6}
+}

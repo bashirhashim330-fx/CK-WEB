@@ -1,0 +1,15 @@
+{
+  "version": "v11",
+  "browser_checks": 196,
+  "failed": 0,
+  "errors": 0,
+  "original_payout_photos_preserved": 7,
+  "assistant": "Local deterministic demo; no external AI or live agents",
+  "reports": [
+    "v11-results.json",
+    "v11-extra.json",
+    "v11-routes.json",
+    "v11-panels.json",
+    "v11-cert-results.json"
+  ]
+}

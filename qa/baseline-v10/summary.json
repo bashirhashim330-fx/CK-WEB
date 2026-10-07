@@ -1,0 +1,24 @@
+{
+  "results": {
+    "checks": 21,
+    "failed": 0,
+    "errors": 0
+  },
+  "name-edge-cases": {
+    "checks": 7,
+    "failed": 0,
+    "errors": 0
+  },
+  "panels": {
+    "checks": 104,
+    "failed": 0,
+    "errors": 0
+  },
+  "routes": {
+    "checks": 11,
+    "failed": 0,
+    "errors": 0
+  },
+  "demo-export": "Phase, reward and long-name PDFs are one page each, with both non-issued banner and verification disclaimer retained.",
+  "authenticity-boundary": "All personalised certificates are decorative demos; no genuine signatures, QR verification codes, payout evidence or funded-status claims are produced."
+}

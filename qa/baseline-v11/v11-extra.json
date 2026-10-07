@@ -1,0 +1,89 @@
+{
+  "checks": [
+    {
+      "name": "Custom checkout size selector",
+      "pass": true
+    },
+    {
+      "name": "Keyboard option state",
+      "pass": true
+    },
+    {
+      "name": "Order confirmation clearly simulated",
+      "pass": true
+    },
+    {
+      "name": "Escape cancels order",
+      "pass": true
+    },
+    {
+      "name": "Confirmed demo order added",
+      "pass": true
+    },
+    {
+      "name": "Explicit account question",
+      "pass": true
+    },
+    {
+      "name": "Unknown account not fabricated",
+      "pass": true
+    },
+    {
+      "name": "Specific trade query",
+      "pass": true
+    },
+    {
+      "name": "Off-topic agent query no ticket",
+      "pass": true
+    },
+    {
+      "name": "Chat text injection blocked",
+      "pass": true
+    },
+    {
+      "name": "Launcher above dock 320",
+      "pass": true
+    },
+    {
+      "name": "Launcher above dock 390",
+      "pass": true
+    },
+    {
+      "name": "Launcher above dock 430",
+      "pass": true
+    },
+    {
+      "name": "Launcher above dock 768",
+      "pass": true
+    },
+    {
+      "name": "Backward focus trap",
+      "pass": true
+    },
+    {
+      "name": "Forward focus trap",
+      "pass": true
+    },
+    {
+      "name": "Compact viewport keyboard sizing",
+      "pass": true
+    },
+    {
+      "name": "Compact viewport composer visible",
+      "pass": true
+    },
+    {
+      "name": "Public has no launcher",
+      "pass": true
+    },
+    {
+      "name": "Country custom selector",
+      "pass": true
+    },
+    {
+      "name": "Country selector focus return",
+      "pass": true
+    }
+  ],
+  "errors": []
+}

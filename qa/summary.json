@@ -1,0 +1,16 @@
+{
+  "version": "v12",
+  "browser_checks": 209,
+  "failed": 0,
+  "errors": 0,
+  "payout_photos_preserved": 7,
+  "sign_in_gate": "Client-side prototype, not production security",
+  "social_sign_in": "Unconnected visual previews",
+  "reports": [
+    "v12-results.json",
+    "v12-assistant-results.json",
+    "v12-panels.json",
+    "v12-cert-results.json",
+    "v12-routes.json"
+  ]
+}

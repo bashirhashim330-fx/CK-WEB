@@ -18,7 +18,7 @@
   const DEFAULT_INITIAL_STATE = {
     theme: 'dark',
     session: {
-      isLoggedIn: true,
+      isLoggedIn: false,
       user: {
         firstName: 'Marcus',
         lastName: 'Kramer',
@@ -141,10 +141,12 @@
   }
 
   function applyTheme(theme, persist = true) {
-    const selected = theme || 'dark';
+    const selected = theme === 'system' || theme === 'light' || theme === 'dark' ? theme : 'dark';
     appState.theme = selected;
-    document.body.setAttribute('data-theme', resolveTheme(selected));
+    const resolved = resolveTheme(selected);
+    document.body.setAttribute('data-theme', resolved);
     document.body.dataset.themePreference = selected;
+    document.documentElement.style.colorScheme = resolved;
     document.querySelectorAll('.theme-choice-btn, .topbar-theme-option').forEach(el => {
       const value = el.dataset.setTheme || el.dataset.topbarTheme;
       el.classList.toggle('active', value === selected);
@@ -222,7 +224,21 @@
     dashboard: document.getElementById('dashboard-view')
   };
 
-  function switchView(viewName) {
+  function switchView(viewName, updateRoute = true) {
+    // Client-side prototype gate; real access control requires a server.
+    if (viewName === 'dashboard' && !appState.session?.isLoggedIn) viewName = 'auth';
+
+    // Persist the active SPA view in the URL. This is important when the
+    // browser reloads the document because an OS theme change can recreate
+    // the page on some mobile browsers. Without this, the dashboard falls
+    // back to the public homepage after reload.
+    if (updateRoute) {
+      const desiredHash = viewName === 'dashboard' ? '#dashboard' : viewName === 'auth' ? '#login' : viewName === 'checkout' ? '#checkout' : '';
+      if (window.location.hash !== desiredHash) {
+        const url = window.location.pathname + window.location.search + desiredHash;
+        window.history.replaceState(null, '', url);
+      }
+    }
     Object.keys(views).forEach(k => {
       if (views[k]) views[k].classList.remove('active');
     });
@@ -245,11 +261,47 @@
     } else {
       if (header) header.style.display = 'block';
       if (promo) promo.style.display = document.body.classList.contains('promo-dismissed') ? 'none' : 'block';
-      if (heroVideo && !document.hidden) {
+      if (heroVideo && viewName === 'public' && !document.hidden && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         const play = heroVideo.play();
         if (play && typeof play.catch === 'function') play.catch(() => {});
+      } else if (heroVideo) {
+        heroVideo.pause();
       }
     }
+  }
+
+  function routeFromHash() {
+    const hash = window.location.hash;
+    const publicSections = new Set([
+      '#hero-sec',
+      '#challenge-terminal',
+      '#how-it-works-sec',
+      '#objectives-sec',
+      '#about-sec',
+      '#faq-sec'
+    ]);
+
+    if (publicSections.has(hash)) {
+      switchView('public', false);
+      requestAnimationFrame(() => document.querySelector(hash)?.scrollIntoView({ block: 'start' }));
+      return true;
+    }
+    if (hash === '#checkout') {
+      switchView('checkout', false);
+      return true;
+    }
+    if (hash === '#dashboard') {
+      switchView('dashboard', false);
+      return true;
+    }
+
+    const authMode = { '#login': 'login', '#register': 'register', '#forgot': 'forgot' }[hash];
+    if (authMode) {
+      switchView('auth', false);
+      document.querySelector(`#auth-tabs button[data-tab="${authMode}"]`)?.click();
+      return true;
+    }
+    return false;
   }
 
   // ==========================================================================
@@ -269,7 +321,10 @@
     const tierData = CHALLENGE_MATRIX[terminalState.model].sizes;
 
     tierData.forEach(item => {
-      const tile = document.createElement('div');
+      const tile = document.createElement('button');
+      tile.type = 'button';
+      tile.setAttribute('aria-pressed', String(item.size === terminalState.size));
+      tile.dataset.size = String(item.size);
       tile.className = `size-tile ${item.size === terminalState.size ? 'active' : ''}`;
       tile.innerHTML = `
         <span class="size-tile-val font-mono">$${(item.size / 1000)}k</span>
@@ -402,7 +457,7 @@
       }).format(new Date());
     }
     if (eyebrow) {
-      eyebrow.textContent = 'LOCAL DESK // LIVE SESSION';
+      eyebrow.textContent = 'YOUR TRADING WORKSPACE';
     }
   }
 
@@ -415,13 +470,13 @@
     const elInitials = document.getElementById('dash-user-initials');
     const elUserName = document.getElementById('dash-user-name');
     if (elStatus) elStatus.textContent = acc.status;
-    if (elInitials) elInitials.textContent = `${appState.session.user.firstName[0]}${appState.session.user.lastName[0]}`;
-    if (elUserName) elUserName.textContent = `${appState.session.user.firstName} ${appState.session.user.lastName}`;
+    if (elInitials) elInitials.textContent = `${getUserInitials()}`;
+    if (elUserName) elUserName.textContent = `${getUserDisplayName()}`;
 
     const topbarAccount = document.getElementById('topbar-account-label');
     const topbarAvatar = document.getElementById('topbar-user-avatar');
     if (topbarAccount) topbarAccount.textContent = acc.id;
-    if (topbarAvatar) topbarAvatar.textContent = `${appState.session.user.firstName[0]}${appState.session.user.lastName[0]}`;
+    if (topbarAvatar) topbarAvatar.textContent = `${getUserInitials()}`;
 
     const switcher = document.getElementById('dash-account-switcher');
     if (switcher) {
@@ -438,8 +493,8 @@
     const startingBal = acc.startingBalance;
     const currBal = acc.balance;
     const totalPnl = currBal - startingBal;
-    const dailyUsed = 54.80;
-    const maxLossUsed = startingBal - currBal > 0 ? (startingBal - currBal) : 108.80;
+    const dailyUsed = Number(acc.dailyLossUsed ?? (acc.id === 'CK-10000' ? 54.80 : 0));
+    const maxLossUsed = Math.max(0, startingBal - Math.min(currBal, acc.equity));
 
     const elBal = document.getElementById('kpi-balance');
     const elEq = document.getElementById('kpi-equity');
@@ -472,7 +527,7 @@
     if (ovMaxUsed) ovMaxUsed.textContent = `$${maxLossUsed.toFixed(2)}`;
     if (barMaxUsed) barMaxUsed.style.width = `${((maxLossUsed / acc.maxLossLimit) * 100).toFixed(1)}%`;
 
-    renderInteractiveChart('1M');
+    renderInteractiveChart(document.querySelector('#chart-tf-selector .tf-btn.active')?.dataset.tf || '1M');
     calculatePerformanceStats(trades);
     renderTradingCalendar();
     renderTradesTable(trades);
@@ -483,7 +538,7 @@
     if (elRiskMax) elRiskMax.textContent = `${((maxLossUsed / acc.size) * 100).toFixed(2)}%`;
 
     const target = acc.target || 1;
-    const objPct = acc.target === 0 ? 100 : Math.min(((totalPnl / target) * 100), 100).toFixed(1);
+    const objPct = acc.target === 0 ? 100 : Math.max(0, Math.min(((totalPnl / target) * 100), 100)).toFixed(1);
     const elObjPct = document.getElementById('obj-target-pct');
     const elObjFill = document.getElementById('obj-target-fill');
     const elObjCurr = document.getElementById('obj-target-curr');
@@ -507,79 +562,121 @@
     renderSupportTickets();
     renderNotifications();
     renderProfileView();
+    renderDeskOverview(acc, trades, dailyUsed, maxLossUsed);
   }
 
   // ==========================================================================
   // 8. INTERACTIVE SVG CHART GENERATOR
   // ==========================================================================
+  // Data-led journal chart. No invented live-equity samples.
   function renderInteractiveChart(timeframe) {
     const container = document.getElementById('overview-chart-canvas');
     if (!container) return;
-
-    const pointsMap = {
-      '1D': [10380, 10390, 10375, 10410, 10395, 10428.60],
-      '1W': [10150, 10210, 10180, 10340, 10310, 10428.60],
-      '1M': [10000, 10120, 10080, 10250, 10190, 10340, 10290, 10428.60],
-      'ALL': [10000, 9920, 10150, 10280, 10190, 10340, 10428.60]
-    };
-
-    const data = pointsMap[timeframe] || pointsMap['1M'];
-    const minVal = Math.min(...data) - 50;
-    const maxVal = Math.max(...data) + 50;
-    const width = 800;
-    const height = 280;
-    const padding = 40;
-
-    const stepX = (width - padding * 2) / (data.length - 1);
-    const coords = data.map((val, idx) => {
-      const x = padding + idx * stepX;
-      const y = height - padding - ((val - minVal) / (maxVal - minVal)) * (height - padding * 2);
-      return { x, y, val };
+    const trades = getActiveAccountTrades().filter(t => t.status === 'CLOSED').sort((a,b) => a.date.localeCompare(b.date));
+    const days = [...new Set(trades.map(t => t.date))];
+    const last = days.at(-1);
+    const span = ({'1D':1,'1W':7,'1M':30})[timeframe];
+    const cutoff = last && span ? new Date(new Date(last+'T00:00:00Z').getTime() - (span-1)*86400000).toISOString().slice(0,10) : '';
+    const filtered = trades.filter(t => !cutoff || t.date >= cutoff);
+    const grouped = new Map();
+    filtered.forEach(t => grouped.set(t.date,(grouped.get(t.date)||0)+t.pnl));
+    const total = filtered.reduce((v,t)=>v+t.pnl,0);
+    const money = n => `${n<0?'−':'+'}$${Math.abs(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}`;
+    const totalEl=document.getElementById('desk-chart-total');
+    if(totalEl){ totalEl.textContent=money(total); totalEl.style.color=total<0?'var(--desk-red)':'var(--desk-green)'; }
+    const note=document.getElementById('desk-chart-note');
+    if(note) note.textContent=last ? `Cumulative closed-trade results · Period ends ${last} · Not live equity` : 'No closed-trade history for this account yet.';
+    if(!filtered.length){container.innerHTML='<div class="desk-chart-empty"><strong>Your story starts here.</strong><span>No closed trades in this period.</span></div>';return;}
+    let running=0;
+    const data=[{date:'Start',value:0},...[...grouped].map(([date,pnl])=>({date,value:running+=pnl}))];
+    const mobile=window.innerWidth<=650;
+    const W=mobile?340:720,H=210,L=6,R=mobile?52:60,T=18,B=30;
+    const max=Math.max(0,...data.map(d=>d.value)),min=Math.min(0,...data.map(d=>d.value));
+    const range=Math.max(1,max-min),low=min-range*.10,high=max+range*.12;
+    const x=i=>L+i*(W-L-R)/(data.length-1), y=v=>T+(high-v)/(high-low)*(H-T-B);
+    const path=data.map((d,i)=>`${i?'L':'M'}${x(i).toFixed(2)},${y(d.value).toFixed(2)}`).join(' ');
+    const ticks=[max,(max+min)/2,min];
+    const fmt=v=>`${v<0?'−':''}$${Math.abs(v).toLocaleString('en-US',{maximumFractionDigits:0})}`;
+    const label=d=>d==='Start'?'Start':new Intl.DateTimeFormat('en',{month:'short',day:'numeric',timeZone:'UTC'}).format(new Date(d+'T00:00:00Z'));
+    const labelIndices=[0,Math.floor((data.length-1)/2),data.length-1].filter((v,i,a)=>a.indexOf(v)===i);
+    container.innerHTML=`<div class="desk-chart-tooltip" hidden></div><svg class="desk-chart-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Cumulative closed trade profit and loss; ${filtered.length} trades, ending at ${money(total)}"><defs><linearGradient id="deskChartFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--desk-accent)" stop-opacity=".14"/><stop offset="100%" stop-color="var(--desk-accent)" stop-opacity="0"/></linearGradient></defs>${ticks.map(v=>`<line x1="${L}" y1="${y(v)}" x2="${W-R}" y2="${y(v)}" stroke="var(--desk-line)" stroke-dasharray="3 5"/><text x="${W-R+10}" y="${y(v)+3}" fill="var(--desk-muted)" font-size="10" font-family="Inter,Arial,sans-serif">${fmt(v)}</text>`).join('')}<path d="${path} L${W-R},${H-B} L${L},${H-B} Z" fill="url(#deskChartFill)"/><path class="desk-chart-line" d="${path}" fill="none" stroke="var(--desk-accent)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>${labelIndices.map(i=>`<text x="${x(i)}" y="${H-7}" text-anchor="${i===0?'start':i===data.length-1?'end':'middle'}" fill="var(--desk-muted)" font-size="10" font-family="Inter,Arial,sans-serif">${label(data[i].date)}</text>`).join('')}${data.map((d,i)=>`<g class="desk-chart-node" tabindex="0" role="button" data-point="${i}" aria-label="${label(d.date)}: ${money(d.value)}"><circle cx="${x(i)}" cy="${y(d.value)}" r="14" fill="transparent"/><circle cx="${x(i)}" cy="${y(d.value)}" r="${i===data.length-1?4:2.5}" fill="var(--desk-accent)" stroke="var(--desk-surface)" stroke-width="2"/><title>${label(d.date)}: ${money(d.value)}</title></g>`).join('')}</svg>`;
+    const tooltip=container.querySelector('.desk-chart-tooltip');
+    container.querySelectorAll('.desk-chart-node').forEach(node=>{
+      const show=()=>{const d=data[Number(node.dataset.point)];tooltip.textContent=`${label(d.date)} · ${money(d.value)}`;tooltip.hidden=false;};
+      node.addEventListener('pointerenter',show);node.addEventListener('focus',show);node.addEventListener('click',show);
+      node.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();show();}});
+      node.addEventListener('pointerleave',()=>tooltip.hidden=true);node.addEventListener('blur',()=>tooltip.hidden=true);
     });
+  }
 
-    let pathD = `M ${coords[0].x} ${coords[0].y}`;
-    coords.slice(1).forEach(pt => {
-      pathD += ` L ${pt.x} ${pt.y}`;
-    });
-
-    const areaD = `${pathD} L ${coords[coords.length - 1].x} ${height - padding} L ${coords[0].x} ${height - padding} Z`;
-
-    const styles = getComputedStyle(document.body);
-    const chartText = styles.getPropertyValue('--text-primary').trim() || '#f5f5f7';
-    const chartGrid = document.body.dataset.theme === 'light' ? 'rgba(15,23,42,0.07)' : 'rgba(255,255,255,0.05)';
-    const chartBase = document.body.dataset.theme === 'light' ? 'rgba(15,23,42,0.10)' : 'rgba(255,255,255,0.08)';
-    const chartNodeStroke = document.body.dataset.theme === 'light' ? '#ffffff' : '#121318';
-
-    container.innerHTML = `
-      <svg viewBox="0 0 ${width} ${height}" style="width: 100%; height: 100%; overflow: visible;">
-        <defs>
-          <linearGradient id="eqFill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#9147ed" stop-opacity="0.25"/>
-            <stop offset="100%" stop-color="#9147ed" stop-opacity="0.0"/>
-          </linearGradient>
-        </defs>
-        <line x1="${padding}" y1="${padding}" x2="${width - padding}" y2="${padding}" stroke="${chartGrid}" stroke-dasharray="4"/>
-        <line x1="${padding}" y1="${height/2}" x2="${width - padding}" y2="${height/2}" stroke="${chartGrid}" stroke-dasharray="4"/>
-        <line x1="${padding}" y1="${height - padding}" x2="${width - padding}" y2="${height - padding}" stroke="${chartBase}"/>
-
-        <path d="${areaD}" fill="url(#eqFill)"/>
-        <path d="${pathD}" fill="none" stroke="#9147ed" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-
-        ${coords.map(pt => `
-          <g class="chart-node" style="cursor: pointer;">
-            <circle cx="${pt.x}" cy="${pt.y}" r="4" fill="#9147ed" stroke="${chartNodeStroke}" stroke-width="2"/>
-            <text x="${pt.x}" y="${pt.y - 12}" fill="${chartText}" font-size="11" font-family="'Geist Mono', monospace" text-anchor="middle" opacity="0.85">$${pt.val.toLocaleString()}</text>
-          </g>
-        `).join('')}
-      </svg>
-    `;
+  function renderDeskOverview(acc,trades,dailyUsed,maxUsed) {
+    const set=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value;};
+    const money=n=>`${n<0?'−':''}$${Math.abs(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}`;
+    const signed=n=>`${n>=0?'+':''}${money(n)}`;
+    const pnl=acc.balance-acc.startingBalance;
+    const pct=acc.target?Math.min(100,Math.max(0,pnl/acc.target*100)):100;
+    const closed=trades.filter(t=>t.status==='CLOSED');
+    const wins=closed.filter(t=>t.pnl>0),losses=closed.filter(t=>t.pnl<0);
+    const grossWin=wins.reduce((n,t)=>n+t.pnl,0),grossLoss=Math.abs(losses.reduce((n,t)=>n+t.pnl,0));
+    set('desk-account-model',`${CHALLENGE_MATRIX[acc.model]?.label || acc.model} · $${acc.size.toLocaleString()}`);
+    set('sidebar-account-status',acc.status.replace(' // ',' · '));
+    set('desk-equity-return',`${((acc.equity/acc.startingBalance-1)*100)>=0?'+':''}${((acc.equity/acc.startingBalance-1)*100).toFixed(2)}% from starting balance`);
+    document.getElementById('desk-equity-return')?.style.setProperty('color',acc.equity>=acc.startingBalance?'var(--desk-green)':'var(--desk-red)');
+    set('kpi-balance-delta',signed(pnl));
+    document.getElementById('kpi-balance-delta')?.classList.toggle('text-danger',pnl<0);
+    document.getElementById('kpi-balance-delta')?.classList.toggle('text-success',pnl>=0);
+    set('desk-floating',signed(acc.equity-acc.balance));
+    document.getElementById('desk-floating')?.style.setProperty('color',acc.equity<acc.balance?'var(--desk-red)':'var(--desk-green)');
+    set('desk-platform',`${acc.platform} · ${acc.preference}`);
+    const pe=document.getElementById('desk-target-percent');if(pe)pe.innerHTML=`${pct.toFixed(pct===100?0:1)}<span>%</span>`;
+    document.getElementById('desk-ring-value')?.style.setProperty('stroke-dashoffset',String(320.442*(1-pct/100)));
+    set('desk-phase',acc.target?`PHASE ${acc.step}`:'FUNDED ACCOUNT');
+    set('desk-milestone-title',acc.target?'Profit target':'Keep your edge');
+    set('desk-target-caption',acc.target?`${money(Math.max(0,acc.target-pnl))} to your target`:'No profit target required');
+    set('desk-target-current',`${money(pnl)} earned`);set('desk-target-total',acc.target?`of ${money(acc.target)}`:'Qualified analyst');
+    const steps=document.getElementById('desk-phase-track');if(steps)steps.innerHTML=acc.model==='2step'?`<span class="${acc.step===1?'active':''}">01 Evaluation</span><span class="${acc.step===2?'active':''}">02 Verification</span><span class="${acc.step>=3?'active':''}">03 Funded</span>`:acc.model==='instant'?'<span class="active">Instant funded account</span>':'<span class="active">01 Evaluation</span><span>02 Funded</span>';
+    const knownDaily=acc.dailyLossUsed!=null||acc.id==='CK-10000';
+    set('desk-daily-buffer',knownDaily?money(Math.max(0,acc.dailyLossLimit-dailyUsed)):'—');
+    set('ov-daily-used',knownDaily?money(dailyUsed):'Unavailable');
+    set('desk-max-buffer',money(Math.max(0,acc.maxLossLimit-maxUsed)));
+    const breach=(knownDaily&&dailyUsed>=acc.dailyLossLimit)||maxUsed>=acc.maxLossLimit;
+    const summary=document.getElementById('desk-risk-summary');if(summary){summary.querySelector('span').textContent=breach?'Account limit reached':knownDaily?'Within account limits':'Daily snapshot unavailable';summary.style.color=breach?'var(--desk-red)':knownDaily?'var(--desk-green)':'var(--desk-muted)';}
+    set('desk-win-rate',closed.length?`${(wins.length/closed.length*100).toFixed(1)}%`:'—');
+    set('desk-profit-factor',closed.length?(grossLoss?(grossWin/grossLoss).toFixed(2):grossWin?'∞':'—'):'—');
+    set('desk-trade-count',closed.length);set('desk-trading-days',new Set(closed.map(t=>t.date)).size);
+    const recent=document.getElementById('desk-recent-trades');
+    if(recent){recent.innerHTML=closed.length?[...closed].sort((a,b)=>b.date.localeCompare(a.date)).slice(0,3).map(t=>`<button class="desk-recent-trade" data-trade="${t.id}"><span class="desk-symbol-mark">${t.symbol.slice(0,2)}</span><span><strong>${t.symbol}</strong><small>${t.direction==='BUY'?'Long':'Short'} · ${t.lots.toFixed(2)} lots</small></span><span><strong>${t.date}</strong><small>Closed · ${t.duration}</small></span><span><strong class="${t.pnl<0?'text-danger':'text-success'}">${signed(t.pnl)}</strong><small>View trade ↗</small></span></button>`).join(''):'<div class="table-empty-state">No closed trades yet. Your journal will appear here.</div>';recent.querySelectorAll('[data-trade]').forEach(btn=>btn.addEventListener('click',()=>openTradeModal(closed.find(t=>t.id===btn.dataset.trade))));}
+    // Secondary risk view uses the same active-account values.
+    const risk=document.getElementById('pane-risk');
+    if(risk){const ps=risk.querySelectorAll('.risk-card>p');if(ps[0])ps[0].textContent=`Daily limit: ${money(acc.dailyLossLimit)} (${(acc.dailyLossLimit/acc.size*100).toFixed(1)}%). ${knownDaily?'Existing demo snapshot; not live tick data.':'No daily usage snapshot available.'}`;if(ps[1])ps[1].textContent=`Maximum loss limit: ${money(acc.maxLossLimit)} (${(acc.maxLossLimit/acc.size*100).toFixed(1)}%). Measured against starting equity.`;}
+    const dbar=document.getElementById('risk-bar-daily'),mbar=document.getElementById('risk-bar-max');if(dbar)dbar.style.width=`${Math.min(100,dailyUsed/acc.dailyLossLimit*100)}%`;if(mbar)mbar.style.width=`${Math.min(100,maxUsed/acc.maxLossLimit*100)}%`;
+    if(!knownDaily)set('risk-big-daily','—');
+    const objective=document.getElementById('pane-objectives');
+    if(objective){
+      const tag=objective.querySelector('.box-tag');if(tag)tag.textContent=acc.target?`PHASE ${acc.step} EVALUATION`:'FUNDED ACCOUNT';
+      const cards=objective.querySelectorAll('.obj-check-card');
+      const days=new Set(closed.map(t=>t.date)).size;
+      const records=[
+        {title:'Minimum trading days',text:`Requirement: 1 day · Journal: ${days} days`,done:days>=1,status:days>=1?'COMPLETE':'NOT RECORDED'},
+        {title:'Daily loss snapshot',text:knownDaily?`${money(dailyUsed)} used of ${money(acc.dailyLossLimit)}. Demo snapshot only.`:'No daily usage snapshot available.',done:knownDaily&&dailyUsed<acc.dailyLossLimit,status:!knownDaily?'UNAVAILABLE':dailyUsed>=acc.dailyLossLimit?'LIMIT REACHED':'WITHIN LIMIT'},
+        {title:'Maximum loss snapshot',text:`${money(maxUsed)} used of ${money(acc.maxLossLimit)}. Not a historical breach audit.`,done:maxUsed<acc.maxLossLimit,status:maxUsed>=acc.maxLossLimit?'LIMIT REACHED':'WITHIN LIMIT'},
+        {title:acc.target?`Phase ${acc.step} profit target`:'Funded account',text:acc.target?`${money(pnl)} of ${money(acc.target)} · ${pct.toFixed(1)}% complete`:'No evaluation target required.',done:!acc.target||pnl>=acc.target,status:!acc.target?'NO TARGET':pnl>=acc.target?'TARGET REACHED':'IN PROGRESS'}
+      ];
+      cards.forEach((card,i)=>{const r=records[i];if(!r)return;card.querySelector('h4').textContent=r.title;card.querySelector('p').textContent=r.text;card.querySelector('.chk-status').textContent=r.status;card.classList.toggle('done',r.done);card.classList.toggle('pending',!r.done);});
+    }
+    document.getElementById('dashboard-view')?.dispatchEvent(new CustomEvent('desk:render', {detail:{accounts:appState.accounts.map(a=>({id:a.id,size:a.size,platform:a.platform,balance:a.balance,step:a.step,status:a.status,model:a.model})),selectedId:acc.id}}));
   }
 
   // ==========================================================================
   // 9. QUANTITATIVE PERFORMANCE STATS
   // ==========================================================================
   function calculatePerformanceStats(trades) {
-    if (!trades.length) return;
+    if (!trades.length) {
+      ['perf-winrate','perf-profit-factor','perf-avg-win','perf-avg-loss'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent='—';});
+      const counts=document.getElementById('perf-win-counts');if(counts)counts.textContent='No closed trades yet';
+      const dist=document.getElementById('dist-chart-bars');if(dist)dist.innerHTML='<div class="table-empty-state">Instrument results appear after your first closed trade.</div>';
+      return;
+    }
     const wins = trades.filter(t => t.pnl > 0);
     const losses = trades.filter(t => t.pnl < 0);
 
@@ -741,7 +838,7 @@
       const tr = document.createElement('tr');
       const isWin = t.pnl >= 0;
       tr.innerHTML = `
-        <td><strong>${t.symbol}</strong></td>
+        <td><strong>${t.symbol}</strong><span class="desk-trade-mobile-meta"><span><b>${t.direction === 'BUY' ? 'Long' : 'Short'}</b> · ${t.lots.toFixed(2)} lots · ${t.status}</span><span>${t.entry} → ${t.exit}</span><span>${t.date} · ${t.duration}</span></span></td>
         <td><span class="font-mono ${t.direction === 'BUY' ? 'text-success' : 'text-danger'}">${t.direction}</span></td>
         <td class="font-mono">${t.lots.toFixed(2)}</td>
         <td class="font-mono">${t.entry}</td>
@@ -789,7 +886,7 @@
         </div>
         <div style="display: flex; justify-content: space-between;">
           <span class="text-muted">Execution Fill Latency:</span>
-          <span>14ms (Direct Tier-1 Liquidity)</span>
+          <span>Not recorded in demo data</span>
         </div>
         <div style="display: flex; justify-content: space-between; border-top: 1px solid var(--border-subtle); padding-top: 0.75rem;">
           <span>Net Return Realized:</span>
@@ -824,52 +921,42 @@
   // ==========================================================================
   // 13. CERTIFICATES ENGINE
   // ==========================================================================
-  function renderCertificates() {
-    const container = document.getElementById('certs-container');
-    if (!container) return;
-
-    const certList = [
-      { id: 'CKC-101', title: 'Challenge Step 1 Achieved', date: '2026-08-20', desc: 'Passed evaluation metrics with disciplined risk exposure.' },
-      { id: 'CKC-102', title: 'Qualified Analyst Status', date: '2026-07-28', desc: 'Verified consistency and earned access to scaled live execution.' },
-      { id: 'CKC-103', title: 'Performance Payout Milestone', date: '2026-08-15', desc: 'First simulated institutional withdrawal successfully disbursed.' }
-    ];
-
-    container.innerHTML = certList.map(c => `
-      <div class="cert-card-item glass-panel">
-        <div>
-          <div class="cert-icon-ph">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
-          </div>
-          <h4>${c.title}</h4>
-          <p class="text-muted">${c.desc}</p>
-        </div>
-        <div>
-          <span class="font-mono text-muted" style="display:block; font-size:0.75rem; margin-bottom: 0.75rem;">Issued: ${c.date}</span>
-          <button class="btn btn-secondary btn-block btn-view-cert" data-cert-id="${c.id}" data-cert-title="${c.title}">View Official Credential</button>
-        </div>
-      </div>
-    `).join('');
-
-    container.querySelectorAll('.btn-view-cert').forEach(btn => {
-      btn.addEventListener('click', () => {
-        openCertificateModal(btn.dataset.certId, btn.dataset.certTitle);
-      });
-    });
+  let activeCertificateId='CKC-102';
+  const CERTIFICATE_DEMOS=[
+    {id:'CKC-101',title:'Phase 1 design preview',date:'',kind:'phase',heading:'PHASE 1 CERTIFICATE',desc:'Black-and-gold evaluation layout. Decorative demo; no completion claim.'},
+    {id:'CKC-102',title:'Phase 2 design preview',date:'',kind:'phase',heading:'PHASE 2 CERTIFICATE',desc:'The CK black-and-gold phase layout. Not an issued funding credential.'},
+    {id:'CKC-103',title:'Reward design preview',date:'',kind:'reward',heading:'REWARD CERTIFICATE',desc:'Purple-and-gold wolf composition. Simulated reward only; not proof of payment.'}
+  ];
+  function getUserDisplayName(){
+    return appState.session.user.displayName?.trim() || [appState.session.user.firstName,appState.session.user.lastName].filter(Boolean).join(' ') || 'Trader';
   }
-
-  function openCertificateModal(id, title) {
-    const modal = document.getElementById('modal-cert');
-    const elTitle = document.getElementById('cert-modal-title');
-    const elName = document.getElementById('cert-modal-name');
-    const elId = document.getElementById('cert-modal-id');
-    const elAcc = document.getElementById('cert-modal-acc');
-    if (!modal) return;
-
-    if (elTitle) elTitle.textContent = title.toUpperCase();
-    if (elName) elName.textContent = `${appState.session.user.firstName} ${appState.session.user.lastName}`.toUpperCase();
-    if (elId) elId.textContent = id;
-    if (elAcc) elAcc.textContent = appState.selectedAccountId;
-    modal.classList.add('open');
+  function getUserInitials(){const parts=getUserDisplayName().split(/\s+/);return (parts[0]?.[0]||'T')+(parts.length>1?parts.at(-1)[0]:'');}
+  function renderCertificates() {
+    const container=document.getElementById('certs-container');if(!container)return;
+    container.innerHTML=CERTIFICATE_DEMOS.map(c=>`<article class="cert-card-item sample-preview-card glass-panel" data-kind="${c.kind}"><div class="sample-preview-art">${c.kind==='reward'?'<img class="sample-preview-wolf" src="assets/design/certificates/reward-wolf.webp" alt="Decorative purple wolf">':''}<img class="sample-preview-brand" src="assets/design/certificates/gold-wordmark.png" alt="CK Capital"><span class="sample-preview-demo">DEMO / DESIGN PREVIEW</span><strong>${c.heading}</strong><small>Personalised to your saved profile</small><div class="sample-preview-line"></div></div><div class="sample-preview-copy"><h4>${c.title}</h4><p class="text-muted">${c.desc}</p><button class="btn btn-secondary btn-block btn-view-cert" data-cert-id="${c.id}" data-cert-title="${c.title}">Open personalised demo</button></div></article>`).join('');
+    container.querySelectorAll('.btn-view-cert').forEach(btn=>btn.addEventListener('click',()=>openCertificateModal(btn.dataset.certId,btn.dataset.certTitle)));
+    if(document.getElementById('modal-cert')?.classList.contains('open'))updateCertificatePreview();
+  }
+  function updateCertificatePreview(){
+    const demo=CERTIFICATE_DEMOS.find(c=>c.id===activeCertificateId)||CERTIFICATE_DEMOS[1],acc=getActiveAccount();
+    const set=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value;};
+    const canvas=document.getElementById('sample-certificate');if(!canvas)return;
+    canvas.dataset.kind=demo.kind;
+    const name=getUserDisplayName();set('cert-modal-name',name);canvas.classList.toggle('sample-long-name',name.length>42);
+    set('cert-modal-title',demo.heading);
+    set('cert-modal-layout-label',demo.kind==='reward'?'PURPLE & GOLD / SAMPLE LAYOUT':'BLACK & GOLD / SAMPLE LAYOUT');
+    set('cert-modal-desc',demo.kind==='reward'?'A personalised reward-design preview using the prototype’s simulated payout ledger. No payment or eligibility is certified.':'A decorative phase-certificate layout for your simulated workspace. This sample does not certify a completed phase or funded status.');
+    set('cert-modal-account-size',`$${acc.size.toLocaleString()} ${acc.model==='instant'?'Instant account':'Challenge'} · ${acc.preference}`);
+    set('cert-modal-platform',`${acc.platform} · ${acc.model==='instant'?'Funded demo account':`Current phase ${acc.step}`}`);
+    set('cert-modal-acc',acc.id);set('cert-modal-id',`DEMO-${demo.id}`);
+    set('cert-modal-date',new Intl.DateTimeFormat('en-GB',{day:'2-digit',month:'2-digit',year:'numeric'}).format(new Date()));
+    const reward=Number(appState.payouts[0]?.amountTrader)||0;
+    set('cert-modal-amount',`$${reward.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2})}`);
+  }
+  function openCertificateModal(id,title){
+    const modal=document.getElementById('modal-cert');if(!modal)return;
+    if(!modal.classList.contains('open'))modal._certReturnFocus=document.activeElement;activeCertificateId=id;updateCertificatePreview();modal.classList.add('open');
+    document.getElementById('cert-viewer-title')?.focus({preventScroll:true});
   }
 
   // ==========================================================================
@@ -957,10 +1044,12 @@
     const elCountry = document.getElementById('prof-display-country');
     const elBigAvatar = document.getElementById('prof-big-avatar');
 
-    if (elName) elName.textContent = `${user.firstName} ${user.lastName}`;
+    if (elName) elName.textContent = getUserDisplayName();
     if (elEmail) elEmail.textContent = user.email;
     if (elCountry) elCountry.textContent = user.country;
-    if (elBigAvatar) elBigAvatar.textContent = `${user.firstName[0]}${user.lastName[0]}`;
+    if (elBigAvatar) elBigAvatar.textContent = getUserInitials();
+    const profileFields={'set-name':getUserDisplayName(),'set-email':user.email,'set-country':user.country};
+    Object.entries(profileFields).forEach(([id,value])=>{const el=document.getElementById(id);if(el)el.value=value;});
   }
 
   // ==========================================================================
@@ -1010,20 +1099,34 @@
     const mobileAuth = document.getElementById('mobile-link-auth');
     const footLogin = document.getElementById('footer-btn-login');
     [btnAuth, mobileAuth, footLogin].forEach(b => {
-      b?.addEventListener('click', () => switchView('auth'));
+      b?.addEventListener('click', () => {switchView('auth');document.querySelector('#auth-tabs [data-tab=login]')?.click();});
     });
-
-    // 4. Portal direct entry button from Hero
-    document.getElementById('hero-btn-demo-portal')?.addEventListener('click', () => switchView('dashboard'));
 
     // 5. Drawer Controls
     const btnHam = document.getElementById('btn-hamburger');
     const drawer = document.getElementById('mobile-drawer');
     const btnCloseDrawer = document.getElementById('btn-close-drawer');
-    btnHam?.addEventListener('click', () => drawer.classList.add('open'));
-    btnCloseDrawer?.addEventListener('click', () => drawer.classList.remove('open'));
+    const setPublicDrawerOpen = (open) => {
+      drawer?.classList.toggle('open', open);
+      drawer?.setAttribute('aria-hidden', open ? 'false' : 'true');
+      if(drawer) drawer.inert=!open;
+      const shade=document.getElementById('public-menu-shade');if(shade)shade.hidden=!open;
+      btnHam?.setAttribute('aria-expanded', open ? 'true' : 'false');
+      document.body.classList.toggle('mobile-nav-open', open);
+      if (open) btnCloseDrawer?.focus();
+    };
+    document.getElementById('public-menu-shade')?.addEventListener('click',()=>{setPublicDrawerOpen(false);btnHam?.focus();});
+    document.getElementById('mobile-link-register')?.addEventListener('click',()=>{switchView('auth');document.querySelector('#auth-tabs [data-tab=register]')?.click();});
+    btnHam?.addEventListener('click', () => setPublicDrawerOpen(!drawer?.classList.contains('open')));
+    btnCloseDrawer?.addEventListener('click', () => setPublicDrawerOpen(false));
     drawer?.querySelectorAll('.drawer-link, .btn').forEach(l => {
-      l.addEventListener('click', () => drawer.classList.remove('open'));
+      l.addEventListener('click', () => setPublicDrawerOpen(false));
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer?.classList.contains('open')) {
+        setPublicDrawerOpen(false);
+        btnHam?.focus();
+      }
     });
 
     // 6. Announcement Bar Close
@@ -1115,7 +1218,10 @@
     });
 
     // 9. Complete Checkout Order -> Persist & Enter Dashboard
-    document.getElementById('btn-complete-order')?.addEventListener('click', () => {
+    document.getElementById('btn-complete-order')?.addEventListener('click', async () => {
+      const total = Number(document.getElementById('sum-final-price')?.textContent?.replace(/[^0-9.]/g, '')) || 0;
+      if (!await window.CKDialogs.confirm({title:'Create your demo challenge?',message:`This adds a simulated challenge order for $${total.toFixed(2)} to your local workspace. No payment will be taken.`,action:'Create demo challenge'})) return;
+
       const newId = `CK-${appState.cart.size}-${Math.floor(100 + Math.random() * 900)}`;
       const tierSizes = CHALLENGE_MATRIX[appState.cart.model].sizes;
       const spec = tierSizes.find(s => s.size === appState.cart.size) || tierSizes[0];
@@ -1165,8 +1271,8 @@
         const title = document.getElementById('auth-main-title');
         const subtitle = document.getElementById('auth-sub-title');
         if (mode === 'login') {
-          if (title) title.textContent = 'Trader Cockpit Login';
-          if (subtitle) subtitle.textContent = 'Enter your institutional credentials to access your control room.';
+          if (title) title.textContent = 'Trader Login';
+          if (subtitle) subtitle.textContent = 'Sign in to your CK Capital trader dashboard.';
         } else if (mode === 'register') {
           if (title) title.textContent = 'Open Trader Account';
           if (subtitle) subtitle.textContent = 'Register with CK Capital to start your evaluation journey.';
@@ -1207,7 +1313,7 @@
       if (email && pw) {
         appState.session.isLoggedIn = true;
         saveState(appState);
-        showToast('Workstation credentials verified. Entering Control Room.');
+        showToast('Demo sign-in complete. Opening your dashboard.');
         switchView('dashboard');
       }
     });
@@ -1249,7 +1355,7 @@
       document.querySelector('#auth-tabs button[data-tab="login"]')?.click();
     });
 
-    // 11. Cockpit Sidebar Tabs Navigation
+    // 11. Workspace Sidebar Tabs Navigation
     document.querySelectorAll('.sb-item').forEach(item => {
       item.addEventListener('click', () => {
         const tab = item.dataset.tab;
@@ -1260,20 +1366,20 @@
         document.getElementById(`pane-${tab}`)?.classList.add('active');
 
         // Close sidebar on mobile upon tab selection
-        document.getElementById('cockpit-sidebar')?.classList.remove('open');
+        document.getElementById('workspace-sidebar')?.classList.remove('open');
         document.getElementById('dash-mobile-toggle')?.setAttribute('aria-expanded', 'false');
       });
     });
 
-    // Cockpit Mobile Sidebar Toggle
+    // Workspace Mobile Sidebar Toggle
     document.getElementById('dash-mobile-toggle')?.addEventListener('click', () => {
-      const sidebar = document.getElementById('cockpit-sidebar');
+      const sidebar = document.getElementById('workspace-sidebar');
       const btn = document.getElementById('dash-mobile-toggle');
       const open = sidebar?.classList.toggle('open');
       btn?.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
     document.getElementById('btn-collapse-sidebar')?.addEventListener('click', () => {
-      document.getElementById('cockpit-sidebar')?.classList.remove('open');
+      document.getElementById('workspace-sidebar')?.classList.remove('open');
       document.getElementById('dash-mobile-toggle')?.setAttribute('aria-expanded', 'false');
     });
 
@@ -1286,11 +1392,32 @@
     });
 
     // Logout Button
-    document.getElementById('btn-dash-logout')?.addEventListener('click', () => {
+    document.getElementById('btn-dash-logout')?.addEventListener('click', async () => {
+      if (!await window.CKDialogs.confirm({title:'Sign out of your workspace?',message:'Your saved account and profile data will stay on this device. You can sign in again to continue.',action:'Sign out'})) return;
       appState.session.isLoggedIn = false;
       saveState(appState);
       showToast('Session terminated cleanly');
       switchView('public');
+    });
+
+    // Copy the active account identifier from the workstation command bar.
+    document.getElementById('btn-copy-account')?.addEventListener('click', async () => {
+      const accountId = document.getElementById('topbar-account-label')?.textContent?.trim();
+      if (!accountId) return;
+      try {
+        await navigator.clipboard.writeText(accountId);
+      } catch (_) {
+        const helper = document.createElement('textarea');
+        helper.value = accountId;
+        helper.setAttribute('readonly', '');
+        helper.style.position = 'fixed';
+        helper.style.opacity = '0';
+        document.body.appendChild(helper);
+        helper.select();
+        document.execCommand('copy');
+        helper.remove();
+      }
+      showToast(`Copied account ID: ${accountId}`);
     });
 
     // Timeframe Buttons on Equity Curve
@@ -1453,7 +1580,9 @@
       const emailInput = document.getElementById('set-email');
       const countryInput = document.getElementById('set-country');
 
-      const nameParts = nameInput ? nameInput.value.trim().split(' ') : ['Trader', 'Analyst'];
+      const displayName=nameInput?.value.trim().replace(/\s+/g,' ') || getUserDisplayName();
+      const nameParts=displayName.split(/\s+/);
+      appState.session.user.displayName=displayName;
       const email = emailInput ? emailInput.value.trim() : appState.session.user.email;
       const country = countryInput ? countryInput.value.trim() : appState.session.user.country;
 
@@ -1515,16 +1644,19 @@
     if (window.matchMedia) {
       const media = window.matchMedia('(prefers-color-scheme: light)');
       const onSystemThemeChange = () => {
-        if ((appState.theme || 'dark') === 'system') applyTheme('system', false);
+        if ((appState.theme || 'dark') === 'system') {
+          applyTheme('system', false);
+          syncThemeControls();
+        }
       };
-      media.addEventListener?.('change', onSystemThemeChange);
-      media.addListener?.(onSystemThemeChange);
+      if (typeof media.addEventListener === 'function') media.addEventListener('change', onSystemThemeChange);
+      else if (typeof media.addListener === 'function') media.addListener(onSystemThemeChange);
     }
 
     syncThemeControls();
 
     // Dashboard-only motion preference. This does not disable animation on the
-    // public website; it only affects the trader cockpit session.
+    // public website; it only affects the trader workspace session.
     function setDashboardAnimations(enabled, persist = true) {
       document.body.classList.toggle('dashboard-reduced-motion', !enabled);
       const btn = document.getElementById('btn-topbar-motion');
@@ -1694,6 +1826,23 @@
   // ==========================================================================
   // 19. BOOTSTRAP WORKSTATION
   // ==========================================================================
+
+  window.CKWorkspace = Object.freeze({
+    snapshot() {
+      if (!appState.session?.isLoggedIn || !document.getElementById('dashboard-view')?.classList.contains('active')) return null;
+      const acc=getActiveAccount();
+      return JSON.parse(JSON.stringify({name:getUserDisplayName(),account:acc,accounts:appState.accounts,trades:appState.trades,payouts:appState.payouts,tickets:appState.tickets}));
+    },
+    requestAgent(message) {
+      if (!this.snapshot()) return null;
+      const existing=appState.tickets.find(t=>t.source==='CK Assistant'&&t.status==='DEMO // AWAITING CONNECTION');
+      if(existing)return existing.id;
+      const id='DEMO-'+Date.now().toString(36).toUpperCase();
+      appState.tickets.unshift({id,subject:'Assistant: request to speak with an agent',category:'Account Support',status:'DEMO // AWAITING CONNECTION',date:new Date().toISOString().slice(0,10),source:'CK Assistant',message:String(message).slice(0,600)});
+      saveState(appState);renderSupportTickets();return id;
+    }
+  });
+
   function bootApplication() {
     renderTerminalSizes();
     updateTerminalSpecs();
@@ -1702,8 +1851,9 @@
     updateDashboardGreeting();
     setInterval(updateDashboardGreeting, 60000);
 
-    // Default to Public Landing View on first load
-    switchView('public');
+    // Honor lightweight standalone-page redirects and direct SPA links.
+    if (!routeFromHash()) switchView('public', false);
+    window.addEventListener('hashchange', routeFromHash);
   }
 
   // Run on DOM Ready
@@ -1742,8 +1892,6 @@
     initSidebarRail();
     initBackToTop();
     initTestimonialDots();
-    initWolfMotion();
-    initHeroVideoPlayback();
   });
 
   // --------------------------------------------------------------------
@@ -1846,7 +1994,7 @@
   }
 
   // --------------------------------------------------------------------
-  // ⌘K Command Palette — quick navigation across public site + cockpit
+  // ⌘K Command Palette — quick navigation across public site + workspace
   // --------------------------------------------------------------------
   function initCommandPalette() {
     const backdrop = document.getElementById('modal-command-palette');
@@ -1870,8 +2018,7 @@
         { label: 'Trading Objectives', hint: 'Page', run: () => click('[data-nav="objectives"]') },
         { label: 'About CK Capital', hint: 'Page', run: () => click('[data-nav="about"]') },
         { label: 'FAQ Archive', hint: 'Page', run: () => click('[data-nav="faq"]') },
-        { label: 'Log In to Trader Cockpit', hint: 'Auth', run: () => click('#nav-btn-auth') },
-        { label: 'Enter Trader Portal (Demo)', hint: 'Dashboard', run: () => click('#hero-btn-demo-portal') || navToDashboard() },
+        { label: 'Trader login', hint: 'Auth', run: () => click('#nav-btn-auth') },
       ];
     }
 
@@ -1896,10 +2043,6 @@
       if (el) { el.click(); return true; }
       return false;
     }
-    function navToDashboard() {
-      const dash = document.getElementById('dashboard-view');
-      if (dash) dash.classList.add('active');
-    }
 
     function allCommands() {
       return isDashboardOpen() ? dashboardCommands() : publicCommands();
@@ -1919,7 +2062,7 @@
         return;
       }
 
-      results.innerHTML = `<div class="cmdk-group-label">${isDashboardOpen() ? 'Cockpit Panels' : 'Navigate'}</div>` +
+      results.innerHTML = `<div class="cmdk-group-label">${isDashboardOpen() ? 'Workspace Panels' : 'Navigate'}</div>` +
         currentList.map((c, i) => `
           <button type="button" class="cmdk-item${i === 0 ? ' active' : ''}" data-idx="${i}">
             ${c.hint === 'Page' || c.hint === 'Panel' ? iconHash : iconSearch}
@@ -1990,7 +2133,7 @@
   // Sidebar collapse-to-rail (desktop) — persists across reloads
   // --------------------------------------------------------------------
   function initSidebarRail() {
-    const sidebar = document.getElementById('cockpit-sidebar');
+    const sidebar = document.getElementById('workspace-sidebar');
     const btn = document.getElementById('btn-collapse-sidebar');
     if (!sidebar || !btn) return;
     const RAIL_KEY = 'ck_sidebar_rail';
@@ -2099,6 +2242,8 @@
     initCardTilt();
     initSidebarSlidingIndicator();
     initMobileSidebarBackdrop();
+    initWolfMotion();
+    initHeroVideoPlayback();
   });
 
   // --------------------------------------------------------------------
@@ -2361,7 +2506,7 @@
   }
 
   // --------------------------------------------------------------------
-  // Focus Mode — hide sidebar chrome for a distraction-free cockpit view
+  // Focus Mode — hide sidebar chrome for a distraction-free workspace view
   // --------------------------------------------------------------------
   function initFocusMode() {
     const btn = document.getElementById('btn-focus-mode');
@@ -2490,7 +2635,7 @@
   // off-canvas drawer, and having only one felt broken on a touch device.
   // --------------------------------------------------------------------
   function initMobileSidebarBackdrop() {
-    const sidebar = document.getElementById('cockpit-sidebar');
+    const sidebar = document.getElementById('workspace-sidebar');
     const backdrop = document.getElementById('sidebar-mobile-backdrop');
     if (!sidebar || !backdrop) return;
     backdrop.addEventListener('click', () => sidebar.classList.remove('open'));
@@ -2509,28 +2654,47 @@
   function initHeroVideoPlayback() {
     const video = document.getElementById('hero-wolf-video');
     if (!video) return;
+    const hero = video.closest('.hero-video-section');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
+    let inView = true;
 
     const tryPlay = () => {
-      if (document.hidden || document.body.classList.contains('dashboard-session')) return;
+      if (reducedMotion.matches || !inView || document.hidden || !document.getElementById('public-view')?.classList.contains('active')) {
+        video.pause();
+        return;
+      }
       const p = video.play();
       if (p && typeof p.catch === 'function') p.catch(() => {});
     };
 
-    video.addEventListener('loadeddata', tryPlay, { once: true });
+    const markReady = () => {
+      hero?.classList.add('is-video-ready');
+      tryPlay();
+    };
+    video.addEventListener('loadeddata', markReady, { once: true });
     video.addEventListener('canplay', tryPlay);
-    video.addEventListener('pause', () => {
-      if (!document.hidden && !document.body.classList.contains('dashboard-session')) tryPlay();
-    });
     document.addEventListener('visibilitychange', () => {
-      if (!document.hidden && !document.body.classList.contains('dashboard-session')) tryPlay();
+      if (document.hidden) video.pause();
+      else tryPlay();
     });
     window.addEventListener('pageshow', tryPlay);
-    window.addEventListener('resize', tryPlay, { passive: true });
+    reducedMotion.addEventListener('change', tryPlay);
 
-    tryPlay();
+    if ('IntersectionObserver' in window && hero) {
+      const observer = new IntersectionObserver(([entry]) => {
+        inView = entry.isIntersecting && entry.intersectionRatio > 0.08;
+        if (inView) tryPlay();
+        else video.pause();
+      }, { threshold: [0, 0.08, 0.25] });
+      observer.observe(hero);
+      window.addEventListener('pagehide', event => { if (!event.persisted) observer.disconnect(); });
+    }
+
+    if (video.readyState >= 2) markReady();
+    else tryPlay();
   }
 
   function initWolfMotion() {
@@ -2583,3 +2747,4 @@
 
 
 })();
+

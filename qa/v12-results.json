@@ -1,0 +1,141 @@
+{
+  "checks": [
+    {
+      "name": "Hero dashboard bypass removed",
+      "pass": true
+    },
+    {
+      "name": "No cockpit in text runtime",
+      "pass": true
+    },
+    {
+      "name": "Closed menu inert",
+      "pass": true
+    },
+    {
+      "name": "Menu dialog accessible",
+      "pass": true
+    },
+    {
+      "name": "Six modern navigation cards",
+      "pass": true
+    },
+    {
+      "name": "Login prominent purple box",
+      "pass": true
+    },
+    {
+      "name": "Menu backward focus trap",
+      "pass": true
+    },
+    {
+      "name": "Menu forward focus trap",
+      "pass": true
+    },
+    {
+      "name": "Escape closes and restores focus",
+      "pass": true
+    },
+    {
+      "name": "Mobile login shows login form",
+      "pass": true
+    },
+    {
+      "name": "Login title renamed",
+      "pass": true
+    },
+    {
+      "name": "Drawer and shade dismissed",
+      "pass": true
+    },
+    {
+      "name": "Google name and SVG brand icon",
+      "pass": true
+    },
+    {
+      "name": "Google nonfunctional preview",
+      "pass": true
+    },
+    {
+      "name": "Discord name and SVG brand icon",
+      "pass": true
+    },
+    {
+      "name": "Discord nonfunctional preview",
+      "pass": true
+    },
+    {
+      "name": "Direct dashboard route requires local login",
+      "pass": true
+    },
+    {
+      "name": "Assistant hidden before login",
+      "pass": true
+    },
+    {
+      "name": "Login still opens dashboard",
+      "pass": true
+    },
+    {
+      "name": "Renamed internal layout selectors work",
+      "pass": true
+    },
+    {
+      "name": "Saved demo login persists",
+      "pass": true
+    },
+    {
+      "name": "Signed-out dashboard route remains gated",
+      "pass": true
+    },
+    {
+      "name": "Create account shortcut opens registration",
+      "pass": true
+    },
+    {
+      "name": "Login shortcut resets previous auth mode",
+      "pass": true
+    },
+    {
+      "name": "Menu fits 320 dark",
+      "pass": true
+    },
+    {
+      "name": "Menu fits 390 dark",
+      "pass": true
+    },
+    {
+      "name": "Menu fits 768 dark",
+      "pass": true
+    },
+    {
+      "name": "Menu fits 320 light",
+      "pass": true
+    },
+    {
+      "name": "Menu fits 390 light",
+      "pass": true
+    },
+    {
+      "name": "Menu fits 768 light",
+      "pass": true
+    },
+    {
+      "name": "Menu scrolls on landscape/short screens",
+      "pass": true
+    },
+    {
+      "name": "Resize to desktop closes menu",
+      "pass": true
+    },
+    {
+      "name": "Desktop login boxed",
+      "pass": true
+    },
+    {
+      "name": "Command palette no demo dashboard shortcut",
+      "pass": true
+    }
+  ],
+  "errors": []
+}

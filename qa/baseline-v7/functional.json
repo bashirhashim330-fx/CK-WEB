@@ -1,0 +1,731 @@
+{
+  "checks": [
+    {
+      "name": "floating-dock",
+      "pass": true,
+      "result": {
+        "left": 16,
+        "right": 374,
+        "bottomGap": 16,
+        "viewport": 390
+      }
+    },
+    {
+      "name": "dock-stays-in-viewport",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "mobile-trades",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "trade-filter",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "trade-inspection",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "more-sheet-focus-trap",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "pane-overview-320",
+      "pass": true,
+      "result": {
+        "active": "pane-overview",
+        "sw": 320,
+        "cw": 320,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-accounts-320",
+      "pass": true,
+      "result": {
+        "active": "pane-accounts",
+        "sw": 320,
+        "cw": 320,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-trades-320",
+      "pass": true,
+      "result": {
+        "active": "pane-trades",
+        "sw": 320,
+        "cw": 320,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-performance-320",
+      "pass": true,
+      "result": {
+        "active": "pane-performance",
+        "sw": 320,
+        "cw": 320,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-calendar-320",
+      "pass": true,
+      "result": {
+        "active": "pane-calendar",
+        "sw": 320,
+        "cw": 320,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-objectives-320",
+      "pass": true,
+      "result": {
+        "active": "pane-objectives",
+        "sw": 320,
+        "cw": 320,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-risk-320",
+      "pass": true,
+      "result": {
+        "active": "pane-risk",
+        "sw": 320,
+        "cw": 320,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-payouts-320",
+      "pass": true,
+      "result": {
+        "active": "pane-payouts",
+        "sw": 320,
+        "cw": 320,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-certificates-320",
+      "pass": true,
+      "result": {
+        "active": "pane-certificates",
+        "sw": 320,
+        "cw": 320,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-copilot-320",
+      "pass": true,
+      "result": {
+        "active": "pane-copilot",
+        "sw": 320,
+        "cw": 320,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-support-320",
+      "pass": true,
+      "result": {
+        "active": "pane-support",
+        "sw": 320,
+        "cw": 320,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-profile-320",
+      "pass": true,
+      "result": {
+        "active": "pane-profile",
+        "sw": 320,
+        "cw": 320,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-settings-320",
+      "pass": true,
+      "result": {
+        "active": "pane-settings",
+        "sw": 320,
+        "cw": 320,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-overview-390",
+      "pass": true,
+      "result": {
+        "active": "pane-overview",
+        "sw": 390,
+        "cw": 390,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-accounts-390",
+      "pass": true,
+      "result": {
+        "active": "pane-accounts",
+        "sw": 390,
+        "cw": 390,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-trades-390",
+      "pass": true,
+      "result": {
+        "active": "pane-trades",
+        "sw": 390,
+        "cw": 390,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-performance-390",
+      "pass": true,
+      "result": {
+        "active": "pane-performance",
+        "sw": 390,
+        "cw": 390,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-calendar-390",
+      "pass": true,
+      "result": {
+        "active": "pane-calendar",
+        "sw": 390,
+        "cw": 390,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-objectives-390",
+      "pass": true,
+      "result": {
+        "active": "pane-objectives",
+        "sw": 390,
+        "cw": 390,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-risk-390",
+      "pass": true,
+      "result": {
+        "active": "pane-risk",
+        "sw": 390,
+        "cw": 390,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-payouts-390",
+      "pass": true,
+      "result": {
+        "active": "pane-payouts",
+        "sw": 390,
+        "cw": 390,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-certificates-390",
+      "pass": true,
+      "result": {
+        "active": "pane-certificates",
+        "sw": 390,
+        "cw": 390,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-copilot-390",
+      "pass": true,
+      "result": {
+        "active": "pane-copilot",
+        "sw": 390,
+        "cw": 390,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-support-390",
+      "pass": true,
+      "result": {
+        "active": "pane-support",
+        "sw": 390,
+        "cw": 390,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-profile-390",
+      "pass": true,
+      "result": {
+        "active": "pane-profile",
+        "sw": 390,
+        "cw": 390,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-settings-390",
+      "pass": true,
+      "result": {
+        "active": "pane-settings",
+        "sw": 390,
+        "cw": 390,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-overview-768",
+      "pass": true,
+      "result": {
+        "active": "pane-overview",
+        "sw": 768,
+        "cw": 768,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-accounts-768",
+      "pass": true,
+      "result": {
+        "active": "pane-accounts",
+        "sw": 768,
+        "cw": 768,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-trades-768",
+      "pass": true,
+      "result": {
+        "active": "pane-trades",
+        "sw": 768,
+        "cw": 768,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-performance-768",
+      "pass": true,
+      "result": {
+        "active": "pane-performance",
+        "sw": 768,
+        "cw": 768,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-calendar-768",
+      "pass": true,
+      "result": {
+        "active": "pane-calendar",
+        "sw": 768,
+        "cw": 768,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-objectives-768",
+      "pass": true,
+      "result": {
+        "active": "pane-objectives",
+        "sw": 768,
+        "cw": 768,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-risk-768",
+      "pass": true,
+      "result": {
+        "active": "pane-risk",
+        "sw": 768,
+        "cw": 768,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-payouts-768",
+      "pass": true,
+      "result": {
+        "active": "pane-payouts",
+        "sw": 768,
+        "cw": 768,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-certificates-768",
+      "pass": true,
+      "result": {
+        "active": "pane-certificates",
+        "sw": 768,
+        "cw": 768,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-copilot-768",
+      "pass": true,
+      "result": {
+        "active": "pane-copilot",
+        "sw": 768,
+        "cw": 768,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-support-768",
+      "pass": true,
+      "result": {
+        "active": "pane-support",
+        "sw": 768,
+        "cw": 768,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-profile-768",
+      "pass": true,
+      "result": {
+        "active": "pane-profile",
+        "sw": 768,
+        "cw": 768,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-settings-768",
+      "pass": true,
+      "result": {
+        "active": "pane-settings",
+        "sw": 768,
+        "cw": 768,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-overview-1024",
+      "pass": true,
+      "result": {
+        "active": "pane-overview",
+        "sw": 1024,
+        "cw": 1024,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-accounts-1024",
+      "pass": true,
+      "result": {
+        "active": "pane-accounts",
+        "sw": 1024,
+        "cw": 1024,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-trades-1024",
+      "pass": true,
+      "result": {
+        "active": "pane-trades",
+        "sw": 1024,
+        "cw": 1024,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-performance-1024",
+      "pass": true,
+      "result": {
+        "active": "pane-performance",
+        "sw": 1024,
+        "cw": 1024,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-calendar-1024",
+      "pass": true,
+      "result": {
+        "active": "pane-calendar",
+        "sw": 1024,
+        "cw": 1024,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-objectives-1024",
+      "pass": true,
+      "result": {
+        "active": "pane-objectives",
+        "sw": 1024,
+        "cw": 1024,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-risk-1024",
+      "pass": true,
+      "result": {
+        "active": "pane-risk",
+        "sw": 1024,
+        "cw": 1024,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-payouts-1024",
+      "pass": true,
+      "result": {
+        "active": "pane-payouts",
+        "sw": 1024,
+        "cw": 1024,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-certificates-1024",
+      "pass": true,
+      "result": {
+        "active": "pane-certificates",
+        "sw": 1024,
+        "cw": 1024,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-copilot-1024",
+      "pass": true,
+      "result": {
+        "active": "pane-copilot",
+        "sw": 1024,
+        "cw": 1024,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-support-1024",
+      "pass": true,
+      "result": {
+        "active": "pane-support",
+        "sw": 1024,
+        "cw": 1024,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-profile-1024",
+      "pass": true,
+      "result": {
+        "active": "pane-profile",
+        "sw": 1024,
+        "cw": 1024,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-settings-1024",
+      "pass": true,
+      "result": {
+        "active": "pane-settings",
+        "sw": 1024,
+        "cw": 1024,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-overview-1440",
+      "pass": true,
+      "result": {
+        "active": "pane-overview",
+        "sw": 1440,
+        "cw": 1440,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-accounts-1440",
+      "pass": true,
+      "result": {
+        "active": "pane-accounts",
+        "sw": 1440,
+        "cw": 1440,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-trades-1440",
+      "pass": true,
+      "result": {
+        "active": "pane-trades",
+        "sw": 1440,
+        "cw": 1440,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-performance-1440",
+      "pass": true,
+      "result": {
+        "active": "pane-performance",
+        "sw": 1440,
+        "cw": 1440,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-calendar-1440",
+      "pass": true,
+      "result": {
+        "active": "pane-calendar",
+        "sw": 1440,
+        "cw": 1440,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-objectives-1440",
+      "pass": true,
+      "result": {
+        "active": "pane-objectives",
+        "sw": 1440,
+        "cw": 1440,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-risk-1440",
+      "pass": true,
+      "result": {
+        "active": "pane-risk",
+        "sw": 1440,
+        "cw": 1440,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-payouts-1440",
+      "pass": true,
+      "result": {
+        "active": "pane-payouts",
+        "sw": 1440,
+        "cw": 1440,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-certificates-1440",
+      "pass": true,
+      "result": {
+        "active": "pane-certificates",
+        "sw": 1440,
+        "cw": 1440,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-copilot-1440",
+      "pass": true,
+      "result": {
+        "active": "pane-copilot",
+        "sw": 1440,
+        "cw": 1440,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-support-1440",
+      "pass": true,
+      "result": {
+        "active": "pane-support",
+        "sw": 1440,
+        "cw": 1440,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-profile-1440",
+      "pass": true,
+      "result": {
+        "active": "pane-profile",
+        "sw": 1440,
+        "cw": 1440,
+        "outside": []
+      }
+    },
+    {
+      "name": "pane-settings-1440",
+      "pass": true,
+      "result": {
+        "active": "pane-settings",
+        "sw": 1440,
+        "cw": 1440,
+        "outside": []
+      }
+    },
+    {
+      "name": "account-switch",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "funded-account",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "chart-timeframe-data",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "notifications",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "theme-control",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "mobile-new-challenge",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "sidebar-collapse",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "focus-mode",
+      "pass": true,
+      "result": true
+    }
+  ],
+  "failed": [],
+  "errors": []
+}

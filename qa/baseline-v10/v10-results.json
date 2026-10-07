@@ -1,0 +1,151 @@
+{
+  "checks": [
+    {
+      "name": "three-clearly-labelled-demo-layouts",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "saved-profile-name-in-certificate",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "phase-two-black-gold",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "persistent-demo-safeguards",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "certificate-escape-close",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "reward-purple-gold-demo",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "profile-name-persists-after-reload",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "settings-shows-saved-name",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "single-word-name-no-invented-surname",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "active-account-details",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "no-real-signatures-or-verification-qr",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "certificate-CKC-102-320",
+      "pass": true,
+      "left": 21.000057220458984,
+      "right": 298.9999656677246,
+      "width": 320,
+      "sw": 276,
+      "cw": 276
+    },
+    {
+      "name": "certificate-CKC-103-320",
+      "pass": true,
+      "left": 21.064857482910156,
+      "right": 298.9351577758789,
+      "width": 320,
+      "sw": 276,
+      "cw": 276
+    },
+    {
+      "name": "certificate-CKC-102-390",
+      "pass": true,
+      "left": 21.00194549560547,
+      "right": 368.99803924560547,
+      "width": 390,
+      "sw": 346,
+      "cw": 346
+    },
+    {
+      "name": "certificate-CKC-103-390",
+      "pass": true,
+      "left": 21.00194549560547,
+      "right": 368.99803924560547,
+      "width": 390,
+      "sw": 346,
+      "cw": 346
+    },
+    {
+      "name": "certificate-CKC-102-430",
+      "pass": true,
+      "left": 21.005491256713867,
+      "right": 408.99450492858887,
+      "width": 430,
+      "sw": 386,
+      "cw": 386
+    },
+    {
+      "name": "certificate-CKC-103-430",
+      "pass": true,
+      "left": 21.011455535888672,
+      "right": 408.98859786987305,
+      "width": 430,
+      "sw": 386,
+      "cw": 386
+    },
+    {
+      "name": "certificate-CKC-102-768",
+      "pass": true,
+      "left": 41.00971984863281,
+      "right": 726.9903106689453,
+      "width": 768,
+      "sw": 684,
+      "cw": 684
+    },
+    {
+      "name": "certificate-CKC-103-768",
+      "pass": true,
+      "left": 41.06415557861328,
+      "right": 726.9357986450195,
+      "width": 768,
+      "sw": 684,
+      "cw": 684
+    },
+    {
+      "name": "certificate-CKC-102-1440",
+      "pass": true,
+      "left": 162.62757873535156,
+      "right": 1277.3724517822266,
+      "width": 1440,
+      "sw": 1116,
+      "cw": 1116
+    },
+    {
+      "name": "certificate-CKC-103-1440",
+      "pass": true,
+      "left": 161.56983947753906,
+      "right": 1278.430191040039,
+      "width": 1440,
+      "sw": 1116,
+      "cw": 1116
+    }
+  ],
+  "failed": [],
+  "errors": []
+}

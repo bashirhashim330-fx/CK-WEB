@@ -1,0 +1,20 @@
+{
+  "results": {
+    "checks": 39,
+    "failed": 0,
+    "errors": 0
+  },
+  "extended": {
+    "checks": 107,
+    "failed": 0,
+    "errors": 0
+  },
+  "routes": {
+    "checks": 11,
+    "failed": 0,
+    "errors": 0
+  },
+  "original-payout-files": "All seven originals are byte-for-byte unchanged from V7.",
+  "brand": "Original supplied JPEG retained; cropped WebP only removes black padding. SVG/CSS mark and favicon replaced with source-logo imagery.",
+  "mobile-device-scope": "Chromium touch/mobile emulation; physical Android/iPhone devices were not available."
+}

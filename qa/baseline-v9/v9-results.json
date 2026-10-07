@@ -1,0 +1,121 @@
+{
+  "checks": [
+    {
+      "name": "seven-decoded-photos",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "continuous-auto-motion",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "curved-path-rises-and-falls",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "tap-opens-full-screen",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "viewer-freezes-exact-position",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "close-resumes-motion",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "pause-control",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "every-photo-opens-on-one-tap",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "homepage-bounds-320",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "homepage-bounds-375",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "homepage-bounds-390",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "homepage-bounds-430",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "homepage-bounds-768",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "homepage-bounds-1024",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "homepage-bounds-1440",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "homepage-bounds-1920",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "footer-appearance-removed",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "reduced-motion-static-gallery",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "reduced-motion-photo-selection",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "website-menu-entry-removed",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "sign-out-kept",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "logo-no-css-black-box",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "dashboard-account-picker-kept",
+      "pass": true,
+      "result": true
+    }
+  ],
+  "failed": [],
+  "errors": []
+}

@@ -1,0 +1,65 @@
+{
+  "checks": [
+    {
+      "name": "login.html",
+      "pass": true,
+      "view": "auth-view",
+      "form": true
+    },
+    {
+      "name": "register.html",
+      "pass": true,
+      "view": "auth-view",
+      "form": true
+    },
+    {
+      "name": "forgot-password.html",
+      "pass": true,
+      "view": "auth-view",
+      "form": true
+    },
+    {
+      "name": "checkout.html",
+      "pass": true,
+      "view": "checkout-view",
+      "form": true
+    },
+    {
+      "name": "dashboard.html",
+      "pass": true,
+      "view": "dashboard-view",
+      "form": true
+    },
+    {
+      "name": "about.html",
+      "pass": true,
+      "view": "public-view",
+      "form": true
+    },
+    {
+      "name": "faq.html",
+      "pass": true,
+      "view": "public-view",
+      "form": true
+    },
+    {
+      "name": "home-to-checkout",
+      "pass": true
+    },
+    {
+      "name": "dashboard-calendar-mobile",
+      "pass": true
+    },
+    {
+      "name": "reduced-motion",
+      "pass": true
+    },
+    {
+      "name": "unique-ids",
+      "pass": true,
+      "duplicates": []
+    }
+  ],
+  "failed": [],
+  "errors": []
+}

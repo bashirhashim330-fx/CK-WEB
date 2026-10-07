@@ -1,0 +1,749 @@
+{
+  "checks": [
+    {
+      "name": "overview-320-dark",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "accounts-320-dark",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "trades-320-dark",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "performance-320-dark",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "calendar-320-dark",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "objectives-320-dark",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "risk-320-dark",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "payouts-320-dark",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "certificates-320-dark",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "copilot-320-dark",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "support-320-dark",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "profile-320-dark",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "settings-320-dark",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "overview-320-light",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "accounts-320-light",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "trades-320-light",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "performance-320-light",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "calendar-320-light",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "objectives-320-light",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "risk-320-light",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "payouts-320-light",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "certificates-320-light",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "copilot-320-light",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "support-320-light",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "profile-320-light",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "settings-320-light",
+      "pass": true,
+      "sw": 320,
+      "cw": 320,
+      "outside": []
+    },
+    {
+      "name": "overview-390-dark",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "accounts-390-dark",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "trades-390-dark",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "performance-390-dark",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "calendar-390-dark",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "objectives-390-dark",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "risk-390-dark",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "payouts-390-dark",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "certificates-390-dark",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "copilot-390-dark",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "support-390-dark",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "profile-390-dark",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "settings-390-dark",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "overview-390-light",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "accounts-390-light",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "trades-390-light",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "performance-390-light",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "calendar-390-light",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "objectives-390-light",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "risk-390-light",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "payouts-390-light",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "certificates-390-light",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "copilot-390-light",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "support-390-light",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "profile-390-light",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "settings-390-light",
+      "pass": true,
+      "sw": 390,
+      "cw": 390,
+      "outside": []
+    },
+    {
+      "name": "overview-768-dark",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "accounts-768-dark",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "trades-768-dark",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "performance-768-dark",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "calendar-768-dark",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "objectives-768-dark",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "risk-768-dark",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "payouts-768-dark",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "certificates-768-dark",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "copilot-768-dark",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "support-768-dark",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "profile-768-dark",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "settings-768-dark",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "overview-768-light",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "accounts-768-light",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "trades-768-light",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "performance-768-light",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "calendar-768-light",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "objectives-768-light",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "risk-768-light",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "payouts-768-light",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "certificates-768-light",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "copilot-768-light",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "support-768-light",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "profile-768-light",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "settings-768-light",
+      "pass": true,
+      "sw": 768,
+      "cw": 768,
+      "outside": []
+    },
+    {
+      "name": "overview-1440-dark",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "accounts-1440-dark",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "trades-1440-dark",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "performance-1440-dark",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "calendar-1440-dark",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "objectives-1440-dark",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "risk-1440-dark",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "payouts-1440-dark",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "certificates-1440-dark",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "copilot-1440-dark",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "support-1440-dark",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "profile-1440-dark",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "settings-1440-dark",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "overview-1440-light",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "accounts-1440-light",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "trades-1440-light",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "performance-1440-light",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "calendar-1440-light",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "objectives-1440-light",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "risk-1440-light",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "payouts-1440-light",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "certificates-1440-light",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "copilot-1440-light",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "support-1440-light",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "profile-1440-light",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "settings-1440-light",
+      "pass": true,
+      "sw": 1440,
+      "cw": 1440,
+      "outside": []
+    },
+    {
+      "name": "no-blank-frame-during-manual-photo-switches",
+      "pass": true,
+      "minVisiblePhotos": 1
+    },
+    {
+      "name": "touch-swipe-next",
+      "pass": true,
+      "start": "0",
+      "end": "1"
+    },
+    {
+      "name": "gallery-reduced-motion",
+      "pass": true
+    }
+  ],
+  "failed": [],
+  "errors": []
+}

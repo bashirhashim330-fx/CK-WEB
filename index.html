@@ -2,57 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CK Capital | Institutional Prop Trading & Trader Control Room</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='11' y1='13' x2='33' y2='31' gradientUnits='userSpaceOnUse'%3E%3Cstop offset='0' stop-color='%23FBF1D2'/%3E%3Cstop offset='.28' stop-color='%23F0D383'/%3E%3Cstop offset='.58' stop-color='%23D4AF37'/%3E%3Cstop offset='.82' stop-color='%23B4872C'/%3E%3Cstop offset='1' stop-color='%238C6423'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='44' height='44' rx='10.5' fill='%23131419'/%3E%3Cpath d='M19.2 14H15.4C13.5 14 12 15.6 12 17.5V26.5C12 28.4 13.5 30 15.4 30H19.2' stroke='url(%23g)' stroke-width='2.8' stroke-linecap='round' fill='none'/%3E%3Cpath d='M23.2 14V30' stroke='%23F7F1E4' stroke-width='2.8' stroke-linecap='round'/%3E%3Cpath d='M31.2 15L23.6 22L31.8 29' stroke='url(%23g)' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Geist+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="responsive.css" />
+  <link rel="stylesheet" href="homepage.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="assistant.css" />
+  <link rel="stylesheet" href="certificates.css" />
+  <link rel="stylesheet" href="public-polish.css" />
 </head>
 <body data-theme="dark">
+  <script>
+    (() => {
+      try {
+        const saved = JSON.parse(localStorage.getItem('CK_CAPITAL_V1_STATE') || 'null');
+        const preference = saved?.theme || 'dark';
+        const resolved = preference === 'system'
+          ? (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark')
+          : (preference === 'light' ? 'light' : 'dark');
+        document.body.dataset.theme = resolved;
+        document.body.dataset.themePreference = preference;
+        document.documentElement.style.colorScheme = resolved;
+      } catch (_) {}
+    })();
+  </script>
 
-  <!-- CK CAPITAL BRAND MARK — shared sprite, referenced via <use> everywhere -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <symbol id="ck-logo-symbol" viewBox="0 0 44 44">
-      <defs>
-        <radialGradient id="ckBadgeBg" cx="32%" cy="18%" r="95%">
-          <stop offset="0" stop-color="#1d2029"/>
-          <stop offset="55%" stop-color="#131419"/>
-          <stop offset="100%" stop-color="#08090c"/>
-        </radialGradient>
-        <linearGradient id="ckGold" x1="11" y1="13" x2="33" y2="31" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stop-color="#F4E9FF"/>
-          <stop offset="0.28" stop-color="#D6ADFF"/>
-          <stop offset="0.58" stop-color="#9147ED"/>
-          <stop offset="0.82" stop-color="#7530C9"/>
-          <stop offset="1" stop-color="#56209A"/>
-        </linearGradient>
-        <linearGradient id="ckBevel" x1="3" y1="3" x2="41" y2="41" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.6"/>
-          <stop offset="0.5" stop-color="#9147ED" stop-opacity="0.28"/>
-          <stop offset="1" stop-color="#000000" stop-opacity="0.5"/>
-        </linearGradient>
-        <radialGradient id="ckSheen" cx="50%" cy="50%" r="50%">
-          <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.4"/>
-          <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
-        </radialGradient>
-        <clipPath id="ckClip"><rect x="0.5" y="0.5" width="43" height="43" rx="10.5"/></clipPath>
-      </defs>
-      <rect width="44" height="44" rx="10.5" fill="url(#ckBadgeBg)"/>
-      <ellipse cx="13" cy="9" rx="16" ry="9" fill="url(#ckSheen)" clip-path="url(#ckClip)"/>
-      <rect x="0.5" y="0.5" width="43" height="43" rx="10.5" stroke="url(#ckBevel)" stroke-width="1"/>
-      <path d="M19.2 14H15.4C13.5 14 12 15.6 12 17.5V26.5C12 28.4 13.5 30 15.4 30H19.2" stroke="url(#ckGold)" stroke-width="2.6" stroke-linecap="round"/>
-      <path d="M23.2 14V30" stroke="#F7F1E4" stroke-width="2.6" stroke-linecap="round"/>
-      <path d="M31.2 15L23.6 22L31.8 29" stroke="url(#ckGold)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
-      <circle cx="31.8" cy="29" r="1.5" fill="url(#ckGold)"/>
-      <path d="M33.5 12L37.5 8" stroke="url(#ckGold)" stroke-width="1.4" stroke-linecap="round" opacity="0.85"/>
-      <circle cx="37.5" cy="8" r="1.3" fill="url(#ckGold)" opacity="0.9"/>
-    </symbol>
-  </svg>
-
-  <!-- ANIMATED AURORA BACKDROP — sits behind all content, drifts slowly -->
+<!-- ANIMATED AURORA BACKDROP — sits behind all content, drifts slowly -->
   <div class="aurora-bg" aria-hidden="true">
     <span class="aurora-blob blob-a"></span>
     <span class="aurora-blob blob-b"></span>
@@ -77,7 +57,7 @@
   <header class="main-header" id="header">
     <div class="container header-container">
       <div class="brand-monogram" data-nav="home">
-        <svg class="ck-logo-svg" viewBox="0 0 44 44" width="36" height="36" xmlns="http://www.w3.org/2000/svg"><use href="#ck-logo-symbol"/></svg>
+        <img class="h5-nav-logo" src="assets/real/brand/ck-capital-logo-transparent.webp" alt="CK Capital logo" width="36" height="36" />
         <span class="brand-wordmark">CK <span>Capital</span></span>
       </div>
 
@@ -100,7 +80,7 @@
         </button>
         <button class="btn btn-ghost" id="nav-btn-auth">Log In</button>
         <button class="btn btn-primary" id="nav-btn-portal" data-nav="challenges">Start Trading</button>
-        <button class="btn-hamburger" id="btn-hamburger" aria-label="Toggle navigation">
+        <button class="btn-hamburger" id="btn-hamburger" aria-label="Toggle navigation" aria-controls="mobile-drawer" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
@@ -113,712 +93,133 @@
   </div>
 
   <!-- MOBILE NAVIGATION DRAWER -->
-  <aside class="mobile-drawer" id="mobile-drawer">
-    <div class="drawer-header">
-      <div class="brand-monogram" data-nav="home">
-        <svg class="ck-logo-svg" viewBox="0 0 44 44" width="32" height="32" xmlns="http://www.w3.org/2000/svg"><use href="#ck-logo-symbol"/></svg>
-        <span class="brand-wordmark">CK <span>Capital</span></span>
-      </div>
-      <button class="drawer-close" id="btn-close-drawer">&times;</button>
-    </div>
-    <div class="drawer-links">
-      <button class="drawer-link" data-nav="home">Home</button>
-      <button class="drawer-link" data-nav="challenges">Challenge Terminal</button>
-      <button class="drawer-link" data-nav="how-it-works">How It Works</button>
-      <button class="drawer-link" data-nav="objectives">Trading Objectives</button>
-      <button class="drawer-link" data-nav="about">About Institution</button>
-      <button class="drawer-link" data-nav="faq">FAQ Knowledge Base</button>
-      <button class="drawer-link" id="drawer-link-cmdk">Quick Jump Search</button>
-      <hr class="drawer-divider" />
-      <button class="drawer-link" id="mobile-link-auth">Log In</button>
-      <button class="btn btn-primary btn-block" data-nav="challenges">Get Funded Now</button>
-    </div>
-  </aside>
+  <div id="public-menu-shade" hidden></div><aside class="mobile-drawer" id="mobile-drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="public-menu-title" inert>
+<div class="drawer-header"><div class="brand-monogram"><img src="assets/real/brand/ck-capital-logo-transparent.webp" alt="" width="35" height="35"><span class="brand-wordmark">CK <span>Capital</span></span></div><button class="drawer-close" id="btn-close-drawer" aria-label="Close navigation"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+<div class="public-menu-body"><div class="public-menu-intro"><small>FIND YOUR WAY</small><h2 id="public-menu-title">Your next chapter.</h2><p>Explore CK. Choose your path.</p></div><nav class="drawer-links" aria-label="Main website navigation"><button class="drawer-link public-menu-card" data-nav="home"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m3 10 9-7 9 7v10H3Z"/><path d="M9 20v-7h6v7"/></svg><span><strong>Home</strong><small>The CK experience</small></span><b aria-hidden="true">↗</b></button><button class="drawer-link public-menu-card" data-nav="challenges"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="m8 9 2 2 5-5M8 16h8"/></svg><span><strong>Challenges</strong><small>Find your route</small></span><b aria-hidden="true">↗</b></button><button class="drawer-link public-menu-card" data-nav="how-it-works"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M9 6h9v9M6 9v9h9"/></svg><span><strong>How it works</strong><small>Your next steps</small></span><b aria-hidden="true">↗</b></button><button class="drawer-link public-menu-card" data-nav="objectives"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg><span><strong>Objectives</strong><small>Know the framework</small></span><b aria-hidden="true">↗</b></button><button class="drawer-link public-menu-card" data-nav="about"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M17 5a3 3 0 0 1 0 6M17 14a5 5 0 0 1 4 5"/></svg><span><strong>Community</strong><small>A desk beyond yours</small></span><b aria-hidden="true">↗</b></button><button class="drawer-link public-menu-card" data-nav="faq"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9 9a3 3 0 0 1 6 0c0 2-3 2-3 4M12 17h.01"/></svg><span><strong>FAQs</strong><small>Answers, made clear</small></span><b aria-hidden="true">↗</b></button></nav><button class="drawer-link public-menu-search" id="drawer-link-cmdk"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg><span>Search the website</span><kbd>⌘K</kbd></button><section class="public-menu-access"><span>YOUR TRADER WORKSPACE</span><p>Already part of CK? Pick up where you left off.</p><button class="drawer-link" id="mobile-link-auth"><span>Trader login</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><button class="drawer-link" id="mobile-link-register">New here? Create an account</button></section><div class="public-menu-foot"><span>SIMULATED TRADING / CK CAPITAL</span><a href="https://discord.com/invite/hGSVx9CmS2" target="_blank" rel="noopener">Our community ↗</a></div></div></aside>
 
   <!-- ============================================================ -->
   <!-- VIEW 1: PUBLIC PORTAL (LANDING / HOME / CHALLENGE / CONTENT) -->
   <!-- ============================================================ -->
-  <main id="public-view" class="view-panel active">
-    
-    <!-- HERO SECTION -->
-    <section class="hero-section hero-video-section" id="hero-sec">
-      <div class="hero-video-backdrop" aria-hidden="true">
-        <video id="hero-wolf-video" class="hero-wolf-video" autoplay muted loop playsinline preload="auto" poster="assets/ck-wolf-poster.jpg">
-          <source src="assets/ck-wolf-hero.mp4" type="video/mp4">
-          <source src="assets/ck-wolf-hero.webm" type="video/webm">
-        </video>
-        <div class="hero-video-tint"></div>
-        <div class="hero-video-glow"></div>
-      </div>
-
-      <div class="container hero-video-content">
-        <div class="hero-content hero-overlay-copy">
-          <div class="badge-status">
-            <span class="status-pulse"></span>
-            CK CAPITAL • BUILT FOR DISCIPLINED TRADERS
-          </div>
-          <h1 class="hero-title">CAPITAL SHOULD FOLLOW <span class="gold-gradient-text">CONSISTENCY.</span></h1>
-          <p class="hero-subtitle">
-            Trade with a prop environment built around disciplined execution, transparent objectives, and a trader cockpit engineered to protect your edge.
-          </p>
-          <div class="hero-cta-group">
-            <button class="btn btn-primary btn-large" data-scroll="challenge-terminal">Explore Challenges</button>
-            <button class="btn btn-secondary btn-large" id="hero-btn-demo-portal">Enter Trader Portal</button>
-          </div>
-          <div class="hero-pills">
-            <div class="pill-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              Up to 100% Profit Split
-            </div>
-            <div class="pill-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              TradeLocker &amp; MT5
-            </div>
-            <div class="pill-item">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-              News Trading Allowed
-            </div>
-          </div>
-        </div>
-
-        <!-- Content card deliberately sits ON TOP of the character video, not beside it. -->
-        <div class="hero-stats-card glass-panel" aria-label="CK Capital key figures">
-          <div class="hero-stat">
-            <strong class="font-mono">$1.2M</strong>
-            <span>Maximum funding scale</span>
-          </div>
-          <div class="hero-stat">
-            <strong class="font-mono">100%</strong>
-            <span>Top profit split tier</span>
-          </div>
-          <div class="hero-stat">
-            <strong class="font-mono">MT5</strong>
-            <span>Trading platform</span>
-          </div>
-          <div class="hero-stat">
-            <strong class="font-mono">24/7</strong>
-            <span>Trader cockpit access</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TRUST STATS SECTION -->
-    <section class="trust-strip">
-      <div class="container trust-grid">
-        <div class="trust-stat">
-          <div class="stat-number font-mono">$1.2M</div>
-          <div class="stat-label">Max Funding Scale</div>
-        </div>
-        <div class="trust-stat">
-          <div class="stat-number font-mono">Up to 100%</div>
-          <div class="stat-label">Profit Split Tiers</div>
-        </div>
-        <div class="trust-stat">
-          <div class="stat-number font-mono">1 Day</div>
-          <div class="stat-label">Min. Trading Days</div>
-        </div>
-        <div class="trust-stat">
-          <div class="stat-number font-mono">0.0 Pips</div>
-          <div class="stat-label">Institutional Raw Spreads</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- POWERED BY / TECH STRIP -->
-    <section class="tech-strip" data-reveal>
-      <div class="container">
-        <p class="tech-strip-label">Execute On Institutional-Grade Infrastructure</p>
-        <div class="tech-badges-row">
-          <span class="tech-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M8 8h5M8 16h3"/></svg> TradeLocker</span>
-          <span class="tech-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg> MetaTrader 5</span>
-          <span class="tech-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg> TradingView Charts</span>
-          <span class="tech-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg> Crypto &amp; Wire Payouts</span>
-          <span class="tech-badge"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.9 7.5c-1.4-1-3.5-1.7-5.4-1.9l-.4 1c1 .2 2.1.6 3 1.1-2.6-1.1-6-1.1-8.7 0 .9-.5 2-.9 3-1.1l-.4-1c-1.9.2-4 .9-5.4 1.9-2 3-2.4 6.1-2.2 9 1.4 1.3 3.3 2.1 4.9 2.5l.7-1.2c-.8-.2-1.6-.6-2.3-1 .2.1.4.2.6.3 2.9 1.4 6.5 1.4 9.4 0 .2-.1.4-.2.6-.3-.7.4-1.5.8-2.3 1l.7 1.2c1.7-.4 3.5-1.2 4.9-2.5.3-3.5-.6-6.6-2.1-9z"/></svg> Discord Community</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- WHY CK CAPITAL (VALUE PROPOSITIONS) -->
-    <section class="section why-section" id="why-ck">
-      <div class="container">
-        <div class="section-header" data-reveal>
-          <span class="section-subtitle">BUILT BY PRACTITIONERS</span>
-          <h2 class="section-title">Institutional Conditions. Zero Hidden Friction.</h2>
-          <p class="section-desc">We dismantled the predatory traps common in retail prop firms. Trade with clean objectives engineered for risk managers.</p>
-        </div>
-        <div class="feature-grid bento-grid">
-          <div class="feature-card feature-card-featured glass-panel" data-reveal>
-            <div class="feat-icon feat-icon-lg">
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9147ED" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            </div>
-            <h3>Flexible Payout Cadence</h3>
-            <p>Request payouts on demand or bi-weekly. Profit allocations processed rapidly via Crypto, Bank Wire, or PayPal without artificial gatekeeping.</p>
-            <div class="feat-mini-visual">
-              <div class="fmv-row">
-                <span class="fmv-label">Last simulated payout</span>
-                <span class="fmv-amount text-success font-mono">+$4,200.00</span>
-              </div>
-              <div class="fmv-row">
-                <span class="fmv-label">Settlement rail</span>
-                <span class="fmv-chip font-mono">USDT · TRC20</span>
-              </div>
-              <div class="fmv-row">
-                <span class="fmv-label">Time to wallet</span>
-                <span class="fmv-chip font-mono text-gold">8h 14m</span>
-              </div>
-            </div>
-          </div>
-          <div class="feature-card glass-panel" data-reveal>
-            <div class="feat-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9147ED" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            </div>
-            <h3>News & Weekend Holding</h3>
-            <p>Trade tier-one macroeconomic volatility (NFP, CPI, FOMC) with confidence. Hold swing positions through weekend market closures on selected platforms.</p>
-          </div>
-          <div class="feature-card glass-panel" data-reveal>
-            <div class="feat-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9147ED" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-            </div>
-            <h3>Next-Gen Platforms</h3>
-            <p>Deploy algorithms or discretionary orders seamlessly across MT5 and TradeLocker with direct TradingView charting integration.</p>
-          </div>
-          <div class="feature-card glass-panel" data-reveal>
-            <div class="feature-card-inner">
-              <div class="feat-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9147ED" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
-              </div>
-              <h3>Discipline Scaling Matrix</h3>
-              <p>Gain access to larger simulated capital brackets automatically as you establish statistical consistency and prudent drawdown control.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CHALLENGE TERMINAL -->
-    <section class="section terminal-section" id="challenge-terminal">
-      <div class="container">
-        <div class="section-header" data-reveal>
-          <span class="section-subtitle">THE TRADING SPECIFICATION</span>
-          <h2 class="section-title">Configure Your Evaluation</h2>
-          <p class="section-desc">Select your preferred model, platform, and capital scale. Transparent risk criteria with no hidden breach triggers.</p>
-        </div>
-
-        <div class="config-terminal-wrapper glass-panel" data-reveal>
-          <!-- Model Selectors -->
-          <div class="terminal-ctrl-bar">
-            <div class="ctrl-group">
-              <label class="ctrl-label">Evaluation Model</label>
-              <div class="pill-selector" id="model-selector">
-                <button class="pill-btn active" data-model="2step">2-Step Evaluation</button>
-                <button class="pill-btn" data-model="1step">1-Step Fast Track</button>
-                <button class="pill-btn" data-model="instant">Instant Funding</button>
-              </div>
-            </div>
-
-            <div class="ctrl-group">
-              <label class="ctrl-label">Platform</label>
-              <div class="pill-selector" id="platform-selector">
-                <button class="pill-btn active" data-platform="TradeLocker">TradeLocker</button>
-                <button class="pill-btn" data-platform="MT5">MetaTrader 5</button>
-              </div>
-            </div>
-
-            <div class="ctrl-group">
-              <label class="ctrl-label">Execution Profile</label>
-              <div class="pill-selector" id="preference-selector">
-                <button class="pill-btn active" data-pref="Standard">Standard</button>
-                <button class="pill-btn" data-pref="Pro">Pro Raw Spreads</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Account Size Selector -->
-          <div class="capital-selector-row">
-            <label class="ctrl-label">Select Account Capital</label>
-            <div class="sizes-scroll-grid" id="sizes-container">
-              <!-- Rendered dynamically by JS -->
-            </div>
-          </div>
-
-          <!-- Dynamic Specification Details Card -->
-          <div class="challenge-spec-grid">
-            <div class="spec-col">
-              <div class="spec-metric">
-                <span class="m-title">Profit Target (Step 1)</span>
-                <span class="m-val font-mono" id="spec-target1">$500 (5%)</span>
-              </div>
-              <div class="spec-metric" id="spec-target2-wrap">
-                <span class="m-title">Profit Target (Step 2)</span>
-                <span class="m-val font-mono" id="spec-target2">$250 (2.5%)</span>
-              </div>
-              <div class="spec-metric">
-                <span class="m-title">Max Daily Loss</span>
-                <span class="m-val font-mono text-danger" id="spec-daily">$200 (2%)</span>
-              </div>
-            </div>
-
-            <div class="spec-col">
-              <div class="spec-metric">
-                <span class="m-title">Max Overall Loss</span>
-                <span class="m-val font-mono text-danger" id="spec-maxloss">$400 (4%)</span>
-              </div>
-              <div class="spec-metric">
-                <span class="m-title">Min Trading Days</span>
-                <span class="m-val font-mono" id="spec-mindays">1 Day</span>
-              </div>
-              <div class="spec-metric">
-                <span class="m-title">Trading Period</span>
-                <span class="m-val font-mono" id="spec-period">Unlimited</span>
-              </div>
-            </div>
-
-            <!-- Price and Buy Action Box -->
-            <div class="spec-col price-cta-box">
-              <span class="box-tag">INSTITUTIONAL SIMULATED PASS</span>
-              <div class="price-display font-mono">
-                <span class="curr">$</span><span class="amount" id="spec-price">53</span>
-              </div>
-              <div class="price-note">One-time registration fee. 100% refundable upon Qualified Analyst verification.</div>
-              <button class="btn btn-primary btn-block btn-large" id="btn-terminal-checkout">Enroll in Challenge</button>
-              <div class="guarantee-line font-mono">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                Stripe & Crypto Instant Provisioning
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Challenge Objective Comparison Table -->
-        <div class="table-card glass-panel" style="margin-top: 2rem;" data-reveal>
-          <div class="card-header">
-            <h3>Framework Rule Comparison Matrix</h3>
-          </div>
-          <div class="table-responsive">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Evaluation Tier</th>
-                  <th>Step 1 Target</th>
-                  <th>Step 2 Target</th>
-                  <th>Max Daily Drawdown</th>
-                  <th>Max Overall Loss</th>
-                  <th>Profit Split</th>
-                  <th>Leverage</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td data-label="Evaluation Tier"><strong>2-Step Standard</strong></td>
-                  <td data-label="Step 1 Target" class="font-mono text-gold">5%</td>
-                  <td data-label="Step 2 Target" class="font-mono text-gold">2.5%</td>
-                  <td data-label="Max Daily Drawdown" class="font-mono">2.0%</td>
-                  <td data-label="Max Overall Loss" class="font-mono">4.0%</td>
-                  <td data-label="Profit Split" class="font-mono">Up to 100%</td>
-                  <td data-label="Leverage" class="font-mono">1:100</td>
-                </tr>
-                <tr>
-                  <td data-label="Evaluation Tier"><strong>1-Step Fast Track</strong></td>
-                  <td data-label="Step 1 Target" class="font-mono text-gold">8%</td>
-                  <td data-label="Step 2 Target" class="font-mono text-muted">N/A</td>
-                  <td data-label="Max Daily Drawdown" class="font-mono">3.0%</td>
-                  <td data-label="Max Overall Loss" class="font-mono">6.0%</td>
-                  <td data-label="Profit Split" class="font-mono">Up to 100%</td>
-                  <td data-label="Leverage" class="font-mono">1:50</td>
-                </tr>
-                <tr>
-                  <td data-label="Evaluation Tier"><strong>Instant Capital</strong></td>
-                  <td data-label="Step 1 Target" class="font-mono text-muted">None</td>
-                  <td data-label="Step 2 Target" class="font-mono text-muted">None</td>
-                  <td data-label="Max Daily Drawdown" class="font-mono">3.0%</td>
-                  <td data-label="Max Overall Loss" class="font-mono">5.0%</td>
-                  <td data-label="Profit Split" class="font-mono">70% to 90%</td>
-                  <td data-label="Leverage" class="font-mono">1:30</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="table-scroll-hint">⟷ Swipe to see more</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW IT WORKS ROADMAP -->
-    <section class="section" id="how-it-works-sec">
-      <div class="container">
-        <div class="section-header" data-reveal>
-          <span class="section-subtitle">THE ROADMAP</span>
-          <h2 class="section-title">The Path to Qualified Analyst</h2>
-          <p class="section-desc">A structured career milestone progression built for professional traders.</p>
-        </div>
-
-        <div class="steps-grid">
-          <div class="step-card glass-panel" data-step="1" data-reveal>
-            <div class="step-badge font-mono">STEP 01</div>
-            <h4>Evaluation Phase</h4>
-            <p>Prove your edge in simulated market conditions. Respect daily drawdown thresholds and reach your reasonable target with disciplined position sizing.</p>
-            <ul class="step-checkmarks">
-              <li>1 Day Minimum Trading</li>
-              <li>Unlimited Trading Calendar</li>
-              <li>Simulated Execution Engine</li>
-            </ul>
-          </div>
-          <div class="step-card glass-panel" data-step="2" data-reveal>
-            <div class="step-badge font-mono">STEP 02</div>
-            <h4>Verification Phase</h4>
-            <p>Demonstrate that Phase 1 was not a statistical anomaly. Replicate your performance with half the profit target and identical risk limits.</p>
-            <ul class="step-checkmarks">
-              <li>Relaxed 2.5% Target</li>
-              <li>Strict Risk Engine Verification</li>
-              <li>Consistency Guardrails</li>
-            </ul>
-          </div>
-          <div class="step-card glass-panel highlighted-step" data-step="3" data-reveal>
-            <div class="step-badge gold-badge font-mono">STEP 03</div>
-            <h4>Qualified Analyst</h4>
-            <p>Receive your institutional simulated credentials. Trade capital up to $1.2M with up to 100% simulated profit splits and on-demand payout schedules.</p>
-            <ul class="step-checkmarks">
-              <li>Zero Profit Targets</li>
-              <li>100% Refund of Challenge Fees</li>
-              <li>Access to Scaling Plans</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TRADING OBJECTIVES SPECIFICATION DEEP DIVE -->
-    <section class="section" id="objectives-sec">
-      <div class="container">
-        <div class="section-header" data-reveal>
-          <span class="section-subtitle">RULES HEALTH ARCHITECTURE</span>
-          <h2 class="section-title">Precision Trading Objectives</h2>
-          <p class="section-desc">Every objective is transparently evaluated through our algorithmic risk monitor.</p>
-        </div>
-        <div class="objectives-interactive-grid">
-          <div class="obj-card glass-panel" data-obj="daily" data-reveal>
-            <div class="obj-header">
-              <span class="obj-indicator status-ok"></span>
-              <h4>Maximum Daily Loss</h4>
-            </div>
-            <p>Calculated based on balance or equity at 00:00 UTC. Never exceed your designated daily limit in active drawdown or closed losses.</p>
-            <div class="obj-foot">
-              <span class="font-mono text-gold">Strict Automatic Protection</span>
-            </div>
-          </div>
-          <div class="obj-card glass-panel" data-obj="overall" data-reveal>
-            <div class="obj-header">
-              <span class="obj-indicator status-ok"></span>
-              <h4>Maximum Total Drawdown</h4>
-            </div>
-            <p>Static limit anchored to your initial starting allocation. Gives traders room to navigate systemic market volatility without trailing stress.</p>
-            <div class="obj-foot">
-              <span class="font-mono text-gold">Static Calculation</span>
-            </div>
-          </div>
-          <div class="obj-card glass-panel" data-obj="news" data-reveal>
-            <div class="obj-header">
-              <span class="obj-indicator status-ok"></span>
-              <h4>High Impact News Trading</h4>
-            </div>
-            <p>Trade high-tier announcements without fear of arbitrary account terminations. We encourage trading market momentum with proper slippage tolerance.</p>
-            <div class="obj-foot">
-              <span class="font-mono text-gold">Fully Permitted</span>
-            </div>
-          </div>
-          <div class="obj-card glass-panel" data-obj="period" data-reveal>
-            <div class="obj-header">
-              <span class="obj-indicator status-ok"></span>
-              <h4>Trading Period</h4>
-            </div>
-            <p>Zero artificial time pressure. Take 3 days or 9 months to reach your evaluation target. Discipline should never be rushed by a ticking calendar.</p>
-            <div class="obj-foot">
-              <span class="font-mono text-gold">Unlimited Duration</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TOP PERFORMING ANALYSTS LEADERBOARD -->
-    <section class="section" id="leaderboard-sec">
-      <div class="container">
-        <div class="section-header" data-reveal>
-          <span class="section-subtitle">LIVE SIMULATED RANKINGS</span>
-          <h2 class="section-title">Top Performing Analysts</h2>
-          <p class="section-desc">A snapshot of this month's highest-consistency traders across all funded simulated tiers.</p>
-        </div>
-        <div class="leaderboard-panel glass-panel" data-reveal>
-          <div class="leaderboard-list" id="leaderboard-list">
-            <div class="lb-row rank-1">
-              <div class="lb-rank">01</div>
-              <div class="lb-trader"><div class="avatar-ph">MK</div><div><div class="name">Marcus K.</div><div class="tier">$200,000 &middot; Qualified Analyst</div></div></div>
-              <div class="lb-return">+18.4%</div>
-              <div class="lb-payout">$36,800 paid</div>
-            </div>
-            <div class="lb-row rank-2">
-              <div class="lb-rank">02</div>
-              <div class="lb-trader"><div class="avatar-ph">SL</div><div><div class="name">Sarah L.</div><div class="tier">$100,000 &middot; Qualified Analyst</div></div></div>
-              <div class="lb-return">+14.9%</div>
-              <div class="lb-payout">$14,900 paid</div>
-            </div>
-            <div class="lb-row rank-3">
-              <div class="lb-rank">03</div>
-              <div class="lb-trader"><div class="avatar-ph">DA</div><div><div class="name">David A.</div><div class="tier">$200,000 &middot; Qualified Analyst</div></div></div>
-              <div class="lb-return">+12.2%</div>
-              <div class="lb-payout">$24,400 paid</div>
-            </div>
-            <div class="lb-row">
-              <div class="lb-rank">04</div>
-              <div class="lb-trader"><div class="avatar-ph">RT</div><div><div class="name">Priya R.</div><div class="tier">$50,000 &middot; Qualified Analyst</div></div></div>
-              <div class="lb-return">+9.7%</div>
-              <div class="lb-payout">$4,850 paid</div>
-            </div>
-            <div class="lb-row">
-              <div class="lb-rank">05</div>
-              <div class="lb-trader"><div class="avatar-ph">JN</div><div><div class="name">Jonas N.</div><div class="tier">$100,000 &middot; Qualified Analyst</div></div></div>
-              <div class="lb-return">+8.1%</div>
-              <div class="lb-payout">$8,100 paid</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT SECTION -->
-    <section class="section" id="about-sec">
-      <div class="container about-grid" data-reveal>
-        <div class="about-text">
-          <span class="section-subtitle">OUR PHILOSOPHY</span>
-          <h2 class="section-title">Institutional Technology. Engineered for Risk Managers.</h2>
-          <p>
-            CK Capital was conceived on a singular premise: <strong>Capital should follow consistency.</strong>
-          </p>
-          <p>
-            Too many prop firms operate as disguised casinos, engineering obscure breach mechanisms to harvest registration fees. At CK Capital, we provide genuine institutional liquidity feeds, ultra-fast MT5 & TradeLocker infrastructure, and transparent risk monitors. When you execute with edge, we scale your potential.
-          </p>
-          <div class="philosophy-points">
-            <div class="phil-item">
-              <div class="phil-bullet">01</div>
-              <div>
-                <strong>Pure Simulated Environment</strong>
-                <p>Transparent simulated accounts modeled after Tier-1 liquidity bank books.</p>
-              </div>
-            </div>
-            <div class="phil-item">
-              <div class="phil-bullet">02</div>
-              <div>
-                <strong>Predictable Payout Engine</strong>
-                <p>On-demand withdrawals processed seamlessly via secure crypto and global banking channels.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="about-card glass-panel">
-          <div class="about-card-inner">
-            <div class="stat-pill font-mono">EST. 2024 UK PROPRIETARY STANDARDS</div>
-            <h3>Simulated Trading Environment</h3>
-            <p>Every account provided to participants represents simulated capital with real-time price quotes. Qualified Analysts receive performance allocations based on verifiable performance benchmarks.</p>
-            <div class="badge-quote font-mono">
-              "We prioritize the disciplined 1% over the reckless gamblers."
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ KNOWLEDGE BASE SECTION -->
-    <section class="section" id="faq-sec">
-      <div class="container">
-        <div class="section-header" data-reveal>
-          <span class="section-subtitle">KNOWLEDGE ARCHIVE</span>
-          <h2 class="section-title">Frequently Asked Questions</h2>
-          <p class="section-desc">Instant answers to everything regarding rules, platforms, payouts, and scaling.</p>
-        </div>
-
-        <div class="faq-search-wrap">
-          <input type="text" class="form-input" id="faq-search-input" placeholder="Search rules, payouts, platforms, or drawdown limits..." />
-        </div>
-
-        <div class="faq-accordion" id="faq-accordion-list">
-          <div class="faq-item glass-panel active" data-category="rules">
-            <button class="faq-q">
-              <span>What is the maximum daily loss and how is it calculated?</span>
-              <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-            <div class="faq-a">
-              <p>The daily drawdown is calculated based on the account equity or balance at 00:00 UTC (whichever is higher). For a $10,000 Standard account, the 2% daily loss limit is fixed at $200. If your floating equity dips below $9,800 at any point during that day, the system registers a daily loss breach.</p>
-            </div>
-          </div>
-
-          <div class="faq-item glass-panel" data-category="payouts">
-            <button class="faq-q">
-              <span>How quickly are Qualified Analyst payouts disbursed?</span>
-              <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-            <div class="faq-a">
-              <p>Qualified Analysts can request their first payout immediately after completing their designated holding cycle or reaching the standard payout milestone. Payments are dispatched within 24–48 business hours via USDT (TRC20/ERC20), direct bank wire, or PayPal.</p>
-            </div>
-          </div>
-
-          <div class="faq-item glass-panel" data-category="rules">
-            <button class="faq-q">
-              <span>Am I permitted to trade macroeconomic news and hold over weekends?</span>
-              <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-            <div class="faq-a">
-              <p>Yes. News trading is completely allowed on Standard evaluations. You may execute trades during NFP, CPI, and central bank announcements. Weekend holding is also supported on selected platforms like TradeLocker and MT5 Swing profiles.</p>
-            </div>
-          </div>
-
-          <div class="faq-item glass-panel" data-category="platforms">
-            <button class="faq-q">
-              <span>What trading platforms can I execute on?</span>
-              <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-            <div class="faq-a">
-              <p>We provide two institutional-grade execution environments: TradeLocker (featuring TradingView charts, on-chart risk calculation, and high-speed execution) and MetaTrader 5 (MT5), compatible with Expert Advisors (EAs) and specialized indicators.</p>
-            </div>
-          </div>
-
-          <div class="faq-item glass-panel" data-category="rules">
-            <button class="faq-q">
-              <span>Is there a time limit to complete evaluation phases?</span>
-              <svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-            <div class="faq-a">
-              <p>No. Both Phase 1 and Phase 2 feature unlimited trading duration. You can take as many trading days as needed to systematically reach the profit target without fear of artificial expiration dates.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TESTIMONIALS SLIDER SECTION -->
-    <section class="section testimonials-sec">
-      <div class="container">
-        <div class="section-header" data-reveal>
-          <span class="section-subtitle">TRADER STORIES</span>
-          <h2 class="section-title">Verified Analyst Experiences</h2>
-        </div>
-        <div class="testimonial-slider-wrap" data-reveal>
-          <div class="testimonial-cards" id="testimonial-track">
-            <div class="testi-card glass-panel">
-              <div class="testi-header">
-                <div class="avatar-ph">MK</div>
-                <div>
-                  <h4>Marcus K.</h4>
-                  <span class="text-gold font-mono">$100,000 Qualified Analyst</span>
-                </div>
-              </div>
-              <p class="testi-quote">"The 1-day minimum trading rule combined with unlimited time let me wait for the cleanest A+ setups on Gold. Requested my first payout of $4,820 via crypto and had the transaction hash in under 8 hours."</p>
-              <div class="testi-badge">Verified Payout</div>
-            </div>
-
-            <div class="testi-card glass-panel">
-              <div class="testi-header">
-                <div class="avatar-ph">SL</div>
-                <div>
-                  <h4>Sarah L.</h4>
-                  <span class="text-gold font-mono">$50,000 Qualified Analyst</span>
-                </div>
-              </div>
-              <p class="testi-quote">"TradeLocker's native TradingView charts make execution effortless. No slippage spikes during London open. CK Capital is by far the cleanest prop firm dashboard I've used."</p>
-              <div class="testi-badge">Verified Payout</div>
-            </div>
-
-            <div class="testi-card glass-panel">
-              <div class="testi-header">
-                <div class="avatar-ph">DA</div>
-                <div>
-                  <h4>David A.</h4>
-                  <span class="text-gold font-mono">$200,000 Qualified Analyst</span>
-                </div>
-              </div>
-              <p class="testi-quote">"Static overall drawdown is the game changer. In other firms, trailing drawdown eats you up while in floating profit. CK's rules are genuinely built for traders who know risk management."</p>
-              <div class="testi-badge">Verified Payout</div>
-            </div>
-          </div>
-          <div class="slider-controls">
-            <button class="slider-btn" id="btn-testi-prev" aria-label="Previous review">&#8592;</button>
-            <button class="slider-btn" id="btn-testi-next" aria-label="Next review">&#8594;</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CALL TO ACTION FINAL BANNER -->
-    <section class="section cta-section">
-      <div class="container">
-        <div class="cta-banner glass-panel" data-reveal>
-          <div class="cta-content">
-            <span class="box-tag">NEXT GENERATION PROP ENVIRONMENT</span>
-            <h2>Ready to Prove Your Discipline?</h2>
-            <p>Access high tier allocations, transparent risk controls, and automated payouts up to 100% split.</p>
-            <div class="cta-btns">
-              <button class="btn btn-primary btn-large" data-scroll="challenge-terminal">Choose Challenge</button>
-              <a href="https://discord.gg/ck-capital-1215616937665765386" target="_blank" rel="noopener" class="btn btn-secondary btn-large">Join Discord Community</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PUBLIC FOOTER -->
-    <footer class="main-footer">
-      <div class="container footer-grid">
-        <div class="footer-brand-col">
-          <div class="brand-monogram" data-nav="home">
-            <svg class="ck-logo-svg" viewBox="0 0 44 44" width="34" height="34" xmlns="http://www.w3.org/2000/svg"><use href="#ck-logo-symbol"/></svg>
-            <span class="brand-wordmark">CK <span>Capital</span></span>
-          </div>
-          <p class="footer-mission">
-            Capital should follow consistency. Trade with institutional discipline, scale simulated balances, and capture performance-based earnings.
-          </p>
-          <div class="social-links">
-            <a href="https://discord.gg/ck-capital-1215616937665765386" target="_blank" rel="noopener" class="social-icon" aria-label="Discord">Discord</a>
-            <a href="https://x.com/ckcapitaluk_" target="_blank" rel="noopener" class="social-icon" aria-label="X Twitter">X (Twitter)</a>
-            <a href="https://www.instagram.com/ckcapitaluk?stkn=MTMwN3NlaHoxbGR0bA==" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">Instagram</a>
-          </div>
-        </div>
-
-        <div class="footer-links-col">
-          <h5>TRADING TIERS</h5>
-          <button class="footer-link" data-nav="challenges">2-Step Evaluation</button>
-          <button class="footer-link" data-nav="challenges">1-Step Fast Track</button>
-          <button class="footer-link" data-nav="challenges">Instant Allocation</button>
-          <button class="footer-link" data-nav="objectives">Trading Objectives</button>
-          <button class="footer-link" data-nav="how-it-works">Scaling Plan</button>
-        </div>
-
-        <div class="footer-links-col">
-          <h5>COMPANY & SUPPORT</h5>
-          <button class="footer-link" data-nav="about">About Institution</button>
-          <button class="footer-link" data-nav="faq">FAQ Archive</button>
-          <button class="footer-link" id="footer-link-support">Contact Desk</button>
-          <button class="footer-link" id="footer-btn-login">Trader Portal</button>
-        </div>
-
-        <div class="footer-links-col">
-          <h5>LEGAL & POLICIES</h5>
-          <button class="footer-link modal-trigger" data-modal="modal-disclaimer">Simulated Trading Disclaimer</button>
-          <button class="footer-link modal-trigger" data-modal="modal-terms">Terms of Service</button>
-          <button class="footer-link modal-trigger" data-modal="modal-privacy">Privacy Policy</button>
-          <button class="footer-link modal-trigger" data-modal="modal-refund">Refund & Cancellation</button>
-        </div>
-      </div>
-
-      <!-- LEGAL DISCLAIMER BOTTOM -->
-      <div class="container footer-disclaimer">
-        <p>
-          <strong>DISCLAIMER & REGULATORY NOTICE:</strong> CK Capital (ckcapital.co.uk) provides simulated trading evaluation accounts designed to assess trading discipline and performance. All accounts provided are demo accounts with simulated funds in simulated market environments. Simulated trading does not involve actual financial market execution and carries no direct risk of market capital loss beyond challenge purchase fees. Hypothetical or simulated performance results have certain inherent limitations. Past performance is not indicative of future results.
-        </p>
-        <p class="copyright">&copy; 2026 CK Capital Ltd. All rights reserved. Registered UK Prototype Architecture.</p>
-      </div>
-    </footer>
-  </main>
-
+<main id="public-view" class="view-panel active home-v5">
+<section class="hero-section hero-video-section h5-hero" id="hero-sec">
+  <div class="hero-video-backdrop" aria-hidden="true"><video id="hero-wolf-video" class="hero-wolf-video" autoplay muted loop playsinline preload="metadata" poster="assets/ck-wolf-poster.jpg"><source src="assets/ck-wolf-hero.webm" type="video/webm"><source src="assets/ck-wolf-hero.mp4" type="video/mp4"></video><div class="hero-video-tint"></div><div class="hero-video-glow"></div></div>
+  <div class="container h5-hero-inner"><div class="h5-hero-copy"><div class="h5-eyebrow"><i></i> CK CAPITAL — BUILT FOR DISCIPLINED TRADERS</div><h1><span>Trade with</span><span class="h5-type-outline">instinct.</span><span>Execute with</span><span class="h5-type-accent">discipline.</span></h1><p>Your ambition. A clear set of objectives.<br>One connected journey to becoming a Qualified Analyst.</p><div class="h5-actions"><button class="h5-btn h5-btn-primary" data-scroll="challenge-terminal">Choose your challenge <span>↗</span></button></div><span class="h5-hero-disclosure">SIMULATED TRADING. REAL COMMITMENT.</span></div><div class="h5-hero-coordinate" aria-hidden="true">CK / 01<br>FOCUS. PRECISION. PROGRESSION.</div><button class="h5-explore" data-scroll="payout-proof" aria-label="Explore payout certificates"><span>↓</span> DISCOVER THE DIFFERENCE</button></div>
+</section>
+<div class="h5-condition-rail"><div class="container"><span>TradeLocker <b>+ MT5</b></span><i></i><span>Up to <b>100% profit split</b></span><i></i><span><b>News trading</b> allowed</span><i></i><span>Spreads from <b>0.0 pips</b></span></div></div>
+<section class="h5-proof home-section" id="payout-proof">
+<div class="container h5-proof-head" data-home-reveal><div class="h5-eyebrow">01 / THE CERTIFICATE COLLECTION</div><h2>Progress has a <em>paper trail.</em></h2><p>Original certificate posts from the CK community.<br>Open each one. Read the story behind the milestone.</p></div>
+<div class="h5-deck-environment"><div class="h5-proof-word" aria-hidden="true">EARNED.</div><div class="h5-deck" id="certificate-deck" role="region" aria-label="Seven payout photos automatically gliding along a curved path" tabindex="0"><button class="h5-certificate" data-deck-index="0" aria-label="Select Ski certificate, $804.00" style="--offset:0"><img src="assets/real/payouts/payout-ski-804.png" alt="Original CK Capital community certificate post: Ski, $804.00" loading="lazy" width="720" height="922"><span>ORIGINAL COMMUNITY POST ↗</span></button>
+<button class="h5-certificate" data-deck-index="1" aria-label="Select Mohamed Imran certificate, $950.00" style="--offset:1"><img src="assets/real/payouts/payout-mohamed-imran-950.png" alt="Original CK Capital community certificate post: Mohamed Imran, $950.00" loading="lazy" width="720" height="922"><span>ORIGINAL COMMUNITY POST ↗</span></button>
+<button class="h5-certificate" data-deck-index="2" aria-label="Select Saiuran Govender certificate, $319.00" style="--offset:2"><img src="assets/real/payouts/payout-saiuran-govender-319.png" alt="Original CK Capital community certificate post: Saiuran Govender, $319.00" loading="lazy" width="720" height="922"><span>ORIGINAL COMMUNITY POST ↗</span></button>
+<button class="h5-certificate" data-deck-index="3" aria-label="Select Troy certificate, $498.00" style="--offset:3"><img src="assets/real/payouts/payout-troy-498.png" alt="Original CK Capital community certificate post: Troy, $498.00" loading="lazy" width="720" height="922"><span>ORIGINAL COMMUNITY POST ↗</span></button>
+<button class="h5-certificate" data-deck-index="4" aria-label="Select Ed certificate, $193.00" style="--offset:-3"><img src="assets/real/payouts/payout-ed-193.png" alt="Original CK Capital community certificate post: Ed, $193.00" loading="lazy" width="720" height="922"><span>ORIGINAL COMMUNITY POST ↗</span></button>
+<button class="h5-certificate" data-deck-index="5" aria-label="Select Homen certificate, $255.00" style="--offset:-2"><img src="assets/real/payouts/payout-homen-255.png" alt="Original CK Capital community certificate post: Homen, $255.00" loading="lazy" width="720" height="922"><span>ORIGINAL COMMUNITY POST ↗</span></button>
+<button class="h5-certificate" data-deck-index="6" aria-label="Select Siryi21 certificate, $190.00" style="--offset:-1"><img src="assets/real/payouts/payout-siryi21-190.png" alt="Original CK Capital community certificate post: Siryi21, $190.00" loading="lazy" width="720" height="922"><span>ORIGINAL COMMUNITY POST ↗</span></button></div></div>
+<div class="container h5-deck-toolbar"><button class="h5-round-btn" id="proof-prev" aria-label="Previous certificate">←</button><button class="h5-proof-current" id="featured-proof-card" data-proof-open="0"><span id="featured-proof-name">Ski</span><strong id="featured-proof-amount">$804.00</strong><small>Open full screen ↗</small></button><button class="h5-round-btn" id="proof-next" aria-label="Next certificate">→</button></div><div class="h5-deck-dots" aria-label="Select certificate"><button data-proof-index="0" aria-label="Certificate 1: Ski" aria-pressed="true"></button><button data-proof-index="1" aria-label="Certificate 2: Mohamed Imran" aria-pressed="false"></button><button data-proof-index="2" aria-label="Certificate 3: Saiuran Govender" aria-pressed="false"></button><button data-proof-index="3" aria-label="Certificate 4: Troy" aria-pressed="false"></button><button data-proof-index="4" aria-label="Certificate 5: Ed" aria-pressed="false"></button><button data-proof-index="5" aria-label="Certificate 6: Homen" aria-pressed="false"></button><button data-proof-index="6" aria-label="Certificate 7: Siryi21" aria-pressed="false"></button></div>
+<div class="h6-slideshow-control"><button id="proof-autoplay-toggle" type="button" aria-pressed="true">Pause certificate slideshow</button><span class="h9-motion-hint">Tap a photo to open full screen</span></div>
+<div class="container h5-stated-total"><span>CK CAPITAL STATED TOTAL PAYOUTS</span><strong>$1,385,127<span>.63</span></strong><small>Company-stated figure. Not independently verified.</small></div>
+</section>
+<section class="h5-payout-moment home-section" id="payout-moment"><div class="container h5-moment-grid"><div class="h5-moment-copy" data-home-reveal><div class="h5-eyebrow">02 / A MOMENT WORTH KEEPING</div><h2>More than a number.<br><em>A milestone.</em></h2><p>A certificate is a chapter in someone’s trading journey. Explore the original post, in full, without rewriting the story.</p><button class="h5-btn h5-btn-dark" data-proof-open="0">Inspect the original <span>↗</span></button><div class="h5-source-note">REAL CERTIFICATE / DESIGNED DEVICE PRESENTATION<br>No additional payment confirmation is implied.</div></div>
+<div class="h5-payout-scene" data-depth-scene><div class="h5-orbital-ring ring-one" aria-hidden="true"></div><div class="h5-orbital-ring ring-two" aria-hidden="true"></div><div class="h5-payout-phone h5-phone" data-depth="0.7"><div class="h5-phone-island" aria-hidden="true"></div><div class="h5-phone-screen"><div class="h5-phone-brand"><img src="assets/real/brand/ck-capital-logo-transparent.webp" alt="">CK CAPITAL</div><img class="h5-source-image" src="assets/real/payouts/payout-ski-804.png" alt="Ski’s original $804 CK Capital certificate post" loading="lazy"><div class="h5-phone-bottom">ORIGINAL COMMUNITY POST <span>↗</span></div></div><i class="h5-home-indicator" aria-hidden="true"></i></div><div class="h5-certificate-note" data-depth="1.1"><span class="h5-note-icon">↗</span><div><small>CERTIFICATE SPOTLIGHT</small><strong>$804.00</strong><span>Amount shown in the source asset</span></div></div><div class="h5-scene-caption">01 — SKI / COMMUNITY CERTIFICATE</div></div></div></section>
+<section class="h5-product home-section" id="objectives-sec"><div class="container h5-product-intro" data-home-reveal><div><div class="h5-eyebrow">03 / THE TRADER CONTROL ROOM</div><h2>The whole picture.<br><em>Not just the balance.</em></h2></div><p>Objectives. Account health. Progress.<br>The CK interface, brought into focus.</p></div>
+<div class="container h5-product-scene" data-depth-scene><div class="h5-product-grid" aria-hidden="true"></div><div class="h5-environment-label">CK CAPITAL<br>TRADER WORKSPACE / MOBILE VIEWS</div><div class="h5-laptop" data-depth="0.4"><div class="h5-laptop-lid"><div class="h5-laptop-camera" aria-hidden="true"></div><div class="h5-laptop-screen"><div class="h5-workspace-bar"><span>CK CAPITAL / INTERFACE STUDY</span><span>OVERVIEW + OBJECTIVES</span></div><div class="h5-dual-screen"><button data-product-open="0" aria-label="Expand dashboard overview"><img src="assets/real/product/dashboard-overview-mobile.png" alt="Original CK Capital mobile dashboard overview" loading="lazy"></button><button data-product-open="1" aria-label="Expand dashboard objectives"><img src="assets/real/product/dashboard-objectives-mobile.png" alt="Original CK Capital mobile objectives tracker" loading="lazy"></button></div></div><span class="h5-laptop-label">CK CAPITAL</span></div><div class="h5-laptop-base" aria-hidden="true"><div class="h5-keyboard"></div><div class="h5-trackpad"></div></div><div class="h5-laptop-edge" aria-hidden="true"></div></div>
+<div class="h5-product-phone h5-phone" data-depth="0.9"><div class="h5-phone-island" aria-hidden="true"></div><button class="h5-phone-screen" data-product-open="2" aria-label="Expand CK homepage mobile reference"><img class="h5-source-image" src="assets/real/product/homepage-wolf-mobile-reference.png" alt="Original CK Capital mobile homepage reference" loading="lazy"></button><i class="h5-home-indicator" aria-hidden="true"></i></div><div class="h5-interface-fragment" data-depth="1.2"><span>FROM THE ORIGINAL OBJECTIVES VIEW</span><div><img src="assets/real/product/dashboard-objectives-mobile.png" alt="Detail of the supplied objectives screenshot" loading="lazy"></div></div><span class="h5-product-floor-label">OVERVIEW / OBJECTIVES / MOBILE EXPERIENCE<br>Original CK interface views in a designed device composition.</span></div>
+<div class="container h5-product-control"><span>Explore the source views</span><div><button data-product-open="0">Overview ↗</button><button data-product-open="1">Objectives ↗</button><button data-product-open="2">Mobile experience ↗</button></div></div></section>
+<section class="h6-platforms home-section" id="platform-choice"><div class="container"><div class="h6-platform-head" data-home-reveal><div class="h5-eyebrow">YOUR WORKSPACE / YOUR CHOICE</div><h2>Two platforms.<br><em>One clear plan.</em></h2><p>Choose the workspace that fits your process. Your challenge specification stays in view.</p></div><div class="h6-platform-grid">
+<article class="h6-platform-card" data-home-reveal><div class="h6-card-head"><span>01 / TRADELOCKER</span><button class="h5-round-btn" data-use-platform="TradeLocker" aria-label="Choose TradeLocker">↗</button></div><h3>A connected<br>trading workspace.</h3><div class="h6-mini-laptop" aria-hidden="true"><div><img src="assets/real/product/dashboard-overview-mobile.png" alt="" loading="lazy"></div><i></i></div><span class="h6-card-caption">CK ACCOUNT VIEW / PRODUCT COMPOSITION</span><button class="h6-card-link" data-use-platform="TradeLocker">Choose TradeLocker <span>→</span></button></article>
+<article class="h6-platform-card h6-platform-mt5" data-home-reveal><div class="h6-card-head"><span>02 / METATRADER 5</span><button class="h5-round-btn" data-use-platform="MT5" aria-label="Choose MetaTrader 5">↗</button></div><h3>A familiar platform.<br>A focused routine.</h3><div class="h6-market-object"><img src="assets/design/market-sculpture.webp" alt="Abstract market sculpture; decorative artwork, not performance data" loading="lazy"></div><span class="h6-card-caption">MARKET STUDY / DECORATIVE ARTWORK</span><button class="h6-card-link" data-use-platform="MT5">Choose MetaTrader 5 <span>→</span></button></article>
+<aside class="h6-offer-card" data-home-reveal><div class="h6-card-head"><span>EVALUATION OFFER</span><i aria-hidden="true"></i></div><strong>15<sup>%</sup></strong><h3>A little more room<br>for your next move.</h3><p>Use CONSISTENCY for 15% off an evaluation account at checkout.</p><button class="h6-copy-code" id="copy-home-offer" aria-label="Copy CONSISTENCY coupon"><span>CODE</span><b>CONSISTENCY</b><i aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg></i></button><span class="h6-copy-status" id="home-offer-status" role="status"></span><button class="h5-btn h5-btn-primary" data-scroll="challenge-terminal">Configure your challenge <span>↗</span></button><small>Existing evaluation offer. Apply the code at checkout.</small></aside>
+</div></div></section>
+<section class="cfg-configurator home-section" id="challenge-terminal">
+<div class="container">
+<div class="cfg-config-head reveal-up">
+<div><div class="cfg-section-label">04 / CHOOSE YOUR CHALLENGE</div><h2>Your capital.<br/>Your configuration.</h2></div>
+<p>Three routes. One clear specification. Choose the account that fits the way you trade.</p>
+</div>
+<div class="cfg-terminal-shell reveal-up">
+<div class="cfg-terminal-controls">
+<div class="cfg-control-block">
+<label class="ctrl-label">01 / Evaluation route</label>
+<div class="pill-selector cfg-segmented" id="model-selector">
+<button class="pill-btn active" data-model="2step">2-Step</button>
+<button class="pill-btn" data-model="1step">1-Step</button>
+<button class="pill-btn" data-model="instant">Instant</button>
+</div>
+</div>
+<div class="cfg-control-block">
+<label class="ctrl-label">02 / Account allocation</label>
+<div class="sizes-scroll-grid cfg-size-grid" id="sizes-container"></div>
+</div>
+<div class="cfg-control-pair">
+<div class="cfg-control-block">
+<label class="ctrl-label">03 / Platform</label>
+<div class="pill-selector cfg-segmented" id="platform-selector">
+<button class="pill-btn active" data-platform="TradeLocker">TradeLocker</button>
+<button class="pill-btn" data-platform="MT5">MT5</button>
+</div>
+</div>
+<div class="cfg-control-block">
+<label class="ctrl-label">04 / Preference</label>
+<div class="pill-selector cfg-segmented" id="preference-selector">
+<button class="pill-btn active" data-pref="Standard">Standard</button>
+<button class="pill-btn" data-pref="Pro">Pro</button>
+</div>
+</div>
+</div>
+</div>
+<aside class="cfg-terminal-output">
+<div class="cfg-allocation"><span>SIMULATED ACCOUNT ALLOCATION</span><strong id="allocation-display">$10,000</strong><div class="cfg-allocation-line" aria-hidden="true"><i></i></div></div><div class="cfg-output-head"><span>LIVE SPECIFICATION</span><i></i><b>READY</b></div>
+<div class="cfg-spec-list">
+<div><span>Phase 1 target</span><strong id="spec-target1">$500 (5%)</strong></div>
+<div id="spec-target2-wrap"><span>Phase 2 target</span><strong id="spec-target2">$250 (2.5%)</strong></div>
+<div><span>Daily loss limit</span><strong id="spec-daily">$200 (2%)</strong></div>
+<div><span>Maximum loss</span><strong id="spec-maxloss">$400 (4%)</strong></div>
+<div><span>Trading period</span><strong id="spec-period">Unlimited</strong></div>
+<div><span>Profit split</span><strong>Up to 100%</strong></div>
+</div>
+<div class="cfg-price-lockup"><span>Evaluation fee</span><strong>$<b id="spec-price">53</b></strong></div>
+<button class="btn btn-primary btn-large btn-block" id="btn-terminal-checkout">Continue to Checkout <span>→</span></button>
+<small>Simulated trading environment. Rewards and eligibility are subject to CK Capital terms.</small>
+</aside>
+</div>
+</div>
+</section>
+<section class="h5-editorial home-section" id="why-ck"><div class="container h5-editorial-heading" data-home-reveal><div class="h5-eyebrow">05 / BUILT AROUND YOUR PROCESS</div><h2>Less friction.<br><em>More conviction.</em></h2></div><div class="h5-sculpture-composition"><img src="assets/design/market-sculpture.webp" alt="Decorative titanium market-inspired sculpture; not trading performance data" loading="lazy" width="1264" height="848"><div class="container h5-sculpture-copy" data-home-reveal><span>01 / THE CONDITIONS</span><h3>Trade the moment.<br>Keep your focus.</h3><p>News trading, spreads from 0.0 pips, and a choice of TradeLocker or MT5. Review the rules for your selected challenge before you trade.</p><button class="h5-text-btn" data-scroll="challenge-terminal">See your specification <span>↗</span></button></div><span class="h5-artwork-label">ABSTRACT MARKET STUDY / DECORATIVE ARTWORK</span></div>
+<div class="container h5-editorial-row"><div class="h5-profit-sculpture" aria-hidden="true"><div class="h5-metal-disc disc-back"></div><div class="h5-metal-disc disc-front"><img src="assets/real/brand/ck-capital-logo-transparent.webp" alt="CK Capital logo"></div><div class="h5-profit-type">100<sup>%</sup></div><span class="h5-visual-caption">UP TO / SIMULATED PROFIT SPLIT</span></div><div class="h5-editorial-copy" data-home-reveal><div class="h5-eyebrow">02 / YOUR PROGRESSION</div><h3>Your process.<br>Your potential.</h3><p>Up to 100% simulated profit split, flexible payout cycles, and reset or top-up options. A framework designed around your next chapter—not a promise of returns.</p><button class="h5-btn h5-btn-dark" data-scroll="challenge-terminal">Find your route <span>↗</span></button></div></div></section>
+<section class="h5-risk-story home-section"><div class="container h5-risk-grid"><div data-home-reveal><div class="h5-eyebrow">THE PRODUCT, IN DETAIL</div><h2>Keep your<br><em>risk in view.</em></h2><p>A clear view of your targets and boundaries. Track the objectives that shape your next trading session.</p><button class="h5-btn h5-btn-primary" data-product-open="1">Explore objectives <span>↗</span></button></div><div class="h5-tablet-scene" data-depth-scene><div class="h5-outline-orbit" aria-hidden="true"></div><div class="h5-tablet" data-depth="0.8"><button data-product-open="1" aria-label="View original objectives interface"><img src="assets/real/product/dashboard-objectives-mobile.png" alt="CK Capital objectives mobile interface" loading="lazy"></button></div><div class="h5-tablet-tag" data-depth="1.1">OBJECTIVES<br><b>One clear perspective.</b></div></div></div></section>
+<section class="h6-benefits home-section" id="operating-principles"><div class="container h6-benefit-head" data-home-reveal><div><div class="h5-eyebrow">THE DETAILS THAT MAKE A DIFFERENCE</div><h2>Built around<br><em>the way you trade.</em></h2></div><div class="h6-benefit-controls"><button class="h5-round-btn" data-feature-step="-1" aria-label="Previous feature card">←</button><button class="h5-round-btn" data-feature-step="1" aria-label="Next feature card">→</button></div></div><div class="container"><div class="h6-benefit-track" tabindex="0" aria-label="Swipeable CK feature cards">
+<article class="h6-benefit-card" data-home-reveal><span>01 / YOUR PROCESS</span><div class="h6-news-sculpture" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><b></b></div><h3>Trade the moment.</h3><p>News trading is an available CK feature. Review the rules for your selected challenge before trading high-impact events.</p><button class="h6-feature-link" data-scroll="challenge-terminal">Read your specification ↗</button></article>
+<article class="h6-benefit-card h6-benefit-reset" data-home-reveal><span>02 / YOUR NEXT CHAPTER</span><div class="h6-reset-sculpture" aria-hidden="true"><i></i><b><svg width="66" height="66" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M79 33a32 32 0 1 0 2 30"/><path d="M79 16v18H61"/></svg></b></div><h3>Reset. Top up. Continue.</h3><p>Explore CK’s existing reset and top-up options. Get clear on the terms before deciding how to continue your journey.</p><button class="h6-feature-link" data-nav="faq">Explore the FAQs ↗</button></article>
+<article class="h6-benefit-card" data-home-reveal><span>03 / YOUR PROGRESSION</span><div class="h6-proof-sculpture" aria-hidden="true"><img src="assets/real/payouts/payout-mohamed-imran-950.png" alt="" loading="lazy"><img src="assets/real/payouts/payout-troy-498.png" alt="" loading="lazy"></div><h3>Milestones worth keeping.</h3><p>Flexible payout cycles, subject to CK’s terms. See the original community certificate posts without additional promises.</p><button class="h6-feature-link" data-scroll="payout-proof">Explore the certificate collection ↗</button></article>
+</div><div class="h6-benefit-progress" aria-hidden="true"><i></i></div><span class="h6-swipe-hint">SWIPE OR USE THE ARROWS TO EXPLORE</span></div></section>
+<section class="h5-journey home-section" id="how-it-works-sec"><div class="container"><div class="h5-journey-head" data-home-reveal><div class="h5-eyebrow">06 / THE PATH FORWARD</div><h2>Make the next move.<br><em>Then the next.</em></h2></div><div class="h5-journey-track" data-home-reveal><div class="h5-journey-connector" aria-hidden="true"><span></span></div><article><b>01</b><span>CHOOSE</span><h3>Set your challenge.</h3><p>Select your route, allocation and platform. Know the specification before checkout.</p><button class="h5-text-btn" data-scroll="challenge-terminal">Configure now ↗</button></article><article><b>02</b><span>EXECUTE</span><h3>Trade your objectives.</h3><p>Stay within the limits. Track your progress. Build consistency one session at a time.</p></article><article><b>03</b><span>PROGRESS</span><h3>Continue your journey.</h3><p>Complete the evaluation to progress toward a Qualified Analyst Account in CK’s simulated environment.</p></article></div></div></section>
+<section class="h5-community home-section" id="about-sec"><div class="container h5-community-grid"><div class="h5-community-stage" data-depth-scene><div class="h5-community-halo" aria-hidden="true"></div><div class="h5-community-window" data-depth="0.7"><div class="h5-browser-bar"><span><i></i><i></i><i></i></span><b>CK CAPITAL / DISCORD</b><span>↗</span></div><img src="assets/real/community/discord-community.png" alt="Original CK Capital Discord server screenshot" loading="lazy" width="720" height="714"></div><div class="h5-community-tag" data-depth="1.1"><svg width="26" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 5a17 17 0 0 0-4-1l-.5 1a17 17 0 0 0-5 0L9 4a17 17 0 0 0-4 1C2.5 9 2 13 3 17a17 17 0 0 0 5 3l1-2-2-1 1-.5a14 14 0 0 0 8 0l1 .5-2 1 1 2a17 17 0 0 0 5-3c1-4 .5-8-2-12ZM8.5 14c-1 0-1.5-1-1.5-2s.5-2 1.5-2 1.5 1 1.5 2-.5 2-1.5 2Zm7 0c-1 0-1.5-1-1.5-2s.5-2 1.5-2 1.5 1 1.5 2-.5 2-1.5 2Z"/></svg><span>THE CK COMMUNITY<b>A place to connect.</b></span><i aria-hidden="true"></i></div><span class="h5-community-source">ORIGINAL DISCORD SERVER VIEW / NOT PAYMENT CONFIRMATION</span></div><div class="h5-community-copy" data-home-reveal><div class="h5-eyebrow">07 / A DESK BEYOND YOUR DESK</div><h2>Independent trading.<br><em>Shared ambition.</em></h2><p>Trader conversations, community activity and professional Discord support. Your trading journey doesn’t have to be a solo one.</p><a class="h5-btn h5-btn-dark" href="https://discord.com/invite/hGSVx9CmS2" target="_blank" rel="noopener">Enter the CK community <span>↗</span></a><div class="h5-community-links"><button data-nav="faq">Explore the FAQ →</button><span>Support stated as 24/7, Monday–Friday.</span></div></div></div></section>
+<section class="h5-archive home-section" id="certificate-wall"><div class="container h5-archive-head" data-home-reveal><div><div class="h5-eyebrow">THE FULL COLLECTION</div><h2>Every post.<br><em>In its own words.</em></h2></div><p>Seven community posts.<br>Drag, swipe or open the originals.</p></div><div class="h5-archive-viewport" tabindex="0" aria-label="Scrollable original certificate archive"><div class="h5-archive-track"><button data-proof-open="0" aria-label="View original Ski certificate"><img src="assets/real/payouts/payout-ski-804.png" alt="Ski certificate post, $804.00" loading="lazy"><span><b>Ski</b>$804.00 ↗</span></button>
+<button data-proof-open="1" aria-label="View original Mohamed Imran certificate"><img src="assets/real/payouts/payout-mohamed-imran-950.png" alt="Mohamed Imran certificate post, $950.00" loading="lazy"><span><b>Mohamed Imran</b>$950.00 ↗</span></button>
+<button data-proof-open="2" aria-label="View original Saiuran Govender certificate"><img src="assets/real/payouts/payout-saiuran-govender-319.png" alt="Saiuran Govender certificate post, $319.00" loading="lazy"><span><b>Saiuran Govender</b>$319.00 ↗</span></button>
+<button data-proof-open="3" aria-label="View original Troy certificate"><img src="assets/real/payouts/payout-troy-498.png" alt="Troy certificate post, $498.00" loading="lazy"><span><b>Troy</b>$498.00 ↗</span></button>
+<button data-proof-open="4" aria-label="View original Ed certificate"><img src="assets/real/payouts/payout-ed-193.png" alt="Ed certificate post, $193.00" loading="lazy"><span><b>Ed</b>$193.00 ↗</span></button>
+<button data-proof-open="5" aria-label="View original Homen certificate"><img src="assets/real/payouts/payout-homen-255.png" alt="Homen certificate post, $255.00" loading="lazy"><span><b>Homen</b>$255.00 ↗</span></button>
+<button data-proof-open="6" aria-label="View original Siryi21 certificate"><img src="assets/real/payouts/payout-siryi21-190.png" alt="Siryi21 certificate post, $190.00" loading="lazy"><span><b>Siryi21</b>$190.00 ↗</span></button></div></div><div class="container h5-archive-footer"><span>01 — 07 / ORIGINAL CK COMMUNITY ASSETS</span><div><button class="h5-round-btn" data-archive-step="-1" aria-label="Scroll archive left">←</button><button class="h5-round-btn" data-archive-step="1" aria-label="Scroll archive right">→</button></div></div></section>
+<section class="h5-faq home-section" id="faq-sec">
+<div class="container h5-faq-grid">
+<div class="h5-faq-intro reveal-up"><div class="h5-section-label">08 / BEFORE YOU BEGIN</div><h2>Know before you trade.</h2><p>Clear answers based on CK Capital’s published product information.</p></div>
+<div class="faq-accordion">
+<article class="faq-item glass-panel active"><button class="faq-q">Is CK Capital live-money trading?<span class="faq-icon">+</span></button><div class="faq-a"><p>No. CK Capital describes its accounts, balances and performance values as simulated/demo trading. Rewards remain subject to its terms and conditions.</p></div></article>
+<article class="faq-item glass-panel"><button class="faq-q">Which platforms are available?<span class="faq-icon">+</span></button><div class="faq-a"><p>The published challenge selector includes TradeLocker and MetaTrader 5.</p></div></article>
+<article class="faq-item glass-panel"><button class="faq-q">Can traders trade news?<span class="faq-icon">+</span></button><div class="faq-a"><p>CK Capital lists news trading as an available feature. Traders should review the latest help-centre terms before trading high-impact events.</p></div></article>
+<article class="faq-item glass-panel"><button class="faq-q">What happens after the evaluation?<span class="faq-icon">+</span></button><div class="faq-a"><p>CK Capital states that traders who complete the objectives can continue with a Qualified Analyst Account in its simulated environment.</p></div></article>
+</div>
+</div>
+</section>
+<section class="h5-final" id="community-sec"><div class="h5-final-media" aria-hidden="true"></div><div class="container h5-final-inner" data-home-reveal><img class="h5-final-logo" src="assets/real/brand/ck-capital-logo-transparent.webp" alt="CK Capital logo" loading="lazy"><div class="h5-eyebrow">FOCUS. PRECISION. PROGRESSION.</div><h2>Your next chapter.<br><em>Your next move.</em></h2><div class="h5-actions"><button class="h5-btn h5-btn-primary" data-scroll="challenge-terminal">Explore challenges <span>↗</span></button><button class="h5-text-btn" id="footer-btn-login">Trader login <span>↗</span></button></div><small>A simulated trading environment. No guaranteed outcomes.</small></div></section>
+<footer class="main-footer h5-footer">
+<div class="container">
+<div class="h5-footer-top"><div class="h5-footer-brand"><img class="h5-footer-logo" src="assets/real/brand/ck-capital-logo-transparent.webp" alt="CK Capital logo" loading="lazy" width="55" height="55"><strong>CK <em>Capital</em></strong><p>A simulated trading environment built around consistency, transparency and progression.</p></div><div class="h5-footer-nav"><div><b>Explore</b><button data-nav="challenges">Challenges</button><button data-nav="how-it-works">How it works</button><button data-nav="objectives">Trading objectives</button></div><div><b>Company</b><button data-nav="about">Community</button><button data-nav="faq">FAQs</button><button id="footer-link-support">Support desk</button></div><div><b>Access</b><button id="footer-btn-login-secondary">Trader login</button><a href="https://discord.com/invite/hGSVx9CmS2" rel="noopener" target="_blank">Discord</a></div></div></div>
+<div class="h5-footer-disclosure"><p><b>RISK WARNING:</b> Trading financial instruments involves significant risk of loss. Past performance is not indicative of future results. All accounts, balances, profits and certificates shown relate to simulated trading results and do not guarantee future profitability.</p><span>© 2026 CK Capital. Simulated trading environment.</span></div>
+</div>
+</footer></main>
+<div class="modal-backdrop h5-media-modal" id="modal-proof-viewer" role="dialog" aria-modal="true" aria-labelledby="proof-modal-title"><div class="h5-media-modal-card"><div class="h5-media-modal-top"><div><span id="proof-modal-source">ORIGINAL CK CAPITAL COMMUNITY ASSET</span><b id="proof-modal-title">Ski / $804.00</b></div><button class="modal-close" data-close-modal="modal-proof-viewer" aria-label="Close media viewer">×</button></div><img id="proof-modal-image" src="assets/real/payouts/payout-ski-804.png" alt="Original CK Capital certificate post"><div class="h5-modal-controls"><button id="viewer-prev" aria-label="Previous source image">←</button><span id="viewer-position">1 / 7</span><button id="viewer-next" aria-label="Next source image">→</button></div></div></div>
 
   <!-- ============================================================ -->
   <!-- VIEW 2: AUTHENTICATION (LOGIN / REGISTER / FORGOT PASSWORD)  -->
@@ -830,11 +231,11 @@
         <!-- Brand / Header -->
         <div class="auth-header">
           <div class="brand-monogram" data-nav="home" style="justify-content: center; margin-bottom: 1.25rem;">
-            <svg class="ck-logo-svg" viewBox="0 0 44 44" width="42" height="42" xmlns="http://www.w3.org/2000/svg"><use href="#ck-logo-symbol"/></svg>
+            <img class="ck-source-logo" src="assets/real/brand/ck-capital-logo-transparent.webp" alt="CK Capital logo" width="38" height="38">
             <span class="brand-wordmark">CK <span>Capital</span></span>
           </div>
-          <h2 id="auth-main-title">Trader Cockpit Login</h2>
-          <p id="auth-sub-title">Enter your institutional credentials to access your control room.</p>
+          <h2 id="auth-main-title">Trader Login</h2>
+          <p id="auth-sub-title">Sign in to your CK Capital trader dashboard.</p>
         </div>
 
         <!-- AUTH TABS -->
@@ -865,18 +266,19 @@
           <div class="form-row-check">
             <label class="custom-checkbox">
               <input type="checkbox" id="login-remember" checked />
-              <span>Remember this workstation</span>
+              <span>Keep me signed in</span>
             </label>
           </div>
 
-          <button type="submit" class="btn btn-primary btn-block btn-large">Authorize Session</button>
+          <button type="submit" class="btn btn-primary btn-block btn-large">Sign in</button>
 
           <div class="auth-divider"><span>OR CONTINUE WITH</span></div>
           <div class="social-auth-grid">
-            <button type="button" class="btn btn-ghost btn-social" id="btn-social-google">Google Workstation</button>
-            <button type="button" class="btn btn-ghost btn-social" id="btn-social-discord">Discord Guild</button>
+            <button type="button" class="btn btn-ghost btn-social" id="btn-social-google" aria-describedby="social-demo-note"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.6 12.23c0-.71-.06-1.39-.18-2.05H12v3.88h5.38a4.6 4.6 0 0 1-2 3.02v2.51h3.24c1.9-1.75 2.98-4.33 2.98-7.36Z"/><path fill="#34A853" d="M12 22c2.7 0 4.96-.9 6.62-2.41l-3.24-2.51c-.9.6-2.05.96-3.38.96-2.6 0-4.8-1.76-5.58-4.13H3.07v2.59A10 10 0 0 0 12 22Z"/><path fill="#FBBC05" d="M6.42 13.91A6 6 0 0 1 6.1 12c0-.66.11-1.3.32-1.91V7.5H3.07A10 10 0 0 0 2 12c0 1.61.39 3.13 1.07 4.5l3.35-2.59Z"/><path fill="#EA4335" d="M12 5.96c1.47 0 2.79.5 3.83 1.5l2.87-2.88A9.6 9.6 0 0 0 12 2a10 10 0 0 0-8.93 5.5l3.35 2.59C7.2 7.72 9.4 5.96 12 5.96Z"/></svg><span>Continue with Google</span></button>
+            <button type="button" class="btn btn-ghost btn-social" id="btn-social-discord" aria-describedby="social-demo-note"><svg width="21" height="21" viewBox="0 0 24 24" fill="#5865F2" aria-hidden="true"><path d="M20.3 4.4a19.8 19.8 0 0 0-4.9-1.5l-.6 1.2a18.3 18.3 0 0 0-5.6 0l-.6-1.2a20 20 0 0 0-4.9 1.5C.6 9 .0 13.4.3 17.8a19.7 19.7 0 0 0 6 3l1.3-2.1-1.9-.9.5-.4a14.1 14.1 0 0 0 11.6 0l.5.4-1.9.9 1.3 2.1a19.7 19.7 0 0 0 6-3c.4-5.1-.8-9.5-3.4-13.4ZM8.1 15.1c-1.2 0-2.1-1.1-2.1-2.4s.9-2.4 2.1-2.4c1.2 0 2.1 1.1 2.1 2.4s-.9 2.4-2.1 2.4Zm7.8 0c-1.2 0-2.1-1.1-2.1-2.4s.9-2.4 2.1-2.4c1.2 0 2.1 1.1 2.1 2.4s-.9 2.4-2.1 2.4Z"/></svg><span>Continue with Discord</span></button>
           </div>
 
+          <p class="social-demo-note" id="social-demo-note">Preview only — Google and Discord sign-in are not connected.</p>
           <div class="demo-credential-hint font-mono">
             <strong>Demo Credentials:</strong> trader@ckcapital.com / Consistency2026!
           </div>
@@ -1074,7 +476,7 @@
 
             <button class="btn btn-primary btn-block btn-large" id="btn-complete-order">Confirm & Initialize Account</button>
             <div class="checkout-security-notice font-mono">
-              Demo environment: Submitting persists this account locally into your Trader Cockpit immediately.
+              Demo environment: Submitting persists this account locally into your Trader Workspace immediately.
             </div>
           </div>
         </div>
@@ -1084,16 +486,16 @@
 
 
   <!-- ============================================================ -->
-  <!-- VIEW 4: TRADER COCKPIT (DASHBOARD SUITE)                     -->
+  <!-- VIEW 4: TRADER WORKSPACE (DASHBOARD SUITE)                     -->
   <!-- ============================================================ -->
-  <div id="dashboard-view" class="view-panel">
-    <div class="cockpit-layout">
+  <div id="dashboard-view" class="view-panel desk-v7">
+    <div class="workspace-layout">
       
       <!-- DASHBOARD SIDEBAR -->
-      <aside class="cockpit-sidebar" id="cockpit-sidebar">
+      <aside class="workspace-sidebar" id="workspace-sidebar">
         <div class="sidebar-top">
           <div class="brand-monogram" data-nav="home">
-            <svg class="ck-logo-svg" viewBox="0 0 44 44" width="34" height="34" xmlns="http://www.w3.org/2000/svg"><use href="#ck-logo-symbol"/></svg>
+            <img class="ck-source-logo" src="assets/real/brand/ck-capital-logo-transparent.webp" alt="CK Capital logo" width="38" height="38">
             <span class="brand-wordmark">CK <span>Capital</span></span>
           </div>
           <button class="sidebar-collapse-btn" id="btn-collapse-sidebar" aria-label="Close sidebar">
@@ -1102,110 +504,69 @@
           </button>
         </div>
 
-        <!-- Account Switcher Box -->
-        <div class="sidebar-account-switch glass-panel">
-          <label class="account-switch-label">CURRENT PORTFOLIO</label>
-          <div class="account-select-wrap">
-            <select id="dash-account-switcher" class="account-select font-mono">
-              <!-- Rendered by JS -->
-            </select>
-          </div>
-          <div class="account-status-indicator">
-            <span class="pulse-dot"></span>
-            <span id="sidebar-account-status">ACTIVE // PHASE 1</span>
-          </div>
-        </div>
-
-        <!-- Sidebar Navigation -->
-        <nav class="sidebar-nav">
-          <span class="sb-active-indicator" id="sb-active-indicator"></span>
-          <button class="sb-item active" data-tab="overview">
+<div class="desk-workspace-label">TRADER WORKSPACE <span>01</span></div><nav class="sidebar-nav" aria-label="Dashboard panels"><span class="sb-active-indicator" id="sb-active-indicator"></span><div class="desk-nav-label">WORKSPACE</div><button class="sb-item active" data-tab="overview">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
             <span>Overview</span>
-          </button>
-          <button class="sb-item" data-tab="copilot">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4L12 2z"/><path d="M19 14l.7 2.1L22 17l-2.3.9L19 20l-.7-2.1L16 17l2.3-.9L19 14z"/></svg>
-            <span>AI Copilot</span>
-          </button>
-          <button class="sb-item" data-tab="performance">
+          </button><button class="sb-item" data-tab="accounts">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>Accounts</span>
+          </button><button class="sb-item" data-tab="trades">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            <span>Trade journal</span>
+          </button><button class="sb-item" data-tab="performance">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
             <span>Performance</span>
-          </button>
-          <button class="sb-item" data-tab="calendar">
+          </button><button class="sb-item" data-tab="calendar">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            <span>Trading Calendar</span>
-          </button>
-          <button class="sb-item" data-tab="trades">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-            <span>Trade Journal</span>
-          </button>
-          <button class="sb-item" data-tab="risk">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span>Risk Engine</span>
-          </button>
-          <button class="sb-item" data-tab="objectives">
+            <span>Calendar</span>
+          </button><div class="desk-nav-label">PROGRESSION</div><button class="sb-item" data-tab="objectives">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-            <span>Objectives Tracker</span>
-          </button>
-          <button class="sb-item" data-tab="payouts">
+            <span>Challenge progress</span>
+          </button><button class="sb-item" data-tab="risk">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <span>Risk & limits</span>
+          </button><button class="sb-item" data-tab="payouts">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-            <span>Payout Center</span>
-          </button>
-          <button class="sb-item" data-tab="certificates">
+            <span>Payouts</span>
+          </button><button class="sb-item" data-tab="certificates">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
             <span>Certificates</span>
-          </button>
-          <button class="sb-item" data-tab="accounts">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            <span>My Accounts</span>
-          </button>
-          <button class="sb-item" data-tab="support">
+          </button><div class="desk-nav-label">PERSONAL</div><button class="sb-item" data-tab="copilot">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4L12 2z"/><path d="M19 14l.7 2.1L22 17l-2.3.9L19 20l-.7-2.1L16 17l2.3-.9L19 14z"/></svg>
+            <span>Trading insights</span>
+          </button><button class="sb-item" data-tab="support">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-            <span>Support Desk</span>
-          </button>
-          <button class="sb-item" data-tab="profile">
+            <span>Help & support</span>
+          </button><button class="sb-item" data-tab="profile">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
             <span>Profile</span>
-          </button>
-          <button class="sb-item" data-tab="settings">
+          </button><button class="sb-item" data-tab="settings">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
             <span>Settings</span>
-          </button>
-        </nav>
-
-        <!-- Sidebar Footer -->
+          </button></nav><button class="desk-new-challenge" data-desk-challenge><span>+</span> New challenge <b>↗</b></button>        <!-- Sidebar Footer -->
         <div class="sidebar-foot">
           <div class="user-brief">
             <div class="user-avatar" id="dash-user-initials">MK</div>
             <div class="user-info">
               <span class="name" id="dash-user-name">Marcus Kramer</span>
-              <span class="role font-mono">SIMULATED ANALYST</span>
+              <span class="role font-mono">Demo workspace</span>
             </div>
           </div>
-          <button class="btn btn-ghost btn-block btn-logout" id="btn-dash-logout">Terminate Session</button>
+          <button class="btn btn-ghost btn-block btn-logout" id="btn-dash-logout">Sign out</button>
         </div>
       </aside>
 
       <!-- Tap-outside-to-close backdrop for the mobile sidebar drawer -->
       <div class="sidebar-mobile-backdrop" id="sidebar-mobile-backdrop" aria-hidden="true"></div>
 
-      <!-- COCKPIT MAIN CONTENT AREA -->
-      <div class="cockpit-main">
+      <!-- WORKSPACE MAIN CONTENT AREA -->
+      <div class="workspace-main">
         
         <!-- DASHBOARD TOP BAR -->
-        <header class="cockpit-topbar glass-panel" aria-label="Trader workstation navigation">
+        <header class="workspace-topbar glass-panel" aria-label="Trader workstation navigation">
           <div class="topbar-command-row">
-            <div class="topbar-left">
-              <button class="topbar-mobile-btn" id="dash-mobile-toggle" aria-label="Open dashboard menu" aria-expanded="false">
-                <span></span><span></span><span></span>
-              </button>
-              <div class="topbar-desktop-brand">
-                <svg class="ck-logo-svg" viewBox="0 0 44 44" width="34" height="34" xmlns="http://www.w3.org/2000/svg"><use href="#ck-logo-symbol"/></svg>
-                <span>CK <em>Capital</em></span>
-              </div>
-            </div>
-
-            <div class="topbar-brand-center">
+            <div class="topbar-left"><img class="desk-mobile-brand ck-source-logo" src="assets/real/brand/ck-capital-logo-transparent.webp" alt="CK Capital" width="40" height="40"><div class="desk-header-path"><span>Workspace</span><b>/</b><strong id="desk-panel-title">Overview</strong></div></div>
+<div class="topbar-brand-center">
               <button class="topbar-search-pill" id="btn-open-cmdk-dash" aria-label="Search or jump to a panel">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                 <span>Search panels, trades, rules&hellip;</span>
@@ -1219,10 +580,7 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3m11-5v3a2 2 0 0 1-2 2h-3"/></svg>
               </button>
 
-              <div class="topbar-account-chip" title="Active trading account">
-                <span class="topbar-account-dot"></span>
-                <span id="topbar-account-label">CK-10000</span>
-              </div>
+              <div class="desk-header-account"><span class="desk-account-selector-label" id="desk-active-account-label">ACTIVE ACCOUNT</span><select id="dash-account-switcher" aria-label="Active trading account" hidden tabindex="-1"></select><button class="desk-account-trigger" id="desk-account-trigger" aria-haspopup="dialog" aria-expanded="false" aria-controls="desk-account-dialog"><span><strong id="desk-picker-id">CK-10000</strong><small id="desk-picker-meta">$10,000 · Phase 1</small></span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m6 9 6 6 6-6"/></svg></button></div>
 
               <button class="topbar-icon-btn topbar-ai-btn" id="btn-topbar-copilot" aria-label="Open AI Copilot" title="AI Copilot">
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4L12 2z"/><path d="M19 14l.7 2.1L22 17l-2.3.9L19 20l-.7-2.1L16 17l2.3-.9L19 14z"/></svg>
@@ -1235,8 +593,8 @@
                 </button>
                 <div class="notif-panel glass-panel" id="notif-menu">
                   <div class="notif-head">
-                    <h5>Notifications Archive</h5>
-                    <button class="btn-link" id="btn-mark-all-read">Clear All</button>
+                    <h5>Notifications</h5>
+                    <button class="btn-link" id="btn-mark-all-read">Mark all read</button>
                   </div>
                   <div class="notif-list" id="notif-items-list"></div>
                 </div>
@@ -1266,169 +624,43 @@
                 <strong id="topbar-local-time">--:--</strong>
               </div>
 
-              <div class="topbar-avatar" id="topbar-user-avatar" aria-label="Trader profile">MK</div>
+              <button class="topbar-avatar" id="topbar-user-avatar" aria-label="Open trader profile" data-desk-tab="profile">MK</button>
             </div>
           </div>
         </header>
 
+<div class="desk-account-backdrop" id="desk-account-backdrop" hidden><section class="desk-account-dialog" id="desk-account-dialog" role="dialog" aria-modal="true" aria-labelledby="desk-account-dialog-title" tabindex="-1"><div class="desk-sheet-handle"></div><div class="desk-picker-heading"><div><span class="desk-eyebrow">YOUR CK WORKSPACE</span><h2 id="desk-account-dialog-title">Choose your account</h2><p>Switch capital. Keep your focus.</p></div><button id="desk-account-close" aria-label="Close account picker">×</button></div><div id="desk-account-options"></div><div class="desk-picker-footer"><span>Account data · Demo workspace</span><button data-desk-tab="accounts">Manage accounts ↗</button></div></section></div>
+<nav class="desk-mobile-dock" aria-label="Mobile dashboard navigation"><button data-desk-tab="overview" class="active" aria-label="Home"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg><span>Home</span></button><button data-desk-tab="trades" class="" aria-label="Trades"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span>Trades</span></button><button data-desk-tab="accounts" class="" aria-label="Accounts"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span>Accounts</span></button><button data-desk-tab="payouts" class="" aria-label="Payouts"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg><span>Payouts</span></button><button id="desk-more-toggle" aria-label="More dashboard panels" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span>More</span></button></nav><div class="desk-sheet-backdrop" id="desk-more-backdrop"><section class="desk-more-sheet" role="dialog" aria-modal="true" aria-labelledby="desk-more-title" tabindex="-1"><div class="desk-sheet-handle"></div><div class="desk-card-top"><h2 id="desk-more-title">Your workspace</h2><button id="desk-more-close" aria-label="Close more menu">×</button></div><div class="desk-sheet-grid"><button data-desk-tab="performance"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span>Performance</span><b>↗</b></button><button data-desk-tab="calendar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><span>Calendar</span><b>↗</b></button><button data-desk-tab="objectives"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg><span>Challenge progress</span><b>↗</b></button><button data-desk-tab="risk"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Risk & limits</span><b>↗</b></button><button data-desk-tab="copilot"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4L12 2z"/><path d="M19 14l.7 2.1L22 17l-2.3.9L19 20l-.7-2.1L16 17l2.3-.9L19 14z"/></svg><span>Trading insights</span><b>↗</b></button><button data-desk-tab="certificates"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg><span>Certificates</span><b>↗</b></button><button data-desk-tab="profile"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Profile</span><b>↗</b></button><button data-desk-tab="settings"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg><span>Settings</span><b>↗</b></button><button data-desk-tab="support"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><span>Help & support</span><b>↗</b></button></div><div class="desk-more-utilities"><button id="desk-more-search">Search workspace <span>⌘K</span></button><button id="desk-more-logout">Sign out <span>↗</span></button></div><button class="desk-new-challenge" data-desk-challenge>+ New challenge <b>↗</b></button></section></div>
         <!-- Focus Mode exit pill (visible only while focus mode is active) -->
         <button class="focus-mode-exit-pill" id="btn-exit-focus-mode">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3m18-11-7 7M3 21l7-7"/></svg>
           Exit Focus Mode
         </button>
 
-        <!-- SUB-PANEL 1: OVERVIEW -->
         <section id="pane-overview" class="dash-tab-pane active">
-
-          <!-- Overview Welcome -->
-          <div class="overview-welcome">
-            <div class="overview-welcome-copy">
-              <span class="overview-eyebrow font-mono" id="overview-greeting-eyebrow">LOCAL DESK // LIVE SESSION</span>
-              <h1 id="overview-salutation">Good afternoon, Trader.</h1>
-              <p>Welcome back to your trading desk. Monitor performance, risk and account health from one place.</p>
-            </div>
-            <div class="overview-health-badge">
-              <span class="overview-health-dot"></span>
-              <span>ALL RISK LIMITS HEALTHY</span>
-            </div>
+          <div class="desk-welcome"><div><span class="desk-eyebrow" id="overview-greeting-eyebrow">YOUR TRADING WORKSPACE</span><h1 id="overview-salutation">Good evening, Marcus.</h1><p>A clear view of your capital. A confident next move.</p></div><div class="desk-demo-label"><i></i> Demo data <span>· Not a live feed</span></div></div>
+          <div class="desk-account-grid">
+            <article class="desk-account-card"><div class="desk-card-top"><span class="desk-account-model" id="desk-account-model">2-Step evaluation · $10,000</span><span class="desk-status" id="sidebar-account-status">ACTIVE · PHASE 1</span></div>
+              <div class="desk-account-content"><div class="desk-primary-number"><span>Account equity</span><strong id="kpi-equity">$10,391.20</strong><span class="desk-return" id="desk-equity-return">+3.91% from starting balance</span></div><img class="desk-account-mark ck-source-logo" src="assets/real/brand/ck-capital-logo-transparent.webp" alt="CK Capital logo" width="104" height="88"></div>
+              <div class="desk-account-metrics"><div><span>Balance</span><strong id="kpi-balance">$10,428.60</strong></div><div><span>Net balance growth</span><strong id="kpi-balance-delta" class="text-success">+$428.60</strong></div><div><span>Floating P&L</span><strong id="desk-floating">−$37.40</strong></div></div>
+              <div class="desk-account-foot"><button id="btn-copy-account" aria-label="Copy active account ID"><span id="topbar-account-label">CK-10000</span><span aria-hidden="true">⧉</span></button><span id="desk-platform">TradeLocker · Standard</span><button class="desk-inline-link" data-desk-tab="accounts">Manage <span>↗</span></button></div>
+            </article>
+            <article class="desk-progress-card"><div class="desk-card-top"><h2>Your next milestone</h2><button class="desk-arrow" data-desk-tab="objectives" aria-label="View challenge progress">↗</button></div><div class="desk-progress-body"><div class="desk-progress-ring" id="desk-progress-ring"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="51" class="desk-ring-track"/><circle cx="60" cy="60" r="51" class="desk-ring-value" id="desk-ring-value"/></svg><strong id="desk-target-percent">85.7<span>%</span></strong></div><div><span class="desk-eyebrow" id="desk-phase">PHASE 1</span><h3 id="desk-milestone-title">Profit target</h3><p id="desk-target-caption">$71.40 to your target</p></div></div><div class="desk-progress-foot"><span id="desk-target-current">$428.60 earned</span><strong id="desk-target-total">of $500.00</strong></div><div class="desk-phase-track" id="desk-phase-track"><span class="active">01 Evaluation</span><span>02 Verification</span><span>03 Funded</span></div></article>
           </div>
-
-          <!-- Key Metrics Grid -->
-          <div class="cockpit-kpi-grid">
-            <div class="kpi-card glass-panel">
-              <div class="kpi-title">Current Balance</div>
-              <div class="kpi-value font-mono" id="kpi-balance">$10,428.60</div>
-              <div class="kpi-delta text-success font-mono" id="kpi-balance-delta">+$428.60 Initial Scale</div>
-            </div>
-
-            <div class="kpi-card glass-panel">
-              <div class="kpi-title">Floating Equity</div>
-              <div class="kpi-value font-mono" id="kpi-equity">$10,391.20</div>
-              <div class="kpi-delta font-mono">Margin In Use: $312.00</div>
-            </div>
-
-            <div class="kpi-card glass-panel">
-              <div class="kpi-title">Today's Net P&L</div>
-              <div class="kpi-value font-mono text-success" id="kpi-today-pnl">+$128.60</div>
-              <div class="kpi-delta font-mono text-success">3 Wins / 1 Loss</div>
-            </div>
-
-            <div class="kpi-card glass-panel">
-              <div class="kpi-title">Daily Drawdown Used</div>
-              <div class="kpi-value font-mono" id="kpi-daily-dd">1.09%</div>
-              <div class="kpi-bar-wrap">
-                <div class="kpi-prog-bar" id="kpi-daily-bar" style="width: 27.4%;"></div>
-              </div>
-              <div class="kpi-delta font-mono text-muted" id="kpi-daily-rem">$145.20 remaining</div>
-            </div>
+          <div class="desk-analysis-grid">
+            <article class="desk-chart-panel"><div class="desk-card-top"><div><span class="desk-eyebrow">PERFORMANCE</span><h2>Every trade tells a story.</h2></div><button class="desk-arrow" data-desk-tab="performance" aria-label="Open performance analytics">↗</button></div><div class="desk-chart-toolbar"><div><strong id="desk-chart-total">+$709.00</strong><span>Closed-trade P&L</span></div><div class="timeframe-selector" id="chart-tf-selector"><button class="tf-btn" data-tf="1D">1D</button><button class="tf-btn" data-tf="1W">1W</button><button class="tf-btn active" data-tf="1M">1M</button><button class="tf-btn" data-tf="ALL">All</button></div></div><div class="svg-chart-container" id="overview-chart-canvas"></div><p class="desk-chart-note" id="desk-chart-note">Cumulative journal results · Not a live equity feed</p><div class="desk-chart-stats"><div><span>Win rate</span><strong id="desk-win-rate">66.7%</strong></div><div><span>Profit factor</span><strong id="desk-profit-factor">3.99</strong></div><div><span>Closed trades</span><strong id="desk-trade-count">9</strong></div><div><span>Trading days</span><strong id="desk-trading-days">6</strong></div></div></article>
+            <article class="desk-risk-panel"><div class="desk-card-top"><h2>Room to trade.</h2><button class="desk-arrow" data-desk-tab="risk" aria-label="View risk and limits">↗</button></div><p>Know your limits. Protect your progress.</p><div class="desk-risk-block"><div><span>Daily loss buffer</span><strong id="desk-daily-buffer">$145.20</strong></div><div class="desk-risk-track"><i id="bar-daily-used"></i></div><div class="desk-risk-meta"><span><b id="ov-daily-used">$54.80</b> used</span><span id="ov-daily-limit">$200.00 limit</span></div></div><div class="desk-risk-block"><div><span>Maximum loss buffer</span><strong id="desk-max-buffer">$291.20</strong></div><div class="desk-risk-track"><i id="bar-max-used"></i></div><div class="desk-risk-meta"><span><b id="ov-max-used">$108.80</b> used</span><span id="ov-max-limit">$400.00 limit</span></div></div><div class="desk-risk-summary" id="desk-risk-summary"><i></i><span>Within account limits</span></div><small>Daily usage is the existing demo snapshot. Maximum usage is relative to starting equity.</small><button class="desk-inline-link" data-desk-tab="risk">Review risk details <span>↗</span></button></article>
           </div>
-
-          <!-- Interactive Equity Chart Component -->
-          <div class="chart-box glass-panel">
-            <div class="chart-header-row">
-              <div>
-                <h4>Simulated Equity Curve</h4>
-                <p class="text-muted font-mono">High-frequency mark-to-market data tracking</p>
-              </div>
-              <div class="timeframe-selector" id="chart-tf-selector">
-                <button class="tf-btn" data-tf="1D">1D</button>
-                <button class="tf-btn" data-tf="1W">1W</button>
-                <button class="tf-btn active" data-tf="1M">1M</button>
-                <button class="tf-btn" data-tf="ALL">ALL</button>
-              </div>
-            </div>
-
-            <!-- Dynamic SVG Chart Canvas -->
-            <div class="svg-chart-container" id="overview-chart-canvas">
-              <!-- Rendered via renderInteractiveChart() in JS -->
-            </div>
-          </div>
-
-          <!-- Two Column Risk & Objectives Section -->
-          <div class="overview-dual-grid">
-            <!-- Risk Engine Card -->
-            <div class="dual-card glass-panel">
-              <div class="card-title-row">
-                <h4>Risk Monitor Status</h4>
-                <span class="badge-status-sm healthy font-mono" id="risk-status-pill">HEALTHY</span>
-              </div>
-              <div class="risk-gauge-row">
-                <div class="gauge-col">
-                  <span class="sub-label">Daily Loss Permitted</span>
-                  <div class="gauge-val font-mono" id="ov-daily-limit">$200.00</div>
-                  <div class="gauge-used font-mono text-danger">Used: <span id="ov-daily-used">$54.80</span></div>
-                  <div class="gauge-bar-outer">
-                    <div class="gauge-bar-fill" id="bar-daily-used" style="width: 27.4%;"></div>
-                  </div>
-                </div>
-                <div class="gauge-col">
-                  <span class="sub-label">Max Loss Permitted</span>
-                  <div class="gauge-val font-mono" id="ov-max-limit">$400.00</div>
-                  <div class="gauge-used font-mono text-danger">Used: <span id="ov-max-used">$108.80</span></div>
-                  <div class="gauge-bar-outer">
-                    <div class="gauge-bar-fill" id="bar-max-used" style="width: 27.2%;"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Rules Health Table -->
-            <div class="dual-card glass-panel">
-              <div class="card-title-row">
-                <h4>Rules Health Matrix</h4>
-                <span class="font-mono text-gold text-sm">Click rule to inspect</span>
-              </div>
-              <div class="rules-mini-list">
-                <div class="rule-mini-row" data-rule="daily">
-                  <span>Daily Loss Guardrail</span>
-                  <span class="tag-rule-health pass font-mono">PASS // 1.09%</span>
-                </div>
-                <div class="rule-mini-row" data-rule="max">
-                  <span>Max Drawdown Limit</span>
-                  <span class="tag-rule-health pass font-mono">PASS // 2.34%</span>
-                </div>
-                <div class="rule-mini-row" data-rule="target">
-                  <span>Profit Target Threshold</span>
-                  <span class="tag-rule-health in-prog font-mono">85.7% COMPLETE</span>
-                </div>
-                <div class="rule-mini-row" data-rule="days">
-                  <span>Minimum Trading Days</span>
-                  <span class="tag-rule-health pass font-mono">4 / 1 COMPLETED</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Market Sessions + Community Pulse -->
-          <div class="overview-dual-grid" style="margin-top: 1.3rem;">
-            <div class="dual-card glass-panel">
-              <div class="card-title-row">
-                <h4>Global Market Sessions</h4>
-                <span class="font-mono text-muted text-sm" id="session-utc-clock">--:-- UTC</span>
-              </div>
-              <div class="sessions-row" id="market-sessions-list">
-                <!-- Rendered via renderMarketSessions() in JS -->
-              </div>
-            </div>
-
-            <div class="dual-card glass-panel">
-              <div class="card-title-row">
-                <h4>Community Pulse</h4>
-                <span class="badge-status-sm healthy font-mono">LIVE</span>
-              </div>
-              <div class="pulse-feed-list" id="community-pulse-list">
-                <!-- Rendered via renderCommunityPulse() in JS -->
-              </div>
-            </div>
-          </div>
+          <div class="desk-bottom-grid"><article class="desk-recent-panel"><div class="desk-card-top"><h2>Latest from your journal</h2><button class="desk-inline-link" data-desk-tab="trades">All trades <span>↗</span></button></div><div id="desk-recent-trades"></div></article><article class="desk-editorial"><img src="assets/design/market-sculpture.webp" alt="Abstract CK market sculpture" loading="lazy"><div><span class="desk-eyebrow">THE LONG GAME</span><h2>Discipline is<br>your edge.</h2><p>Review your patterns.<br>Build your next session.</p><button data-desk-tab="copilot">Explore trading insights <span>↗</span></button></div></article></div>
+          <div class="desk-session-footer"><span>CK Capital · Simulated trading environment</span><button data-desk-tab="support">Need a hand? Get support ↗</button></div>
         </section>
 
         <!-- SUB-PANEL: AI COPILOT -->
         <section id="pane-copilot" class="dash-tab-pane">
           <div class="section-title-wrap">
-            <span class="copilot-live-badge">CK COPILOT // LIVE ANALYSIS ENGINE</span>
+            <span class="copilot-live-badge">CK COPILOT // DEMO INSIGHTS</span>
             <h3>Your AI Trading Copilot</h3>
-            <p>Pattern recognition, discipline scoring, and peer benchmarking — recalculated after every closed session.</p>
+            <p>Illustrative discipline scores and badges, not a live analysis engine. Open CK Assistant for calculations from your selected account and saved trade journal.</p>
           </div>
 
           <!-- Discipline score + streak + badges preview -->
@@ -1500,7 +732,7 @@
         <!-- SUB-PANEL 2: PERFORMANCE -->
         <section id="pane-performance" class="dash-tab-pane">
           <div class="section-title-wrap">
-            <h3>Quantitative Performance Statistics</h3>
+            <h3>Performance</h3>
             <p class="text-muted">Calculated on closed trades for the active account.</p>
           </div>
 
@@ -1551,7 +783,7 @@
           <div class="section-title-wrap">
             <div class="cal-head-flex">
               <div>
-                <h3>Trading Activity Calendar</h3>
+                <h3>Trading calendar</h3>
                 <p class="text-muted">Daily closed P&L and volume tracking. Select any trading day to inspect positions.</p>
               </div>
               <div class="calendar-controls">
@@ -1575,8 +807,8 @@
         <!-- SUB-PANEL 4: TRADES JOURNAL -->
         <section id="pane-trades" class="dash-tab-pane">
           <div class="section-title-wrap">
-            <h3>Trade History Journal</h3>
-            <p class="text-muted">Comprehensive audit log of all opened and settled positions.</p>
+            <h3>Trade journal</h3>
+            <p class="text-muted">Your closed trades, searchable by instrument, direction and result.</p>
           </div>
 
           <div class="journal-filter-bar glass-panel">
@@ -1620,7 +852,7 @@
                 </tbody>
               </table>
             </div>
-            <div class="table-scroll-hint">⟷ Swipe to see more</div>
+            
             <div class="table-empty-state" id="trades-empty" style="display: none;">
               <p>No trades found matching current filter parameters.</p>
             </div>
@@ -1630,8 +862,8 @@
         <!-- SUB-PANEL 5: RISK ENGINE -->
         <section id="pane-risk" class="dash-tab-pane">
           <div class="section-title-wrap">
-            <h3>Algorithmic Risk Engine</h3>
-            <p class="text-muted">Real-time parameters verified against high-frequency tick records.</p>
+            <h3>Risk & limits</h3>
+            <p class="text-muted">Account rules and the existing simulated risk snapshot.</p>
           </div>
 
           <div class="risk-matrix-grid">
@@ -1670,7 +902,7 @@
         <!-- SUB-PANEL 6: OBJECTIVES TRACKER -->
         <section id="pane-objectives" class="dash-tab-pane">
           <div class="section-title-wrap">
-            <h3>Milestone & Challenge Tracker</h3>
+            <h3>Challenge progress</h3>
             <p class="text-muted">Criteria required to elevate this account to Qualified Analyst status.</p>
           </div>
 
@@ -1766,15 +998,15 @@
                 </tbody>
               </table>
             </div>
-            <div class="table-scroll-hint">⟷ Swipe to see more</div>
+            
           </div>
         </section>
 
         <!-- SUB-PANEL 8: CERTIFICATES -->
         <section id="pane-certificates" class="dash-tab-pane">
           <div class="section-title-wrap">
-            <h3>Verified Trader Certificates</h3>
-            <p class="text-muted">Formal cryptographic recognition of challenge completions and milestones.</p>
+            <h3>Certificate design previews</h3>
+            <p class="text-muted">Personalised CK-inspired demo layouts. Names follow your saved profile. These are not issued credentials or proof of a payout.</p>
           </div>
 
           <div class="certs-grid" id="certs-container">
@@ -1851,7 +1083,7 @@
               <div class="user-avatar big-avatar" id="prof-big-avatar">MK</div>
               <div>
                 <h3 id="prof-display-name">Marcus Kramer</h3>
-                <span class="text-gold font-mono">VERIFIED SIMULATED ANALYST</span>
+                <span class="text-gold font-mono">VERIFIED Demo workspace</span>
               </div>
             </div>
             <div class="profile-data-grid">
@@ -1999,44 +1231,33 @@
     </div>
   </div>
 
-  <!-- MODAL: CERTIFICATE VIEWER -->
-  <div class="modal-backdrop" id="modal-cert">
-    <div class="modal-card modal-cert-card glass-panel">
-      <div class="modal-header">
-        <h3>Verified Performance Credential</h3>
-        <button class="modal-close" data-close-modal>&times;</button>
-      </div>
+  <!-- MODAL: PERSONALIZED DEMO CERTIFICATE VIEWER -->
+  <div class="modal-backdrop" id="modal-cert" role="dialog" aria-modal="true" aria-labelledby="cert-viewer-title">
+    <div class="modal-card modal-cert-card glass-panel sample-cert-modal">
+      <div class="modal-header"><div><h3 id="cert-viewer-title" tabindex="-1">Personalised certificate preview</h3><p class="sample-viewer-note">Decorative demo only · Not issued by CK Capital</p></div><button class="modal-close" data-close-modal aria-label="Close certificate preview">&times;</button></div>
       <div class="modal-body cert-render-area" id="cert-printable-area">
-        <div class="cert-outer-border">
-          <div class="cert-inner-border">
-            <div class="cert-brand">CK CAPITAL // INSTITUTIONAL VERIFICATION</div>
-            <h1 class="cert-title" id="cert-modal-title">CERTIFICATE OF ACHIEVEMENT</h1>
-            <p class="cert-pres">This document certifies that</p>
-            <h2 class="cert-recipient" id="cert-modal-name">MARCUS KRAMER</h2>
-            <p class="cert-reason" id="cert-modal-desc">
-              Has successfully proven disciplined statistical edge by completing the Evaluation benchmarks under CK Capital Proprietary Trading Guidelines.
-            </p>
-            <div class="cert-meta-row font-mono">
-              <div>
-                <span class="c-lbl">PORTFOLIO</span>
-                <strong id="cert-modal-acc">CK-10000</strong>
-              </div>
-              <div>
-                <span class="c-lbl">DATE ISSUED</span>
-                <strong id="cert-modal-date">September 04, 2026</strong>
-              </div>
-              <div>
-                <span class="c-lbl">CREDENTIAL ID</span>
-                <strong id="cert-modal-id">CKC-98412</strong>
-              </div>
-            </div>
+        <article class="sample-certificate" id="sample-certificate" data-kind="phase">
+          <div class="sample-certificate-topline">DEMO / DESIGN PREVIEW — NOT AN ISSUED CERTIFICATE</div>
+          <div class="sample-border sample-border-top" aria-hidden="true"></div>
+          <div class="sample-border sample-border-bottom" aria-hidden="true"></div>
+          <img class="sample-reward-art" src="assets/design/certificates/reward-wolf.webp" alt="Decorative purple CK wolf artwork" aria-hidden="true">
+          <div class="sample-watermark" aria-hidden="true"><span>DEMO</span></div>
+          <div class="sample-cert-content">
+            <img class="sample-gold-brand" src="assets/design/certificates/gold-wordmark.png" alt="CK Capital" width="170" height="41">
+            <span class="sample-layout-label" id="cert-modal-layout-label">BLACK &amp; GOLD / SAMPLE LAYOUT</span>
+            <h1 id="cert-modal-title">PHASE 2 CERTIFICATE</h1>
+            <p class="sample-presented">PERSONALISED PREVIEW FOR</p>
+            <h2 class="sample-name" id="cert-modal-name">Marcus Kramer</h2>
+            <div class="sample-name-line" aria-hidden="true"></div>
+            <p class="sample-cert-description" id="cert-modal-desc">A decorative phase-certificate layout for your simulated workspace. This sample does not certify a completed phase or funded status.</p>
+            <div class="sample-reward-amount"><span>SIMULATED REWARD PREVIEW</span><strong id="cert-modal-amount">$0.00</strong><small>Demo ledger sample · Not account-specific or proof of payment</small></div>
+            <div class="sample-account-details"><span>ACCOUNT PREVIEW</span><strong id="cert-modal-account-size">$10,000 Challenge · Standard</strong><small id="cert-modal-platform">TradeLocker · Current phase 1</small></div>
+            <div class="sample-cert-metadata"><div><span>PREVIEW DATE</span><strong id="cert-modal-date">—</strong></div><div><span>ACCOUNT REFERENCE</span><strong id="cert-modal-acc">CK-10000</strong></div><div><span>SAMPLE ID</span><strong id="cert-modal-id">DEMO-CKC-102</strong></div></div>
+            <div class="sample-certificate-disclaimer"><strong>DEMO — NOT VALID FOR VERIFICATION</strong><span>Not a CK Capital-issued award, funding credential or payment confirmation. No signature or verification QR code.</span></div>
           </div>
-        </div>
+        </article>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-close-modal>Close</button>
-        <button type="button" class="btn btn-primary" id="btn-print-cert">Print / Save as PDF</button>
-      </div>
+      <div class="modal-footer"><button type="button" class="btn btn-secondary" data-close-modal>Close</button><button type="button" class="btn btn-primary" id="btn-print-cert">Print demo / Save PDF</button></div>
     </div>
   </div>
 
@@ -2189,6 +1410,12 @@
   </button>
 
   <!-- APPLICATION CONTROLLER -->
+  <script src="ck-dialogs.js"></script>
   <script src="app.js"></script>
+  <script src="homepage.js"></script>
+  <script src="dashboard-ui.js"></script>
+  <script src="certificates-ui.js"></script>
+  <script src="assistant.js"></script>
+  <script src="public-polish.js"></script>
 </body>
 </html>

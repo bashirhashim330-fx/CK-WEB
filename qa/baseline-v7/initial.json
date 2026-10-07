@@ -1,0 +1,185 @@
+{
+  "errors": [],
+  "results": [
+    {
+      "width": 320,
+      "theme": "dark",
+      "active": "dashboard-view",
+      "sw": 320,
+      "cw": 320,
+      "eq": "$10,391.20",
+      "children": []
+    },
+    {
+      "width": 320,
+      "theme": "light",
+      "active": "dashboard-view",
+      "sw": 320,
+      "cw": 320,
+      "eq": "$10,391.20",
+      "children": []
+    },
+    {
+      "width": 375,
+      "theme": "dark",
+      "active": "dashboard-view",
+      "sw": 375,
+      "cw": 375,
+      "eq": "$10,391.20",
+      "children": []
+    },
+    {
+      "width": 375,
+      "theme": "light",
+      "active": "dashboard-view",
+      "sw": 375,
+      "cw": 375,
+      "eq": "$10,391.20",
+      "children": []
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "active": "dashboard-view",
+      "sw": 390,
+      "cw": 390,
+      "eq": "$10,391.20",
+      "children": []
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "active": "dashboard-view",
+      "sw": 390,
+      "cw": 390,
+      "eq": "$10,391.20",
+      "children": []
+    },
+    {
+      "width": 430,
+      "theme": "dark",
+      "active": "dashboard-view",
+      "sw": 430,
+      "cw": 430,
+      "eq": "$10,391.20",
+      "children": []
+    },
+    {
+      "width": 430,
+      "theme": "light",
+      "active": "dashboard-view",
+      "sw": 430,
+      "cw": 430,
+      "eq": "$10,391.20",
+      "children": []
+    },
+    {
+      "width": 650,
+      "theme": "dark",
+      "active": "dashboard-view",
+      "sw": 650,
+      "cw": 650,
+      "eq": "$10,391.20",
+      "children": []
+    },
+    {
+      "width": 650,
+      "theme": "light",
+      "active": "dashboard-view",
+      "sw": 650,
+      "cw": 650,
+      "eq": "$10,391.20",
+      "children": []
+    },
+    {
+      "width": 768,
+      "theme": "dark",
+      "active": "dashboard-view",
+      "sw": 768,
+      "cw": 768,
+      "eq": "$10,391.20",
+      "children": []
+    },
+    {
+      "width": 768,
+      "theme": "light",
+      "active": "dashboard-view",
+      "sw": 768,
+      "cw": 768,
+      "eq": "$10,391.20",
+      "children": []
+    },
+    {
+      "width": 900,
+      "theme": "dark",
+      "active": "dashboard-view",
+      "sw": 900,
+      "cw": 900,
+      "eq": "$10,391.20",
+      "children": []
+    },
+    {
+      "width": 900,
+      "theme": "light",
+      "active": "dashboard-view",
+      "sw": 900,
+      "cw": 900,
+      "eq": "$10,391.20",
+      "children": []
+    },
+    {
+      "width": 1024,
+      "theme": "dark",
+      "active": "dashboard-view",
+      "sw": 1024,
+      "cw": 1024,
+      "eq": "$10,391.20",
+      "children": []
+    },
+    {
+      "width": 1024,
+      "theme": "light",
+      "active": "dashboard-view",
+      "sw": 1024,
+      "cw": 1024,
+      "eq": "$10,391.20",
+      "children": []
+    },
+    {
+      "width": 1440,
+      "theme": "dark",
+      "active": "dashboard-view",
+      "sw": 1440,
+      "cw": 1440,
+      "eq": "$10,391.20",
+      "children": []
+    },
+    {
+      "width": 1440,
+      "theme": "light",
+      "active": "dashboard-view",
+      "sw": 1440,
+      "cw": 1440,
+      "eq": "$10,391.20",
+      "children": []
+    },
+    {
+      "width": 1920,
+      "theme": "dark",
+      "active": "dashboard-view",
+      "sw": 1920,
+      "cw": 1920,
+      "eq": "$10,391.20",
+      "children": []
+    },
+    {
+      "width": 1920,
+      "theme": "light",
+      "active": "dashboard-view",
+      "sw": 1920,
+      "cw": 1920,
+      "eq": "$10,391.20",
+      "children": []
+    }
+  ]
+}
