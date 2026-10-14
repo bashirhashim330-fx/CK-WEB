@@ -1620,7 +1620,9 @@
         const selectedTheme = btn.dataset.topbarTheme;
         applyTheme(selectedTheme);
         syncThemeControls();
-        document.getElementById('topbar-theme-menu')?.classList.remove('open');
+        const themeMenu = document.getElementById('topbar-theme-menu');
+        themeMenu?.classList.remove('open');
+        themeMenu?.setAttribute('aria-hidden', 'true');
         document.getElementById('btn-topbar-theme')?.setAttribute('aria-expanded', 'false');
         showToast(`Theme switched to ${selectedTheme === 'dark' ? 'Graphite Dark' : selectedTheme === 'light' ? 'Technical Light' : 'System Default'}`);
       });
@@ -1632,11 +1634,21 @@
       e.stopPropagation();
       const open = topThemeMenu?.classList.toggle('open');
       topThemeBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      topThemeMenu?.setAttribute('aria-hidden', open ? 'false' : 'true');
     });
     document.addEventListener('click', (e) => {
-      if (!topThemeMenu?.contains(e.target) && e.target !== topThemeBtn) {
+      if (!topThemeMenu?.contains(e.target) && !topThemeBtn?.contains(e.target)) {
         topThemeMenu?.classList.remove('open');
+        topThemeMenu?.setAttribute('aria-hidden', 'true');
         topThemeBtn?.setAttribute('aria-expanded', 'false');
+      }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && topThemeMenu?.classList.contains('open')) {
+        topThemeMenu.classList.remove('open');
+        topThemeMenu.setAttribute('aria-hidden', 'true');
+        topThemeBtn?.setAttribute('aria-expanded', 'false');
+        topThemeBtn?.focus();
       }
     });
 

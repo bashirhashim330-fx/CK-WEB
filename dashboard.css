@@ -504,3 +504,11 @@ body.dashboard-session.dashboard-reduced-motion .modal-backdrop,body.dashboard-s
 #dashboard-view.desk-v7 .desk-filter-popover button[aria-selected=true]{color:var(--desk-accent);background:color-mix(in srgb,var(--desk-accent) 8%,transparent)}
 #dashboard-view.desk-v7 .desk-filter-popover button:hover,#dashboard-view.desk-v7 .desk-filter-popover button:focus{background:var(--desk-raised)}
 @media(max-width:650px){#dashboard-view.desk-v7 .desk-filter-trigger{font-size:10px;padding:12px 10px}}
+
+
+/* V12 FIX: topbar popovers must not be clipped by the global .glass-panel overflow rule. */
+#dashboard-view.desk-v7 .workspace-topbar{overflow:visible!important}
+#dashboard-view.desk-v7 .topbar-theme-wrap,
+#dashboard-view.desk-v7 .topbar-notifications{position:relative;z-index:2}
+#dashboard-view.desk-v7 .topbar-theme-menu,
+#dashboard-view.desk-v7 .notif-panel{z-index:800!important}
